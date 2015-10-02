@@ -1,0 +1,14 @@
+spring-boot-starter
+provides: spring-boot,spring-context,spring-beans
+
+spring-boot-starter-data-jpa
+provides: spring-orm,hibernate-entity-manager,spring-data-jpa
+
+spring-boot-starter-web
+provides: spring-webmvc,spring-web,jackson-databind
+
+spring-boot-starter-tomcat
+provides: tomcat-embed-core
+
+spring-boot-starter-test
+provides: spring-test,spring-boot,junit,mockito,hamcrest-library
