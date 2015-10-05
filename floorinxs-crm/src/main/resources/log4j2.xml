@@ -7,8 +7,8 @@
 		<Console name="console-log" target="SYSTEM_OUT">
 			<PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
 		</Console>
-		<RollingFile name="trace-log" fileName="${log-path}/workshop1-trace.log"
-				filePattern="${log-path}/workshop1-trace-%d{yyyy-MM-dd}.log">
+		<RollingFile name="trace-log" fileName="${log-path}/workshop2-trace.log"
+				filePattern="${log-path}/workshop2-trace-%d{yyyy-MM-dd}.log">
 			<PatternLayout>
 				<pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
 			</PatternLayout>
@@ -16,8 +16,8 @@
 				<TimeBasedTriggeringPolicy interval="1" modulate="true"/>
 			</Policies>
 		</RollingFile>
-		<RollingFile name="error-log" fileName="${log-path}/workshop1-error.log"
-				filePattern="${log-path}/workshop1-error-%d{yyyy-MM-dd}.log">
+		<RollingFile name="error-log" fileName="${log-path}/workshop2-error.log"
+				filePattern="${log-path}/workshop2-error-%d{yyyy-MM-dd}.log">
 			<PatternLayout>
 				<pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
 			</PatternLayout>
@@ -27,7 +27,7 @@
 		</RollingFile>
 	</Appenders>
 	<Loggers>
-		<Logger name="org.workshop1.log4j2" level="debug" additivity="false">
+		<Logger name="org.workshop2.log4j2" level="debug" additivity="false">
 			<appender-ref ref="trace-log" level="debug"/>
 			<appender-ref ref="error-log" level="error"/>
 			<appender-ref ref="console-log" level="debug"/>

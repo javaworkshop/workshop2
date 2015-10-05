@@ -8,6 +8,6 @@
     <body>
         <h1>Welcome!</h1>
         <h2>This application is still quite unfinished.</h2>
-        <h3><a href="CustomerPage.html">Click to see customer page</a></h3>
+        <h3><a href="KlantHomePage.html">Click to see customer page</a></h3>
     </body>
 </html>
