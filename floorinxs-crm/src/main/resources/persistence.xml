@@ -4,7 +4,18 @@
 				version="2.0">
 	<persistence-unit name="workshop2" transaction-type="RESOURCE_LOCAL">
 		<!--<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
-		<!--<class>org.workshop2.floorinxs.???</class>-->
+		<class>org.workshop2.floorinxs.Adres</class>
+		<class>org.workshop2.floorinxs.Factuur</class>
+		<class>org.workshop2.floorinxs.Klant</class>
+		<class>org.workshop2.floorinxs.Leverancier</class>
+		<class>org.workshop2.floorinxs.Levering</class>
+		<class>org.workshop2.floorinxs.Offerte</class>
+		<class>org.workshop2.floorinxs.Planning</class>
+		<!-- <class>org.workshop2.floorinxs.Product</class> is nog niet toegevoegd -->
+		<class>org.workshop2.floorinxs.ProductGroep</class>
+		<class>org.workshop2.floorinxs.Rekeninggegevens</class>
+		<class>org.workshop2.floorinxs.Vloer</class>
+		<class>org.workshop2.floorinxs.Werkbon</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<!--<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
