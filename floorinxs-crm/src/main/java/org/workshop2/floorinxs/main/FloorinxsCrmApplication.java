@@ -1,12 +1,10 @@
 package org.workshop2.floorinxs.main;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.workshop2.floorinxs.config.SpringConfigurator;
 
 @SpringBootApplication
-@EnableAutoConfiguration
 public class FloorinxsCrmApplication {
     
     public static void main(String[] args) {

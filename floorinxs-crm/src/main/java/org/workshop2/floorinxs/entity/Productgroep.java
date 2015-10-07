@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table
-class Productgroep implements Serializable {
+public class Productgroep implements Serializable {
     /*
 • Type: laminaat, massief 
 • Materiaal

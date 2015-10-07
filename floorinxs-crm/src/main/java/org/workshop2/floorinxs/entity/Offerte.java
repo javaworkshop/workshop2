@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table
-class Offerte implements Serializable {
+public class Offerte implements Serializable {
 
     /*
     • vloer

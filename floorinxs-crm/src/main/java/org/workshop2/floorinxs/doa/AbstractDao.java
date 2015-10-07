@@ -8,8 +8,6 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-@Repository
-@Transactional
 public abstract class AbstractDao<E, PK> implements Dao<E, PK> {
     protected Class entityClass;
     

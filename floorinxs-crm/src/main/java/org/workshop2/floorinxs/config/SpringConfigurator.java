@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ImportResource;
 @Configuration
 @ImportResource("classpath:springconfig.xml")
 @ComponentScan(basePackages = {"org.workshop2.floorinxs.doa", "org.workshop2.floorinxs.service", 
-        "org.workshop2.floorinxs."})
+        "org.workshop2.floorinxs.webcontrol"})
 public class SpringConfigurator {
     /*@Bean
     some method*/

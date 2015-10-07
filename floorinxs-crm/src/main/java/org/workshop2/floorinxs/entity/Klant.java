@@ -40,20 +40,20 @@ public class Klant implements Serializable{
     private String voornaam;
     @Column
     private String achternaam;
-    @Embedded
-    private Adres adres = new Adres();
+    //@Embedded
+    //private Adres adres = new Adres();
     @Column
     private String emailadres;
     @ElementCollection @ManyToMany @CollectionTable(name = "klant_adressen", joinColumns = @JoinColumn(name = "klant_id"))
-    private Set<Adres> adressen = new HashSet<Adres>();
+    private Set<Adres> adressen;
     @Embedded
     private Rekeninggegevens rekeninggegevens = new Rekeninggegevens();
     @Column
     private String opmerkingen;
     @OneToMany(mappedBy = "klant_id")
-    private List<Factuur> facturen = new ArrayList<Factuur>();
+    private List<Factuur> facturen;
     @OneToMany(mappedBy = "klant_id")
-    private List<Offerte> offertes = new ArrayList<Offerte>();
+    private List<Offerte> offertes;
     private Planning planning = new Planning();
 
     
@@ -110,7 +110,7 @@ public class Klant implements Serializable{
     /**
      * @param adressen the adressen to set
      */
-    public void setAdressen(HashSet<Adres> adressen) {
+    public void setAdressen(Set<Adres> adressen) {
         this.adressen = adressen;
     }
 
@@ -166,7 +166,7 @@ public class Klant implements Serializable{
     /**
      * @param facturen the facturen to set
      */
-    public void setFacturen(ArrayList<Factuur> facturen) {
+    public void setFacturen(List<Factuur> facturen) {
         this.facturen = facturen;
     }
 
@@ -180,7 +180,7 @@ public class Klant implements Serializable{
     /**
      * @param offertes the offertes to set
      */
-    public void setOffertes(ArrayList<Offerte> offertes) {
+    public void setOffertes(List<Offerte> offertes) {
         this.offertes = offertes;
     }
 

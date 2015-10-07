@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table
-class Vloer implements Serializable{
+public class Vloer implements Serializable{
     /*
     • Type:
         ◦ referentietabel.

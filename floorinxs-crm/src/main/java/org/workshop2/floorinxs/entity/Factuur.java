@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table
-class Factuur implements Serializable {
+public class Factuur implements Serializable {
 
     /*
     • vloer

@@ -3,8 +3,9 @@ package org.workshop2.floorinxs.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 
-@Embeddable
-class Adres implements Serializable{
+@Entity
+@Table
+public class Adres implements Serializable{
     /*
     Adres(many to many geimplementeerd, 
     voor het eventueel bijhouden van geschiedenis van vloeren, 
@@ -15,6 +16,8 @@ class Adres implements Serializable{
     • woonplaats
     */
     
+    @Column(name = "adres_id") @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;    
     @Column
     private String straatnaam;
     @Column
@@ -25,6 +28,14 @@ class Adres implements Serializable{
     private String woonplaats;
     
     public Adres(){}
+    
+    public long getId() {
+        return id;
+    }
+    
+    public void setId(long id) {
+        this.id = id;
+    }
 
     /**
      * @return the straatnaam

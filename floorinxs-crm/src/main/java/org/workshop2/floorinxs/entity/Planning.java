@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Embeddable
-class Planning implements Serializable {
+public class Planning implements Serializable {
     
     @Column
     private Date startdatum;

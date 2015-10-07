@@ -3,7 +3,7 @@ package org.workshop2.floorinxs.entity;
 import javax.persistence.*;
 
 @Embeddable
-class Rekeninggegevens {
+public class Rekeninggegevens {
     
     @Column
     private String Rekeninghouder;
