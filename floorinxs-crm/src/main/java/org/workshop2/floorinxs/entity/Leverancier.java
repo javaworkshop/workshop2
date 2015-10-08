@@ -35,9 +35,9 @@ public class Leverancier implements Serializable {
     private String emailAdres;
     @ElementCollection @ManyToMany @CollectionTable(name = "leverancier_facturen", joinColumns=@JoinColumn(name = "leverancier_id"))
     private List<Factuur> facturen = new ArrayList<Factuur>();
-    @OneToMany(mappedBy = "leverancier_id")
+    @OneToMany(mappedBy = "id")
     private List<Levering> leveringen = new ArrayList<Levering>();
-    @OneToMany(mappedBy = "leverancier_id")
+    @OneToMany(mappedBy = "artikelnummer")
     private List<Product> producten = new ArrayList<Product>();
     @Column
     private String opmerkingen;

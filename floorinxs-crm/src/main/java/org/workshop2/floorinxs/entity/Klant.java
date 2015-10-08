@@ -50,9 +50,9 @@ public class Klant implements Serializable{
     private Rekeninggegevens rekeninggegevens = new Rekeninggegevens();
     @Column
     private String opmerkingen;
-    @OneToMany(mappedBy = "klant_id")
+    @OneToMany(mappedBy = "id")
     private List<Factuur> facturen;
-    @OneToMany(mappedBy = "klant_id")
+    @OneToMany(mappedBy = "id")
     private List<Offerte> offertes;
     private Planning planning = new Planning();
 

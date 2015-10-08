@@ -4,7 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.workshop2.floorinxs.doa.KlantDao;
+import org.workshop2.floorinxs.dao.KlantDao;
 import org.workshop2.floorinxs.entity.Klant;
 
 // TODO: eventuele bewerkingen en checks van data uitvoeren

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.workshop2.floorinxs.service.KlantServiceTest" time="0.256" tests="1" errors="1" skipped="0" failures="0">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_40\jre\bin"/>
+    <property name="java.vm.version" value="25.40-b25"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="NL"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="test" value="org.workshop2.floorinxs.service.KlantServiceTest"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\Users\Maarten\Documents\GitProjects\workshop2\floorinxs-crm"/>
+    <property name="java.runtime.version" value="1.8.0_40-b26"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_40\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\Maarten\AppData\Local\Temp\"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 8.1"/>
+    <property name="maven.ext.class.path" value="C:\Program Files\NetBeans 8.0.2\java\maven-nblib\netbeans-eventspy.jar"/>
+    <property name="classworlds.conf" value="C:\Program Files\NetBeans 8.0.2\java\maven\bin\m2.conf"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_40\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Java\jdk1.8.0_31\bin;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files (x86)\AMD\ATI.ACE\Core-Static;C:\Program Files (x86)\Common Files\Acronis\SnapAPI\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\apache-maven-3.3.3\bin;."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="6.3"/>
+    <property name="user.home" value="C:\Users\Maarten"/>
+    <property name="user.timezone" value="Europe/Berlin"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="user.name" value="Maarten"/>
+    <property name="java.class.path" value="C:\Program Files\NetBeans 8.0.2\java\maven\boot\plexus-classworlds-2.4.jar"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_40\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=org.workshop2.floorinxs.service.KlantServiceTest -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.0.2\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 surefire:test"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="nl"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_40"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_40\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_40\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_40\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\Program Files\NetBeans 8.0.2\java\maven"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase name="testCreate" classname="org.workshop2.floorinxs.service.KlantServiceTest" time="0.256">
+    <error message="org.hibernate.TransientObjectException: object references an unsaved transient instance - save the transient instance before flushing: org.workshop2.floorinxs.entity.Adres; nested exception is java.lang.IllegalStateException: org.hibernate.TransientObjectException: object references an unsaved transient instance - save the transient instance before flushing: org.workshop2.floorinxs.entity.Adres" type="org.springframework.dao.InvalidDataAccessApiUsageException">org.springframework.dao.InvalidDataAccessApiUsageException: org.hibernate.TransientObjectException: object references an unsaved transient instance - save the transient instance before flushing: org.workshop2.floorinxs.entity.Adres; nested exception is java.lang.IllegalStateException: org.hibernate.TransientObjectException: object references an unsaved transient instance - save the transient instance before flushing: org.workshop2.floorinxs.entity.Adres
+	at org.hibernate.engine.internal.ForeignKeys.getEntityIdentifierIfNotUnsaved(ForeignKeys.java:279)
+	at org.hibernate.type.EntityType.getIdentifier(EntityType.java:455)
+	at org.hibernate.type.ManyToOneType.nullSafeSet(ManyToOneType.java:144)
+	at org.hibernate.persister.collection.AbstractCollectionPersister.writeElement(AbstractCollectionPersister.java:876)
+	at org.hibernate.persister.collection.AbstractCollectionPersister.recreate(AbstractCollectionPersister.java:1295)
+	at org.hibernate.action.internal.CollectionRecreateAction.execute(CollectionRecreateAction.java:50)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:447)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:333)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:335)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:39)
+	at org.hibernate.internal.SessionImpl.flush(SessionImpl.java:1224)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:464)
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:2894)
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2270)
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:485)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:146)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$100(JdbcResourceLocalTransactionCoordinatorImpl.java:38)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:230)
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:65)
+	at org.hibernate.jpa.internal.TransactionImpl.commit(TransactionImpl.java:61)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:517)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:761)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:730)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:485)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:291)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207)
+	at com.sun.proxy.$Proxy60.save(Unknown Source)
+	at org.workshop2.floorinxs.service.KlantServiceTest.testCreate(KlantServiceTest.java:22)
+</error>
+    <system-out><![CDATA[
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.2.6.RELEASE)
+
+[INFO ] 2015-10-08 18:49:52.991 [main] HikariDataSource - springHikariCP - is starting.
+[INFO ] 2015-10-08 18:49:53.624 [main] LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: workshop2
+	...]
+[INFO ] 2015-10-08 18:49:53.735 [main] Version - HHH000412: Hibernate Core {5.0.1.Final}
+[INFO ] 2015-10-08 18:49:53.738 [main] Environment - HHH000206: hibernate.properties not found
+[INFO ] 2015-10-08 18:49:53.740 [main] Environment - HHH000021: Bytecode provider name : javassist
+[INFO ] 2015-10-08 18:49:53.823 [main] Version - HCANN000001: Hibernate Commons Annotations {5.0.0.Final}
+[INFO ] 2015-10-08 18:49:54.063 [main] Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[INFO ] 2015-10-08 18:49:54.836 [main] Version - HV000001: Hibernate Validator 5.1.3.Final
+[INFO ] 2015-10-08 18:49:55.411 [main] SchemaExport - HHH000227: Running hbm2ddl schema export
+Hibernate: alter table Factuur drop foreign key FKdwqrjk17f4snsvk7uwwrgeck9
+Hibernate: alter table factuur_producten drop foreign key FK7bfh3i2796nk3mn7bi67ujrrv
+Hibernate: alter table factuur_producten drop foreign key FKom67gbl18636ccamdw60i4t07
+Hibernate: alter table fractuur_vloeren drop foreign key FK1w41pxn7xmey9clxuetckdbc4
+Hibernate: alter table fractuur_vloeren drop foreign key FK8y1nx105l1j5sr44ah4scqbo3
+Hibernate: alter table klant_adressen drop foreign key FK6x64be1awdrc8ng6xdwqssols
+Hibernate: alter table klant_adressen drop foreign key FKelouuinvgekvq4tgc8ex3w12f
+Hibernate: alter table leverancier_facturen drop foreign key FK4w0becsb3wjykiekwhl96bve2
+Hibernate: alter table leverancier_facturen drop foreign key FKdpvbat5d8qvh9w8u5luavj93l
+Hibernate: alter table Levering drop foreign key FK6k4dh3gjj1x1oqb7fxbwd16x9
+Hibernate: alter table Offerte drop foreign key FK3yqkp6lg5sb89erdtecuj8trt
+Hibernate: alter table offerte_producten drop foreign key FKsittb70ukwxaemsofve54n6tw
+Hibernate: alter table offerte_producten drop foreign key FK9vub2udpcp8tvvpu4nncqxq06
+Hibernate: alter table offerte_vloeren drop foreign key FK5n3yvvnrx7uith5vevjjwoh6b
+Hibernate: alter table offerte_vloeren drop foreign key FKh6u0pifpaavyckwakc776jn8d
+Hibernate: alter table Product drop foreign key FK6plnackh7oigkjjs88ky9b9l0
+[ERROR] 2015-10-08 18:49:55.677 [main] SchemaExport - HHH000389: Unsuccessful: alter table Product drop foreign key FK6plnackh7oigkjjs88ky9b9l0
+[ERROR] 2015-10-08 18:49:55.678 [main] SchemaExport - Can't DROP 'FK6plnackh7oigkjjs88ky9b9l0'; check that column/key exists
+Hibernate: alter table Product drop foreign key FK5n1bgbx6jaok94r5uvt9hxes
+Hibernate: alter table werkbon_producten drop foreign key FKq0t0ydhy63ah7fba1pujre07g
+Hibernate: alter table werkbon_producten drop foreign key FK77t6r7ajplrdiof65xutsr293
+Hibernate: alter table werkbon_vloeren drop foreign key FK7blqtd6o272xh8db7wlqqt6t5
+Hibernate: alter table werkbon_vloeren drop foreign key FKruk9yrfbepof6avdhans90hw0
+Hibernate: drop table if exists Adres
+Hibernate: drop table if exists Factuur
+Hibernate: drop table if exists factuur_producten
+Hibernate: drop table if exists fractuur_vloeren
+Hibernate: drop table if exists hibernate_sequence
+Hibernate: drop table if exists Klant
+Hibernate: drop table if exists klant_adressen
+Hibernate: drop table if exists Leverancier
+Hibernate: drop table if exists leverancier_facturen
+Hibernate: drop table if exists Levering
+Hibernate: drop table if exists Offerte
+Hibernate: drop table if exists offerte_producten
+Hibernate: drop table if exists offerte_vloeren
+Hibernate: drop table if exists Product
+Hibernate: drop table if exists Productgroep
+Hibernate: drop table if exists Producttype
+Hibernate: drop table if exists Vloer
+Hibernate: drop table if exists Werkbon
+Hibernate: drop table if exists werkbon_producten
+Hibernate: drop table if exists werkbon_vloeren
+Hibernate: create table Adres (adres_id bigint not null, huisnummer varchar(255), postcode varchar(255), straatnaam varchar(255), woonplaats varchar(255), primary key (adres_id))
+Hibernate: create table Factuur (factuur_id bigint not null, btw_tarief integer, opmerkingen varchar(255), totaal_prijs integer, uitersteBetaalDatum date, primary key (factuur_id))
+Hibernate: create table factuur_producten (factuur_id bigint not null, producten_artikelnummer bigint not null)
+Hibernate: create table fractuur_vloeren (factuur_id bigint not null, vloeren_vloer_id bigint not null)
+Hibernate: create table hibernate_sequence (next_val bigint)
+Hibernate: create table Klant (klant_id bigint not null, achternaam varchar(255), emailadres varchar(255), opmerkingen varchar(255), einddatum datetime, startdatum datetime, Iban varchar(255), Rekeninghouder varchar(255), voornaam varchar(255), primary key (klant_id))
+Hibernate: create table klant_adressen (klant_id bigint not null, adressen_adres_id bigint not null, primary key (klant_id, adressen_adres_id))
+Hibernate: create table Leverancier (leverancier_id bigint not null, bedrijfsnaam varchar(255), contactPersoon varchar(255), emailAdres varchar(255), opmerkingen varchar(255), Iban varchar(255), Rekeninghouder varchar(255), primary key (leverancier_id))
+Hibernate: create table leverancier_facturen (leverancier_id bigint not null, facturen_factuur_id bigint not null)
+Hibernate: create table Levering (levering_id bigint not null, leverdatum datetime, primary key (levering_id))
+Hibernate: create table Offerte (offerte_id bigint not null, btw_tarief integer, opmerkingen varchar(255), totaal_prijs integer, vervalDatum date, primary key (offerte_id))
+Hibernate: create table offerte_producten (offerte_id bigint not null, producten_artikelnummer bigint not null)
+Hibernate: create table offerte_vloeren (offerte_id bigint not null, vloeren_vloer_id bigint not null)
+Hibernate: create table Product (artikelnummer bigint not null, naam varchar(255), omschrijving varchar(255), productgroep tinyblob, producttype_id bigint, primary key (artikelnummer))
+Hibernate: create table Productgroep (productgroep_id bigint not null, materiaal varchar(255), type varchar(255), vierkanteMeter integer, primary key (productgroep_id))
+Hibernate: create table Producttype (producttype_id bigint not null, type varchar(255), primary key (producttype_id))
+Hibernate: create table Vloer (vloer_id bigint not null, materiaal varchar(255), prijsInCentenPerVierkanteMeter integer, type varchar(255), vierkanteMeter integer, primary key (vloer_id))
+Hibernate: create table Werkbon (werkbon_id bigint not null, opmerkingen varchar(255), primary key (werkbon_id))
+Hibernate: create table werkbon_producten (werkbon_id bigint not null, producten_artikelnummer bigint not null)
+Hibernate: create table werkbon_vloeren (werkbon_id bigint not null, vloeren_vloer_id bigint not null)
+Hibernate: alter table Factuur add constraint FKdwqrjk17f4snsvk7uwwrgeck9 foreign key (factuur_id) references Klant (klant_id)
+Hibernate: alter table factuur_producten add constraint UK_cvxe7xw9q7nb2igwvhyukl1kj unique (producten_artikelnummer)
+Hibernate: alter table factuur_producten add constraint FK7bfh3i2796nk3mn7bi67ujrrv foreign key (producten_artikelnummer) references Product (artikelnummer)
+Hibernate: alter table factuur_producten add constraint FKom67gbl18636ccamdw60i4t07 foreign key (factuur_id) references Factuur (factuur_id)
+Hibernate: alter table fractuur_vloeren add constraint UK_k1gl4m4ek7at5bsvngr75ry9a unique (vloeren_vloer_id)
+Hibernate: alter table fractuur_vloeren add constraint FK1w41pxn7xmey9clxuetckdbc4 foreign key (vloeren_vloer_id) references Vloer (vloer_id)
+Hibernate: alter table fractuur_vloeren add constraint FK8y1nx105l1j5sr44ah4scqbo3 foreign key (factuur_id) references Factuur (factuur_id)
+Hibernate: alter table klant_adressen add constraint UK_rkar8x4fojphncals2o4avbdo unique (adressen_adres_id)
+Hibernate: alter table klant_adressen add constraint FK6x64be1awdrc8ng6xdwqssols foreign key (adressen_adres_id) references Adres (adres_id)
+Hibernate: alter table klant_adressen add constraint FKelouuinvgekvq4tgc8ex3w12f foreign key (klant_id) references Klant (klant_id)
+Hibernate: alter table leverancier_facturen add constraint UK_hxl5359mq9njud1wys2icitu9 unique (facturen_factuur_id)
+Hibernate: alter table leverancier_facturen add constraint FK4w0becsb3wjykiekwhl96bve2 foreign key (facturen_factuur_id) references Factuur (factuur_id)
+Hibernate: alter table leverancier_facturen add constraint FKdpvbat5d8qvh9w8u5luavj93l foreign key (leverancier_id) references Leverancier (leverancier_id)
+Hibernate: alter table Levering add constraint FK6k4dh3gjj1x1oqb7fxbwd16x9 foreign key (levering_id) references Leverancier (leverancier_id)
+Hibernate: alter table Offerte add constraint FK3yqkp6lg5sb89erdtecuj8trt foreign key (offerte_id) references Klant (klant_id)
+Hibernate: alter table offerte_producten add constraint UK_bqcto0nvi8wu4nocxx3vmyv8g unique (producten_artikelnummer)
+Hibernate: alter table offerte_producten add constraint FKsittb70ukwxaemsofve54n6tw foreign key (producten_artikelnummer) references Product (artikelnummer)
+Hibernate: alter table offerte_producten add constraint FK9vub2udpcp8tvvpu4nncqxq06 foreign key (offerte_id) references Offerte (offerte_id)
+Hibernate: alter table offerte_vloeren add constraint UK_9fcsnn9d3unonlm2v7al2a1a7 unique (vloeren_vloer_id)
+Hibernate: alter table offerte_vloeren add constraint FK5n3yvvnrx7uith5vevjjwoh6b foreign key (vloeren_vloer_id) references Vloer (vloer_id)
+Hibernate: alter table offerte_vloeren add constraint FKh6u0pifpaavyckwakc776jn8d foreign key (offerte_id) references Offerte (offerte_id)
+Hibernate: alter table Product add constraint FK6plnackh7oigkjjs88ky9b9l0 foreign key (producttype_id) references Producttype (producttype_id)
+Hibernate: alter table Product add constraint FK5n1bgbx6jaok94r5uvt9hxes foreign key (artikelnummer) references Leverancier (leverancier_id)
+Hibernate: alter table werkbon_producten add constraint UK_tlln20iivncuu9pfsy7wy4x43 unique (producten_artikelnummer)
+Hibernate: alter table werkbon_producten add constraint FKq0t0ydhy63ah7fba1pujre07g foreign key (producten_artikelnummer) references Product (artikelnummer)
+Hibernate: alter table werkbon_producten add constraint FK77t6r7ajplrdiof65xutsr293 foreign key (werkbon_id) references Werkbon (werkbon_id)
+Hibernate: alter table werkbon_vloeren add constraint UK_1walbikmslxy4qbcg8ljqrwv8 unique (vloeren_vloer_id)
+Hibernate: alter table werkbon_vloeren add constraint FK7blqtd6o272xh8db7wlqqt6t5 foreign key (vloeren_vloer_id) references Vloer (vloer_id)
+Hibernate: alter table werkbon_vloeren add constraint FKruk9yrfbepof6avdhans90hw0 foreign key (werkbon_id) references Werkbon (werkbon_id)
+Hibernate: insert into hibernate_sequence values ( 1 )
+Hibernate: insert into hibernate_sequence values ( 1 )
+Hibernate: insert into hibernate_sequence values ( 1 )
+Hibernate: insert into hibernate_sequence values ( 1 )
+Hibernate: insert into hibernate_sequence values ( 1 )
+Hibernate: insert into hibernate_sequence values ( 1 )
+Hibernate: insert into hibernate_sequence values ( 1 )
+Hibernate: insert into hibernate_sequence values ( 1 )
+Hibernate: insert into hibernate_sequence values ( 1 )
+Hibernate: insert into hibernate_sequence values ( 1 )
+Hibernate: insert into hibernate_sequence values ( 1 )
+[INFO ] 2015-10-08 18:50:00.652 [main] SchemaExport - HHH000230: Schema export complete
+Hibernate: select next_val as id_val from hibernate_sequence for update
+Hibernate: update hibernate_sequence set next_val= ? where next_val=?
+Hibernate: insert into Klant (achternaam, emailadres, opmerkingen, einddatum, startdatum, Iban, Rekeninghouder, voornaam, klant_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: insert into klant_adressen (klant_id, adressen_adres_id) values (?, ?)
+[INFO ] 2015-10-08 18:50:01.214 [main] AbstractBatchImpl - HHH000010: On release of batch it still contained JDBC statements
+]]></system-out>
+    <system-err><![CDATA[okt 08, 2015 6:49:51 PM org.springframework.test.context.support.DefaultTestContextBootstrapper getDefaultTestExecutionListenerClassNames
+INFO: Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+okt 08, 2015 6:49:51 PM org.springframework.test.context.support.DefaultTestContextBootstrapper getTestExecutionListeners
+INFO: Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@2a2d45ba, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@2a5ca609, org.springframework.test.context.support.DirtiesContextTestExecutionListener@20e2cbe0, org.springframework.test.context.transaction.TransactionalTestExecutionListener@68be2bc2, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@28feb3fa]
+okt 08, 2015 6:49:52 PM org.workshop2.floorinxs.service.KlantServiceTest logStarting
+INFO: Starting KlantServiceTest on Maarten-PC with PID 6516 (C:\Users\Maarten\Documents\GitProjects\workshop2\floorinxs-crm\target\test-classes started by Maarten in C:\Users\Maarten\Documents\GitProjects\workshop2\floorinxs-crm)
+okt 08, 2015 6:49:52 PM org.springframework.context.annotation.AnnotationConfigApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@4009e306: startup date [Thu Oct 08 18:49:52 CEST 2015]; root of context hierarchy
+okt 08, 2015 6:49:52 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+INFO: Loading XML bean definitions from class path resource [springtestconfig.xml]
+okt 08, 2015 6:49:52 PM org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor <init>
+INFO: JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+okt 08, 2015 6:49:53 PM org.springframework.orm.jpa.persistenceunit.PersistenceUnitReader determinePersistenceUnitRootUrl
+INFO: persistence.xml should be located inside META-INF directory; cannot determine persistence unit root URL for class path resource [persistence.xml]
+okt 08, 2015 6:49:53 PM org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean createNativeEntityManagerFactory
+INFO: Building JPA container EntityManagerFactory for persistence unit 'workshop2'
+okt 08, 2015 6:50:00 PM org.workshop2.floorinxs.service.KlantServiceTest logStarted
+INFO: Started KlantServiceTest in 9.425 seconds (JVM running for 10.116)
+]]></system-err>
+  </testcase>
+</testsuite>
