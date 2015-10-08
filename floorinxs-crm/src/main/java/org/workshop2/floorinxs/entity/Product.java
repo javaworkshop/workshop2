@@ -21,7 +21,8 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "producttype_id")
     private Producttype producttype;
-    @Column
+    @ManyToOne
+    @JoinColumn(name = "productgroep_id")
     private Productgroep productgroep;
 
     public long getArtikelnummer() {
