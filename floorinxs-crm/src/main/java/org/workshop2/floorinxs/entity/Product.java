@@ -1,5 +1,7 @@
 package org.workshop2.floorinxs.entity;
 
+import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,11 +11,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ *
+ * @author gerbrich2
+ */
 @Entity
 @Table
-public class Product {
+public class Product implements Serializable {
     @Column @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private long artikelnummer;
+    private long id;
     @Column
     private String naam;
     @Column
@@ -25,12 +31,12 @@ public class Product {
     @JoinColumn(name = "productgroep_id")
     private Productgroep productgroep;
 
-    public long getArtikelnummer() {
-        return artikelnummer;
+    public long getId() {
+        return id;
     }
 
-    public void setArtikelnummer(long artikelnummer) {
-        this.artikelnummer = artikelnummer;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNaam() {
@@ -63,6 +69,45 @@ public class Product {
 
     public void setProductgroep(Productgroep productgroep) {
         this.productgroep = productgroep;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.naam);
+        hash = 83 * hash + Objects.hashCode(this.omschrijving);
+        hash = 83 * hash + Objects.hashCode(this.producttype);
+        hash = 83 * hash + Objects.hashCode(this.productgroep);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Product other = (Product) obj;
+        if (!Objects.equals(this.naam, other.naam)) {
+            return false;
+        }
+        if (!Objects.equals(this.omschrijving, other.omschrijving)) {
+            return false;
+        }
+        if (!Objects.equals(this.producttype, other.producttype)) {
+            return false;
+        }
+        if (!Objects.equals(this.productgroep, other.productgroep)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" + "id=" + id + ", naam=" + naam + ", omschrijving=" + omschrijving + ", producttype=" + producttype + ", productgroep=" + productgroep + '}';
     }
     
     

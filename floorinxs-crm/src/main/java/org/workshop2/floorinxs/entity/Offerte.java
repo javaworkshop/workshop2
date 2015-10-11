@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -133,4 +134,53 @@ public class Offerte implements Serializable {
     public void setOpmerkingen(String opmerkingen) {
         this.opmerkingen = opmerkingen;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.vloeren);
+        hash = 37 * hash + Objects.hashCode(this.producten);
+        hash = 37 * hash + Objects.hashCode(this.totaalPrijsInCentZonderBtw);
+        hash = 37 * hash + Objects.hashCode(this.btwTarief);
+        hash = 37 * hash + Objects.hashCode(this.vervalDatum);
+        hash = 37 * hash + Objects.hashCode(this.opmerkingen);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Offerte other = (Offerte) obj;
+        if (!Objects.equals(this.vloeren, other.vloeren)) {
+            return false;
+        }
+        if (!Objects.equals(this.producten, other.producten)) {
+            return false;
+        }
+        if (!Objects.equals(this.totaalPrijsInCentZonderBtw, other.totaalPrijsInCentZonderBtw)) {
+            return false;
+        }
+        if (!Objects.equals(this.btwTarief, other.btwTarief)) {
+            return false;
+        }
+        if (!Objects.equals(this.vervalDatum, other.vervalDatum)) {
+            return false;
+        }
+        if (!Objects.equals(this.opmerkingen, other.opmerkingen)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Offerte{" + "id=" + id + ", vloeren=" + vloeren + ", producten=" + producten + ", totaalPrijsInCentZonderBtw=" + totaalPrijsInCentZonderBtw + ", btwTarief=" + btwTarief + ", vervalDatum=" + vervalDatum + ", opmerkingen=" + opmerkingen + '}';
+    }
+    
+    
 }

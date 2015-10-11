@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -136,5 +137,53 @@ public class Factuur implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 23 * hash + Objects.hashCode(this.vloeren);
+        hash = 23 * hash + Objects.hashCode(this.producten);
+        hash = 23 * hash + Objects.hashCode(this.totaalPrijsInCentZonderBtw);
+        hash = 23 * hash + Objects.hashCode(this.btwTarief);
+        hash = 23 * hash + Objects.hashCode(this.uitersteBetaalDatum);
+        hash = 23 * hash + Objects.hashCode(this.opmerkingen);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Factuur other = (Factuur) obj;
+        if (!Objects.equals(this.vloeren, other.vloeren)) {
+            return false;
+        }
+        if (!Objects.equals(this.producten, other.producten)) {
+            return false;
+        }
+        if (!Objects.equals(this.totaalPrijsInCentZonderBtw, other.totaalPrijsInCentZonderBtw)) {
+            return false;
+        }
+        if (!Objects.equals(this.btwTarief, other.btwTarief)) {
+            return false;
+        }
+        if (!Objects.equals(this.uitersteBetaalDatum, other.uitersteBetaalDatum)) {
+            return false;
+        }
+        if (!Objects.equals(this.opmerkingen, other.opmerkingen)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Factuur{" + "id=" + id + ", vloeren=" + vloeren + ", producten=" + producten + ", totaalPrijsInCentZonderBtw=" + totaalPrijsInCentZonderBtw + ", btwTarief=" + btwTarief + ", uitersteBetaalDatum=" + uitersteBetaalDatum + ", opmerkingen=" + opmerkingen + '}';
+    }
+    
     
 }

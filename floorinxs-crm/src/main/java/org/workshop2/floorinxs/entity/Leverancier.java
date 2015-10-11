@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -163,5 +164,62 @@ public class Leverancier implements Serializable {
     public void setOpmerkingen(String opmerkingen) {
         this.opmerkingen = opmerkingen;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 11 * hash + Objects.hashCode(this.bedrijfsnaam);
+        hash = 11 * hash + Objects.hashCode(this.rekeningGegevens);
+        hash = 11 * hash + Objects.hashCode(this.contactPersoon);
+        hash = 11 * hash + Objects.hashCode(this.emailAdres);
+        hash = 11 * hash + Objects.hashCode(this.facturen);
+        hash = 11 * hash + Objects.hashCode(this.leveringen);
+        hash = 11 * hash + Objects.hashCode(this.producten);
+        hash = 11 * hash + Objects.hashCode(this.opmerkingen);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Leverancier other = (Leverancier) obj;
+        if (!Objects.equals(this.bedrijfsnaam, other.bedrijfsnaam)) {
+            return false;
+        }
+        if (!Objects.equals(this.rekeningGegevens, other.rekeningGegevens)) {
+            return false;
+        }
+        if (!Objects.equals(this.contactPersoon, other.contactPersoon)) {
+            return false;
+        }
+        if (!Objects.equals(this.emailAdres, other.emailAdres)) {
+            return false;
+        }
+        if (!Objects.equals(this.facturen, other.facturen)) {
+            return false;
+        }
+        if (!Objects.equals(this.leveringen, other.leveringen)) {
+            return false;
+        }
+        if (!Objects.equals(this.producten, other.producten)) {
+            return false;
+        }
+        if (!Objects.equals(this.opmerkingen, other.opmerkingen)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Leverancier{" + "id=" + id + ", bedrijfsnaam=" + bedrijfsnaam + ", rekeningGegevens=" + rekeningGegevens + ", contactPersoon=" + contactPersoon + ", emailAdres=" + emailAdres + ", facturen=" + facturen + ", leveringen=" + leveringen + ", producten=" + producten + ", opmerkingen=" + opmerkingen + '}';
+    }
+    
+    
     
 }

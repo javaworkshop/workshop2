@@ -1,6 +1,7 @@
 package org.workshop2.floorinxs.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -72,5 +73,41 @@ public class Productgroep implements Serializable {
     public void setVierkanteMeter(Integer vierkanteMeter) {
         this.vierkanteMeter = vierkanteMeter;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.type);
+        hash = 37 * hash + Objects.hashCode(this.materiaal);
+        hash = 37 * hash + Objects.hashCode(this.vierkanteMeter);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Productgroep other = (Productgroep) obj;
+        if (!Objects.equals(this.type, other.type)) {
+            return false;
+        }
+        if (!Objects.equals(this.materiaal, other.materiaal)) {
+            return false;
+        }
+        if (!Objects.equals(this.vierkanteMeter, other.vierkanteMeter)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Productgroep{" + "id=" + id + ", type=" + type + ", materiaal=" + materiaal + ", vierkanteMeter=" + vierkanteMeter + '}';
+    }
+    
     
 }
