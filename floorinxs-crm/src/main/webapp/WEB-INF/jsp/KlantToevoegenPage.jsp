@@ -10,20 +10,23 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styles.css"/>
     </head>
     <body>
-        <h1>Klant Toevoegen</h1>
-        <h2>Vul klant attributen in en klik op knop toevoegen</h2>
-        <form>
-            voornaam:<br/>
-            <input type="text" name="voornaam"/>
-            <br/><br/>
-            achternaam:<br/>
-            <input type="text" name="achternaam"/>
-            <br><br>
-            <input type="submit" value="Voeg Toe">
-        </form>
-        <br/>
-        <h2><a href="KlantHomePage.html"><<< Terug</a></h2>
+        <jsp:include page="include/TopMenu.jsp" />
+        <jsp:include page="include/KlantMenu.jsp" />
+        <section>
+            <h2>Klant Toevoegen</h2>
+            <h3>Vul klant attributen in en klik op knop toevoegen</h3>
+            <form>
+                voornaam:<br/>
+                <input type="text" name="voornaam"/>
+                <br/><br/>
+                achternaam:<br/>
+                <input type="text" name="achternaam"/>
+                <br><br>
+                <input type="submit" value="Voeg Toe">
+            </form>
+        </section>
     </body>
 </html>

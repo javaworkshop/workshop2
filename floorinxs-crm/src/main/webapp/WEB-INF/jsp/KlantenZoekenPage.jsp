@@ -9,9 +9,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Klantgegevens</title>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styles.css"/>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <jsp:include page="include/TopMenu.jsp" />
+        <jsp:include page="include/KlantMenu.jsp" />
+
+        <section>
+            <h2></h2>
+        </section>
     </body>
 </html>

@@ -9,15 +9,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Customer Page</title>
-        <!-- <link rel="stylesheet" href="style.css"> Kunnen we de boel mooi maken als we tijd over hebben-->
+        <title>Klantgegevens</title>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styles.css"/>
     </head>
     <body>
-        <h1>Kies een actie</h1>
-        <h2>Dynamische content: ${name}</h2>
-        <h2><a href="KlantToevoegenPage.html">Klant toevoegen</a></h2>
-        <h2><a href="KlantAanpassenPage.html">Klant aanpassen</a></h2>
-        <h2><a href="KlantVerwijderenPage.html">Klant verwijderen</a></h2>
-        <h2><a href="KlantenZoekenPage.html">Klanten zoeken</a></h2>
+        <jsp:include page="include/TopMenu.jsp" />
+        <jsp:include page="include/KlantMenu.jsp" />
+
+        <section>
+            <h2>Kies een actie</h2>
+            <h3>Dynamische content: ${name}</h3>
+        </section>
     </body>
 </html>
