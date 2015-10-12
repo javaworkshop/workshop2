@@ -1,9 +1,8 @@
 package org.workshop2.floorinxs.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -44,6 +43,33 @@ public class Levering implements Serializable {
      */
     public void setLeverdatum(Date leverdatum) {
         this.leverdatum = leverdatum;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.leverdatum);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Levering other = (Levering) obj;
+        if (!Objects.equals(this.leverdatum, other.leverdatum)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Levering{" + "id=" + id + ", leverdatum=" + leverdatum + '}';
     }
 
 }

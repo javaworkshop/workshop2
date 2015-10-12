@@ -1,6 +1,7 @@
 package org.workshop2.floorinxs.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -33,7 +34,35 @@ public class Producttype implements Serializable {
 
     public void setType(Type type) {
         this.type = type;
-    }    
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.type);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Producttype other = (Producttype) obj;
+        if (this.type != other.type) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Producttype{" + "id=" + id + ", type=" + type + '}';
+    }
+    
 }
 
 enum Type {

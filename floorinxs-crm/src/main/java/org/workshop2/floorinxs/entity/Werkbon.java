@@ -3,6 +3,7 @@ package org.workshop2.floorinxs.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -80,4 +81,40 @@ public class Werkbon implements Serializable {
     public void setOpmerkingen(String opmerkingen) {
         this.opmerkingen = opmerkingen;
     }
+    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.vloeren);
+        hash = 53 * hash + Objects.hashCode(this.producten);
+        hash = 53 * hash + Objects.hashCode(this.opmerkingen);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Werkbon other = (Werkbon) obj;
+        if (!Objects.equals(this.vloeren, other.vloeren)) {
+            return false;
+        }
+        if (!Objects.equals(this.producten, other.producten)) {
+            return false;
+        }
+        if (!Objects.equals(this.opmerkingen, other.opmerkingen)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Werkbon{" + "id=" + id + ", vloeren=" + vloeren + ", producten=" + producten + ", opmerkingen=" + opmerkingen + '}';
+    }
+    
 }

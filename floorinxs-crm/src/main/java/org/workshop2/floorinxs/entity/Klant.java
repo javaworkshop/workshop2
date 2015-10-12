@@ -1,9 +1,8 @@
 package org.workshop2.floorinxs.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -196,6 +195,65 @@ public class Klant implements Serializable{
      */
     public void setPlanning(Planning planning) {
         this.planning = planning;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 71 * hash + Objects.hashCode(this.voornaam);
+        hash = 71 * hash + Objects.hashCode(this.achternaam);
+        hash = 71 * hash + Objects.hashCode(this.emailadres);
+        hash = 71 * hash + Objects.hashCode(this.adressen);
+        hash = 71 * hash + Objects.hashCode(this.rekeninggegevens);
+        hash = 71 * hash + Objects.hashCode(this.opmerkingen);
+        hash = 71 * hash + Objects.hashCode(this.facturen);
+        hash = 71 * hash + Objects.hashCode(this.offertes);
+        hash = 71 * hash + Objects.hashCode(this.planning);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Klant other = (Klant) obj;
+        if (!Objects.equals(this.voornaam, other.voornaam)) {
+            return false;
+        }
+        if (!Objects.equals(this.achternaam, other.achternaam)) {
+            return false;
+        }
+        if (!Objects.equals(this.emailadres, other.emailadres)) {
+            return false;
+        }
+        if (!Objects.equals(this.adressen, other.adressen)) {
+            return false;
+        }
+        if (!Objects.equals(this.rekeninggegevens, other.rekeninggegevens)) {
+            return false;
+        }
+        if (!Objects.equals(this.opmerkingen, other.opmerkingen)) {
+            return false;
+        }
+        if (!Objects.equals(this.facturen, other.facturen)) {
+            return false;
+        }
+        if (!Objects.equals(this.offertes, other.offertes)) {
+            return false;
+        }
+        if (!Objects.equals(this.planning, other.planning)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Klant{" + "id=" + id + ", voornaam=" + voornaam + ", achternaam=" + achternaam + ", emailadres=" + emailadres + ", adressen=" + adressen + ", rekeninggegevens=" + rekeninggegevens + ", opmerkingen=" + opmerkingen + ", facturen=" + facturen + ", offertes=" + offertes + ", planning=" + planning + '}';
     }
     
 }

@@ -1,6 +1,7 @@
 package org.workshop2.floorinxs.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -93,4 +94,42 @@ public class Adres implements Serializable{
         this.woonplaats = woonplaats;
     }
     
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 11 * hash + Objects.hashCode(this.straatnaam);
+        hash = 11 * hash + Objects.hashCode(this.huisnummer);
+        hash = 11 * hash + Objects.hashCode(this.postcode);
+        hash = 11 * hash + Objects.hashCode(this.woonplaats);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Adres other = (Adres) obj;
+        if (!Objects.equals(this.straatnaam, other.straatnaam)) {
+            return false;
+        }
+        if (!Objects.equals(this.huisnummer, other.huisnummer)) {
+            return false;
+        }
+        if (!Objects.equals(this.postcode, other.postcode)) {
+            return false;
+        }
+        if (!Objects.equals(this.woonplaats, other.woonplaats)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Adres{" + "id=" + id + ", straatnaam=" + straatnaam + ", huisnummer=" + huisnummer + ", postcode=" + postcode + ", woonplaats=" + woonplaats + '}';
+    }    
 }

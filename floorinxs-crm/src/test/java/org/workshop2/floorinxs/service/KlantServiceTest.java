@@ -9,15 +9,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.workshop2.floorinxs.config.TestConfigurator;
 import org.workshop2.floorinxs.entity.Klant;
 
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@SpringApplicationConfiguration(classes = TestConfigurator.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = TestConfigurator.class)
 public class KlantServiceTest {
     @Autowired
     KlantService klantService;
     @Autowired
     List<Klant> klantSample;
     
-    //@Test
+    @Test
     public void testCreate() {
         klantService.save(klantSample.get(0));
         klantService.save(klantSample.get(1));

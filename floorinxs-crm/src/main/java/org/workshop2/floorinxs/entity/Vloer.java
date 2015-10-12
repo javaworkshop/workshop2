@@ -1,6 +1,7 @@
 package org.workshop2.floorinxs.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -93,6 +94,45 @@ public class Vloer implements Serializable{
      */
     public void setPrijsInCentenPerVierkanteMeter(Integer prijsInCentenPerVierkanteMeter) {
         this.prijsInCentenPerVierkanteMeter = prijsInCentenPerVierkanteMeter;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 71 * hash + Objects.hashCode(this.type);
+        hash = 71 * hash + Objects.hashCode(this.materiaal);
+        hash = 71 * hash + Objects.hashCode(this.vierkanteMeter);
+        hash = 71 * hash + Objects.hashCode(this.prijsInCentenPerVierkanteMeter);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Vloer other = (Vloer) obj;
+        if (!Objects.equals(this.type, other.type)) {
+            return false;
+        }
+        if (!Objects.equals(this.materiaal, other.materiaal)) {
+            return false;
+        }
+        if (!Objects.equals(this.vierkanteMeter, other.vierkanteMeter)) {
+            return false;
+        }
+        if (!Objects.equals(this.prijsInCentenPerVierkanteMeter, other.prijsInCentenPerVierkanteMeter)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Vloer{" + "id=" + id + ", type=" + type + ", materiaal=" + materiaal + ", vierkanteMeter=" + vierkanteMeter + ", prijsInCentenPerVierkanteMeter=" + prijsInCentenPerVierkanteMeter + '}';
     }
     
 }

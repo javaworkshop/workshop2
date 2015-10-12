@@ -13,7 +13,7 @@ public class KlantHomePageController {
     @RequestMapping("/KlantHomePage")
     public ModelAndView customerPage() {
         ModelAndView model = new ModelAndView("KlantHomePage");
-        model.addObject("name", "Henk");
+        //model.addObject("name", "Henk");
         
         return model;
     }
