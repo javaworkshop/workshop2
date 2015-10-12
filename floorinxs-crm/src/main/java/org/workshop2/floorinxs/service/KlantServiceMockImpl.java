@@ -1,10 +1,12 @@
-package org.workshop2.floorinxs.servicemock;
+package org.workshop2.floorinxs.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Service;
 import org.workshop2.floorinxs.entity.Klant;
 import org.workshop2.floorinxs.service.KlantService;
 
+@Service
 public class KlantServiceMockImpl implements KlantService {
     
     private List<Klant> klanten = new ArrayList<>();

@@ -15,7 +15,7 @@ import org.workshop2.floorinxs.service.KlantServiceImpl;
 
 @Configuration
 @ImportResource("classpath:springtestconfig.xml")
-@ComponentScan(basePackages = {"org.workshop2.floorinxs.doa", "org.workshop2.floorinxs.service"})
+@ComponentScan(basePackages = {"org.workshop2.floorinxs.dao", "org.workshop2.floorinxs.service"})
 public class TestConfigurator {
     @Bean
     public KlantDao klantDao() {

@@ -11,6 +11,8 @@
    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     
     <context:component-scan base-package="org.workshop2.floorinxs.webcontrol"/>
+    
+    <bean id="klantService" class="org.workshop2.floorinxs.service.KlantServiceMockImpl"/>
 
     <bean id="viewResolver" 
          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
