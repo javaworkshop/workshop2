@@ -11,9 +11,8 @@ public class KlantHomePageController {
     private Logger logger = LoggerFactory.getLogger(KlantHomePageController.class);
        
     @RequestMapping("/KlantHomePage")
-    public ModelAndView customerPage() {
+    public ModelAndView klantPage() {
         ModelAndView model = new ModelAndView("KlantHomePage");
-        //model.addObject("name", "Henk");
         
         return model;
     }

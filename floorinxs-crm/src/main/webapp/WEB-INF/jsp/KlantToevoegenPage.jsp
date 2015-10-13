@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,16 +18,55 @@
         <jsp:include page="include/KlantMenu.jsp" />
         <section>
             <h2>Klant Toevoegen</h2>
-            <h3>Vul klant attributen in en klik op knop toevoegen</h3>
-            <form>
-                voornaam:<br/>
-                <input type="text" name="voornaam"/>
-                <br/><br/>
-                achternaam:<br/>
-                <input type="text" name="achternaam"/>
-                <br><br>
-                <input type="submit" value="Voeg Toe">
-            </form>
+            <p>Vul klant attributen in en klik op knop 'Toevoegen'.</p>
+            <form:form method="POST" modelAttribute="klant" action="/floorinxs-crm/KlantToevoegenPage" class="klantform">
+                <ul class="formlist">
+                    <li>
+                        <form:label path="voornaam">Voornaam:</form:label>
+                        <form:input path="voornaam" type="text" class="required"/>
+                    </li>
+                    <li>
+                        <form:label path="achternaam" >Achternaam:</form:label>
+                        <form:input path="achternaam" type="text" class="required"/>
+                    </li>
+                    <li>
+                        <form:label path="emailadres">Email:</form:label>
+                        <form:input path="emailadres" type="text" class="required"/>
+                    </li>
+                </ul>
+                <ul class="formlist">
+                    <li>
+                        <form:label path="straatnaam">Straatnaam:</form:label>
+                        <form:input path="straatnaam" type="text" class="required"/>
+                    </li>
+                    <li>
+                        <form:label path="huisnummer">Huisnummer:</form:label>
+                        <form:input path="huisnummer" type="text" class="required"/>
+                    </li>
+                    <li>
+                        <form:label path="postcode">Postcode:</form:label>
+                        <form:input path="postcode" type="text" class="required"/>
+                    </li>
+                    <li>
+                        <form:label path="woonplaats">Woonplaats:</form:label>                        
+                        <form:input path="woonplaats" type="text" class="required"/>
+                    </li>
+                </ul>
+                <ul class="formlist">
+                    <li>
+                        <form:label path="iban">IBAN:</form:label>
+                        <form:input path="iban" type="text" class="required"/>
+                    </li>
+                    <li>
+                        <form:label path="rekeninghouder">Rekeninghouder:</form:label>
+                        <form:input path="rekeninghouder" type="text" class="required"/>
+                    </li>
+                </ul>
+                <div class="formbutton">
+                    <input type="submit" value="Toevoegen"/>
+                </div>
+            </form:form>
+            <p>${feedback}${id}</p>
         </section>
     </body>
 </html>
