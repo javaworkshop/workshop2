@@ -14,13 +14,13 @@
     
     <bean id="klantService" class="org.workshop2.floorinxs.service.KlantServiceMockImpl"/>
     
-    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+    <!--<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
         <property name="customEditors">
             <map>
                 <entry key="org.workshop2.floorinxs.entity.Klant" value="org.workshop2.floorinxs.webcontrol.KlantEditor"/>
             </map>
         </property>
-    </bean>
+    </bean>-->
 
     <bean id="viewResolver" 
          class="org.springframework.web.servlet.view.InternalResourceViewResolver">

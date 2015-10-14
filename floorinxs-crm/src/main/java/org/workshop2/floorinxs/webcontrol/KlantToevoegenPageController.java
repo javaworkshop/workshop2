@@ -1,6 +1,8 @@
 package org.workshop2.floorinxs.webcontrol;
 
 import javax.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,7 +19,8 @@ import org.workshop2.floorinxs.service.KlantService;
 public class KlantToevoegenPageController {
     
     @Autowired
-    KlantService klantService;
+    private KlantService klantService;
+    private Logger logger = LoggerFactory.getLogger(KlantHomePageController.class);
     
     //WebDataBinder
     //HttpServletRequest request,final ServletRequestDataBinder binder
@@ -38,6 +41,8 @@ public class KlantToevoegenPageController {
             ModelMap model) {
         klant.getKlant().addAdres(klant.getAdres());
         klantService.save(klant.getKlant());
+        
+        logger.info("Klant opgeslagen: " + klant.getKlant().toString());
         
         model.addAttribute("feedback", "Klant toegevoegd aan database!<br/>Gegenereerde id: ");
         model.addAttribute("id", klant.getKlant().getId());

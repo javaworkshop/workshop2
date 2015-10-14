@@ -1,6 +1,6 @@
 <%-- 
-    Document   : KlantResultaatPage
-    Created on : 12-okt-2015, 18:52:20
+    Document   : KlantenZoekenResultaatPage
+    Created on : 14-okt-2015, 10:31:26
     Author     : Maarten
 --%>
 
@@ -13,6 +13,5 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <p>${voornaam}</p>
     </body>
 </html>

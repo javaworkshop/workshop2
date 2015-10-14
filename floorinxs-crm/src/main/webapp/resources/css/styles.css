@@ -77,6 +77,10 @@ label {
     display: block;
 }
 
+.error {
+    color: red;
+}
+
 section {
     padding-left: 80px;
     padding-top: 20px;
