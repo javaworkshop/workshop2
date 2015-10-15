@@ -1,13 +1,13 @@
 package org.workshop2.floorinxs.config;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
-import org.workshop2.floorinxs.dao.KlantDao;
-import org.workshop2.floorinxs.dao.KlantDaoImpl;
 import org.workshop2.floorinxs.entity.Klant;
 import org.workshop2.floorinxs.entity.Adres;
 import org.workshop2.floorinxs.service.KlantService;
@@ -15,13 +15,8 @@ import org.workshop2.floorinxs.service.KlantServiceImpl;
 
 @Configuration
 @ImportResource("classpath:springtestconfig.xml")
-@ComponentScan(basePackages = {"org.workshop2.floorinxs.dao", "org.workshop2.floorinxs.service"})
-public class TestConfigurator {
-    @Bean
-    public KlantDao klantDao() {
-        return new KlantDaoImpl();
-    }
-    
+@ComponentScan(basePackages = {"org.workshop2.floorinxs.dao"})
+public class TestConfigurator {    
     @Bean
     public KlantService klantService() {
         return new KlantServiceImpl();
@@ -34,7 +29,7 @@ public class TestConfigurator {
         klant1.setAchternaam("Hark");
         klant1.setEmailadres("henkie83@hotmail.com");
         klant1.setOpmerkingen("Vreemd");
-        Set<Adres> adressen = new HashSet<>();
+        List<Adres> adressen = new ArrayList<>();
         Adres adres = new Adres();
         adres.setHuisnummer("34");
         adres.setPostcode("3452AB");
@@ -52,7 +47,7 @@ public class TestConfigurator {
         klant2.setAchternaam("Trammelant");
         klant2.setEmailadres("truuhuuus@hotmail.com");
         klant2.setOpmerkingen("Geen opmerkingen");
-        Set<Adres> adressen = new HashSet<>();
+        List<Adres> adressen = new ArrayList<>();
         Adres adres = new Adres();
         adres.setHuisnummer("101a");
         adres.setPostcode("6595ER");

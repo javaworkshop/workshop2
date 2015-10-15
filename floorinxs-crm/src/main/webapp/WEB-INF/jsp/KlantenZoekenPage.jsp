@@ -17,7 +17,23 @@
         <jsp:include page="include/KlantMenu.jsp" />
 
         <section>
-            <h2></h2>
+            <h2>Klanten Zoeken</h2>
+            <p>Zoek op klantgegevens of bekijk alle op dit moment in de database
+                aanwezige klantdata door alle velden leeg te laten.</p>
+            
+            <form method="POST" action="/floorinxs-crm/KlantenZoekenPage" class="klantform">
+                <ul class="formlist">
+                    <li>
+                        <label for="id" name="id">ID:</label>
+                        <input name="id" id="id" type="text"/>
+                    </li>                    
+                </ul>
+                <div class="formbutton">
+                    <input type="submit" value="Zoeken"/>
+                </div>
+            </form>
+            
+            <p class="error">${error}</p>
         </section>
     </body>
 </html>

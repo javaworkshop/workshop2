@@ -33,7 +33,7 @@ public class KlantServiceMockImpl implements KlantService {
 
     @Override
     public void save(Klant klant) {
-        if(klant.getId() != 0)
+        if(klant.getId() != 0L)
             throw new RuntimeException("Klant id mag niet al gedefinieerd zijn");
         
         klant.setId(nextId);

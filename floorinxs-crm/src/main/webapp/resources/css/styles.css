@@ -8,7 +8,6 @@ header {
     color:white;
     text-align:center;
     padding:5px;
-    /*border-radius: 25px;*/
 }
 
 a {
@@ -53,7 +52,34 @@ ul#topmenu li a:hover, ul#menu li a:hover {
     background-color: black;
     border-radius: 5px;
     color: white
-} 
+}
+
+form.klantform {
+    width: 550px;
+}
+
+ul.formlist {
+    list-style-type: none;
+    float: left;
+    padding: 10px;
+}
+
+ul.formlist li {
+    margin: 10px 5px;;
+}
+
+.formbutton {
+    clear: both;
+    text-align: right;
+}
+
+label {
+    display: block;
+}
+
+.error {
+    color: red;
+}
 
 section {
     padding-left: 80px;

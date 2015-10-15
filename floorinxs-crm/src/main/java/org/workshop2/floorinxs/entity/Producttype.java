@@ -64,8 +64,3 @@ public class Producttype implements Serializable {
     }
     
 }
-
-enum Type {
-    VLOER,
-    ONDERHOUDSPRODUCT
-}

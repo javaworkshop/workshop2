@@ -1,9 +1,9 @@
 package org.workshop2.floorinxs.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import javax.persistence.*;
 
 /*@NamedQueries({
@@ -34,7 +34,7 @@ public class Klant implements Serializable{
     */
     
     @Column(name = "klant_id") @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long id = 0L;
     @Column
     private String voornaam;
     @Column
@@ -44,15 +44,15 @@ public class Klant implements Serializable{
     @Column
     private String emailadres;
     @ElementCollection @ManyToMany @CollectionTable(name = "klant_adressen", joinColumns = @JoinColumn(name = "klant_id"))
-    private Set<Adres> adressen;
+    private List<Adres> adressen = new ArrayList<>();
     @Embedded
     private Rekeninggegevens rekeninggegevens = new Rekeninggegevens();
     @Column
     private String opmerkingen;
     @OneToMany(mappedBy = "id")
-    private List<Factuur> facturen;
+    private List<Factuur> facturen = new ArrayList<>();
     @OneToMany(mappedBy = "id")
-    private List<Offerte> offertes;
+    private List<Offerte> offertes = new ArrayList<>();
     private Planning planning = new Planning();
 
     
@@ -98,18 +98,22 @@ public class Klant implements Serializable{
     public void setAchternaam(String achternaam) {
         this.achternaam = achternaam;
     }
+    
+    public void addAdres(Adres adres) {
+        adressen.add(adres);
+    }
 
     /**
      * @return the adressen
      */
-    public Set<Adres> getAdressen() {
+    public List<Adres> getAdressen() {
         return adressen;
     }
 
     /**
      * @param adressen the adressen to set
      */
-    public void setAdressen(Set<Adres> adressen) {
+    public void setAdressen(List<Adres> adressen) {
         this.adressen = adressen;
     }
 
