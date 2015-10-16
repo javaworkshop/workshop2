@@ -1,0 +1,27 @@
+<persistence 	xmlns="http://java.sun.com/xml/ns/persistence"
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+				version="2.0">
+	<persistence-unit name="workshop2" transaction-type="RESOURCE_LOCAL">
+		<!--<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+		<class>org.workshop2.floorinxs.entity.Adres</class>
+		<class>org.workshop2.floorinxs.entity.Factuur</class>
+		<class>org.workshop2.floorinxs.entity.Klant</class>
+		<class>org.workshop2.floorinxs.entity.Leverancier</class>
+		<class>org.workshop2.floorinxs.entity.Levering</class>
+		<class>org.workshop2.floorinxs.entity.Offerte</class>
+		<class>org.workshop2.floorinxs.entity.Planning</class>
+		<class>org.workshop2.floorinxs.entity.Product</class>
+		<class>org.workshop2.floorinxs.entity.Producttype</class>
+		<class>org.workshop2.floorinxs.entity.Productgroep</class>
+		<class>org.workshop2.floorinxs.entity.Rekeninggegevens</class>
+		<class>org.workshop2.floorinxs.entity.Vloer</class>
+		<class>org.workshop2.floorinxs.entity.Werkbon</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		<!--<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<property name="hibernate.show_sql" value="true"/>
+		</properties>-->
+	</persistence-unit>
+</persistence>
