@@ -8,6 +8,6 @@ public interface KlantService {
     public void save(Klant klant);
     public void delete(Klant klant);
     public Klant update(Klant klant);
-    public Klant findById(int id);
+    public Klant findById(long id);
     public List<Klant> findAll();
 }

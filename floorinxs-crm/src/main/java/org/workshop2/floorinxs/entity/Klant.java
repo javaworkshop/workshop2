@@ -2,8 +2,10 @@ package org.workshop2.floorinxs.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.*;
 
 /*@NamedQueries({
@@ -43,8 +45,11 @@ public class Klant implements Serializable{
     //private Adres adres = new Adres();
     @Column
     private String emailadres;
-    @ElementCollection @ManyToMany @CollectionTable(name = "klant_adressen", joinColumns = @JoinColumn(name = "klant_id"))
-    private List<Adres> adressen = new ArrayList<>();
+    //@ElementCollection
+    //@CollectionTable(name = "klant_adressen", joinColumns = @JoinColumn(name = "klant_id"))
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name="klant_adressen", joinColumns=@JoinColumn(name="klant_id"), inverseJoinColumns=@JoinColumn(name="adres_id"))
+    private Set<Adres> adressen = new LinkedHashSet<>();
     @Embedded
     private Rekeninggegevens rekeninggegevens = new Rekeninggegevens();
     @Column
@@ -106,14 +111,14 @@ public class Klant implements Serializable{
     /**
      * @return the adressen
      */
-    public List<Adres> getAdressen() {
+    public Set<Adres> getAdressen() {
         return adressen;
     }
 
     /**
      * @param adressen the adressen to set
      */
-    public void setAdressen(List<Adres> adressen) {
+    public void setAdressen(Set<Adres> adressen) {
         this.adressen = adressen;
     }
 

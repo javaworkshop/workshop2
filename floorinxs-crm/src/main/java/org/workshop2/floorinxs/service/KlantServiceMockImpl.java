@@ -23,7 +23,7 @@ public class KlantServiceMockImpl implements KlantService {
     }
 
     @Override
-    public Klant findById(int id) {
+    public Klant findById(long id) {
         for(Klant k : klanten) {
             if(k.getId() == id)
                 return k;
