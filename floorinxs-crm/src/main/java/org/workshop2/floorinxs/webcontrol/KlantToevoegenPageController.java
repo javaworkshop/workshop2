@@ -39,7 +39,7 @@ public class KlantToevoegenPageController {
     @RequestMapping(method = RequestMethod.POST)
     public String addKlant(@Valid @ModelAttribute("klant") KlantDto klant, BindingResult result, 
             ModelMap model) {
-        klant.getKlant().addAdres(klant.getAdres());
+        klant.getKlant().getAdressen().add(klant.getAdres());
         klantService.save(klant.getKlant());
         
         logger.info("Klant opgeslagen: " + klant.getKlant().toString());

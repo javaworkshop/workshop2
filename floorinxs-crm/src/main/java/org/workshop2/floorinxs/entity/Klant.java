@@ -47,7 +47,7 @@ public class Klant implements Serializable{
     private String emailadres;
     //@ElementCollection
     //@CollectionTable(name = "klant_adressen", joinColumns = @JoinColumn(name = "klant_id"))
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name="klant_adressen", joinColumns=@JoinColumn(name="klant_id"), inverseJoinColumns=@JoinColumn(name="adres_id"))
     private Set<Adres> adressen = new LinkedHashSet<>();
     @Embedded
@@ -104,10 +104,6 @@ public class Klant implements Serializable{
         this.achternaam = achternaam;
     }
     
-    public void addAdres(Adres adres) {
-        adressen.add(adres);
-    }
-
     /**
      * @return the adressen
      */

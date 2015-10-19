@@ -14,6 +14,7 @@ import org.workshop2.floorinxs.entity.Klant;
 public class KlantServiceImpl implements KlantService {
     @Autowired
     private KlantDao klantDao;
+    private boolean eagerFetch = false;
 
     @Override
     public void delete(Klant klant) {
@@ -22,12 +23,38 @@ public class KlantServiceImpl implements KlantService {
 
     @Override
     public List<Klant> findAll() {
-        return klantDao.readAll();
+        List<Klant> klantenResult;
+        if(eagerFetch) {
+            klantenResult = klantDao.readAll();
+            for(Klant k : klantenResult)
+                klantDao.initLazyCollections(k);
+        }
+        else
+            klantenResult = klantDao.readAll();
+        return klantenResult;
     }
 
     @Override
     public Klant findById(long id) {
-        return klantDao.readById(id);
+        Klant klantResult;
+        if(eagerFetch) {
+            klantResult = klantDao.readById(id);
+            klantDao.initLazyCollections(klantResult);
+        }
+        else
+            klantResult = klantDao.readById(id);
+        
+        return klantResult;
+    }    
+    
+    @Override
+    public void setEagerFetch(boolean eagerFetch) {
+        this.eagerFetch = eagerFetch;
+    }    
+
+    @Override
+    public boolean isEagerFetch() {
+        return eagerFetch;
     }
 
     @Override
@@ -40,5 +67,5 @@ public class KlantServiceImpl implements KlantService {
     public Klant update(Klant klant) {
         // TODO: klantgegevens valideren
         return klantDao.update(klant);
-    }   
+    }
 }

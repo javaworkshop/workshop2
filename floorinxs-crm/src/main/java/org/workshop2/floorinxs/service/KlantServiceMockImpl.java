@@ -11,6 +11,7 @@ public class KlantServiceMockImpl implements KlantService {
     
     private List<Klant> klanten = new ArrayList<>();
     private long nextId = 1;
+    private boolean eagerFetch;
 
     @Override
     public void delete(Klant klant) {
@@ -32,6 +33,11 @@ public class KlantServiceMockImpl implements KlantService {
     }
 
     @Override
+    public boolean isEagerFetch() {
+        return eagerFetch;
+    }
+
+    @Override
     public void save(Klant klant) {
         if(klant.getId() != 0L)
             throw new RuntimeException("Klant id mag niet al gedefinieerd zijn");
@@ -39,6 +45,11 @@ public class KlantServiceMockImpl implements KlantService {
         klant.setId(nextId);
         nextId++;
         klanten.add(klant);
+    }
+
+    @Override
+    public void setEagerFetch(boolean eagerFetch) {
+        this.eagerFetch = eagerFetch;
     }
 
     @Override
