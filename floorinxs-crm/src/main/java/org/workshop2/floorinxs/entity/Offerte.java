@@ -24,7 +24,7 @@ public class Offerte implements Serializable {
     • opmerkingen
     */
     
-     /*DOE IETS MET DE PRIJZEN! DAAR WORDT NU GEEN INFO OVER OPGESLAGEN, OOK NIET IN DE PRODUCT KLASSE*/
+    /*DOE IETS MET DE PRIJZEN! DAAR WORDT NU GEEN INFO OVER OPGESLAGEN, OOK NIET IN DE PRODUCT KLASSE*/
     
     @Column(name = "offerte_id") @Id @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;

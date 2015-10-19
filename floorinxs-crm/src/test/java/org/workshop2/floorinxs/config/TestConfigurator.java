@@ -1,8 +1,6 @@
 package org.workshop2.floorinxs.config;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -29,7 +27,7 @@ public class TestConfigurator {
         klant1.setAchternaam("Hark");
         klant1.setEmailadres("henkie83@hotmail.com");
         klant1.setOpmerkingen("Vreemd");
-        List<Adres> adressen = new ArrayList<>();
+        Set<Adres> adressen = new LinkedHashSet<>();
         Adres adres = new Adres();
         adres.setHuisnummer("34");
         adres.setPostcode("3452AB");
@@ -47,7 +45,7 @@ public class TestConfigurator {
         klant2.setAchternaam("Trammelant");
         klant2.setEmailadres("truuhuuus@hotmail.com");
         klant2.setOpmerkingen("Geen opmerkingen");
-        List<Adres> adressen = new ArrayList<>();
+        Set<Adres> adressen = new LinkedHashSet<>();
         Adres adres = new Adres();
         adres.setHuisnummer("101a");
         adres.setPostcode("6595ER");

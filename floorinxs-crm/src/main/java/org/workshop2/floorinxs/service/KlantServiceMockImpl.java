@@ -11,6 +11,7 @@ public class KlantServiceMockImpl implements KlantService {
     
     private List<Klant> klanten = new ArrayList<>();
     private long nextId = 1;
+    private boolean eagerFetch;
 
     @Override
     public void delete(Klant klant) {
@@ -23,12 +24,17 @@ public class KlantServiceMockImpl implements KlantService {
     }
 
     @Override
-    public Klant findById(int id) {
+    public Klant findById(long id) {
         for(Klant k : klanten) {
             if(k.getId() == id)
                 return k;
         }
         return null;
+    }
+
+    @Override
+    public boolean isEagerFetch() {
+        return eagerFetch;
     }
 
     @Override
@@ -39,6 +45,11 @@ public class KlantServiceMockImpl implements KlantService {
         klant.setId(nextId);
         nextId++;
         klanten.add(klant);
+    }
+
+    @Override
+    public void setEagerFetch(boolean eagerFetch) {
+        this.eagerFetch = eagerFetch;
     }
 
     @Override
