@@ -1,6 +1,8 @@
 package org.workshop2.floorinxs.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +14,6 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.workshop2.floorinxs.config.TestConfigurator;
 import org.workshop2.floorinxs.entity.Klant;
-import org.workshop2.floorinxs.webcontrol.KlantHomePageController;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = TestConfigurator.class)
@@ -26,12 +27,12 @@ public class KlantServiceTest {
     @Before
     public void setUp() {
         klantService.setEagerFetch(true);
+        klantService.save(klantSample.get(0));
+        klantService.save(klantSample.get(1));
     }
     
     @Test
-    public void testCreate() {
-        klantService.save(klantSample.get(0));
-        klantService.save(klantSample.get(1));
+    public void testCreate() {        
         Klant k1 = klantService.findById(1L);
         Klant k2 = klantService.findById(3L);
         
@@ -42,5 +43,18 @@ public class KlantServiceTest {
         logger.info(k2.toString());
         logger.info(klantSample.get(1).toString());
         assertEquals(k2, klantSample.get(1));
-    }        
+    }
+    
+    @Test
+    public void testFind() {
+        Map<String, String> searchParam = new HashMap<>();
+        //searchParam.put("voornaam", "Henk");
+        //searchParam.put("achternaam", "Hark");
+        searchParam.put("adres.straatnaam", "Straat in het Dorp");
+        searchParam.put("adres.huisnummer", "34");
+        searchParam.put("adres.postcode", "3452AB");
+        searchParam.put("adres.woonplaats", "Het Dorp");
+        List<Klant> klanten = klantService.find(searchParam);
+        logger.info(klanten.toString());
+    }
 }

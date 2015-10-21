@@ -31,6 +31,7 @@ public class KlantenZoekenPageController {
     
     @RequestMapping(method = RequestMethod.POST)
     public String showSearchResults(@RequestParam Map<String, String> searchParam, ModelMap model) {
+        logger.info(searchParam.toString());
         List<Klant> klanten;
         try {
             if(!searchParam.get("id").equals("")) {

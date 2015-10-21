@@ -2,6 +2,7 @@ package org.workshop2.floorinxs.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.workshop2.floorinxs.entity.Klant;
 import org.workshop2.floorinxs.service.KlantService;
@@ -45,6 +46,11 @@ public class KlantServiceMockImpl implements KlantService {
         klant.setId(nextId);
         nextId++;
         klanten.add(klant);
+    }
+
+    @Override
+    public List<Klant> find(Map<String, String> searchParam) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

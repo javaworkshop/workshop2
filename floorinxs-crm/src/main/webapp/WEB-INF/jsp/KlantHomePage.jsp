@@ -13,13 +13,17 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styles.css"/>
     </head>
     <body>
-        <jsp:include page="include/TopMenu.jsp" />
-        <jsp:include page="include/KlantMenu.jsp" />
+        <jsp:include page="include/TopMenu.jsp" />        
 
         <section>
-            <h2>Klantgegevens</h2>
-            <p>Kies gewenste actie in het linkermenu om klantgegevens te beijken
-            en/of te bewerken.</p>
+            <jsp:include page="include/KlantMenu.jsp" />
+            
+            <div class="content">
+                <h2>Klantgegevens</h2>
+                <p>Kies gewenste actie in het linkermenu om klantgegevens te beijken
+                en/of te bewerken.</p>
+            </div>
         </section>
+            
     </body>
 </html>

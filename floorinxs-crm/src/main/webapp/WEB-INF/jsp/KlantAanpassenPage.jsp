@@ -13,11 +13,15 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styles.css"/>
     </head>
     <body>
-        <jsp:include page="include/TopMenu.jsp" />
-        <jsp:include page="include/KlantMenu.jsp" />
+        <jsp:include page="include/TopMenu.jsp" />        
 
         <section>
-            <h2></h2>
+            <jsp:include page="include/KlantMenu.jsp" />
+            
+            <div class="content">
+                <h2></h2>
+            </div>
         </section>
+            
     </body>
 </html>

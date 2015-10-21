@@ -1,5 +1,7 @@
 body {
-    margin: 20px;    
+    margin: auto;
+    width: 96%;
+    margin-top: 20px;
 }
 
 header {
@@ -25,11 +27,12 @@ nav {
 
 ul#menu {
     list-style-type: none;
-    line-height:40px;
-    height:300px;
-    width:200px;
-    float:left;
-    padding:5px;	
+    line-height: 40px;
+    margin: auto;
+    height: 300px;
+    width: 200px;
+    float: left;
+    padding: 5px;	
 }
 
 ul#topmenu {
@@ -55,7 +58,7 @@ ul#topmenu li a:hover, ul#menu li a:hover {
 }
 
 form.klantform {
-    width: 550px;
+    min-width: 560px;
 }
 
 ul.formlist {
@@ -71,6 +74,7 @@ ul.formlist li {
 .formbutton {
     clear: both;
     text-align: right;
+    padding-right: 25%;
 }
 
 label {
@@ -81,12 +85,17 @@ label {
     color: red;
 }
 
-section {
+.content {
+    margin: auto;
     padding-left: 80px;
     padding-top: 20px;
-    float: left;
-    width: 1000px;
+    width: 65%;
     min-height: 490px;
     border: 3px solid black;
     border-radius: 5px;
+}
+
+section {
+    margin: auto;
+    width: 95%;
 }

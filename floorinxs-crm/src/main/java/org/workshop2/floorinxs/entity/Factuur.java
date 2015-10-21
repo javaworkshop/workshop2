@@ -29,7 +29,7 @@ public class Factuur implements Serializable {
     
     @Column(name = "factuur_id") @Id @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-    @ElementCollection @ManyToMany @CollectionTable(name = "fractuur_vloeren", joinColumns = @JoinColumn(name = "factuur_id"))
+    @ElementCollection @ManyToMany @CollectionTable(name = "factuur_vloeren", joinColumns = @JoinColumn(name = "factuur_id"))
     private List<Vloer> vloeren = new ArrayList<Vloer>();
     @ElementCollection @ManyToMany @CollectionTable(name = "factuur_producten", joinColumns = @JoinColumn(name = "factuur_id"))
     private List<Product> producten = new ArrayList<Product>();

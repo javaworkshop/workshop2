@@ -1,6 +1,7 @@
 package org.workshop2.floorinxs.service;
 
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,29 +24,35 @@ public class KlantServiceImpl implements KlantService {
 
     @Override
     public List<Klant> findAll() {
-        List<Klant> klantenResult;
-        if(eagerFetch) {
-            klantenResult = klantDao.readAll();
+        List<Klant> klantenResult = klantDao.readAll();
+        if(eagerFetch) {            
             for(Klant k : klantenResult)
                 klantDao.initLazyCollections(k);
         }
-        else
-            klantenResult = klantDao.readAll();
+
         return klantenResult;
     }
 
     @Override
     public Klant findById(long id) {
-        Klant klantResult;
-        if(eagerFetch) {
-            klantResult = klantDao.readById(id);
+        Klant klantResult = klantDao.readById(id);
+        if(eagerFetch) {            
             klantDao.initLazyCollections(klantResult);
         }
-        else
-            klantResult = klantDao.readById(id);
         
         return klantResult;
     }    
+
+    @Override
+    public List<Klant> find(Map<String, String> searchParam) {
+        List<Klant> klantenResult = klantDao.read(searchParam);
+        if(eagerFetch) {            
+            for(Klant k : klantenResult)
+                klantDao.initLazyCollections(k);
+        }
+        
+        return klantenResult;
+    }
     
     @Override
     public void setEagerFetch(boolean eagerFetch) {
