@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.workshop2.floorinxs.entity.Klant;
-import org.workshop2.floorinxs.service.KlantService;
 
 @Service
 public class KlantServiceMockImpl implements KlantService {

@@ -1,11 +1,12 @@
 package org.workshop2.floorinxs.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.workshop2.floorinxs.dao.AdresDao;
 import org.workshop2.floorinxs.dao.KlantDao;
 import org.workshop2.floorinxs.entity.Klant;
 
@@ -18,40 +19,65 @@ public class KlantServiceImpl implements KlantService {
     private boolean eagerFetch = false;
 
     @Override
-    public void delete(Klant klant) {
-        klantDao.delete(klant);
+    public void delete(Klant klant) throws ServiceException {
+        try {
+            klantDao.delete(klant);
+        }
+        catch(DataAccessException ex) {
+            throw new ServiceException(ex);
+        } 
     }
 
     @Override
-    public List<Klant> findAll() {
-        List<Klant> klantenResult = klantDao.readAll();
-        if(eagerFetch) {            
-            for(Klant k : klantenResult)
-                klantDao.initLazyCollections(k);
-        }
+    public List<Klant> findAll() throws ServiceException {
+        try {
+            List<Klant> klantenResult = klantDao.readAll();
+            if(eagerFetch) {            
+                for(Klant k : klantenResult)
+                    klantDao.initLazyCollections(k);
+            }
 
-        return klantenResult;
+            return klantenResult;
+        }
+        catch(DataAccessException ex) {
+            throw new ServiceException(ex);
+        }
     }
 
     @Override
-    public Klant findById(long id) {
-        Klant klantResult = klantDao.readById(id);
-        if(eagerFetch) {            
-            klantDao.initLazyCollections(klantResult);
-        }
+    public Klant findById(long id) throws ServiceException {
+        try {
+            Klant klantResult = klantDao.readById(id);
+            if(eagerFetch) {            
+                klantDao.initLazyCollections(klantResult);
+            }
         
-        return klantResult;
+            return klantResult;
+        }
+        catch(DataAccessException ex) {
+            throw new ServiceException(ex);
+        }
     }    
 
     @Override
-    public List<Klant> find(Map<String, String> searchParam) {
-        List<Klant> klantenResult = klantDao.read(searchParam);
-        if(eagerFetch) {            
-            for(Klant k : klantenResult)
-                klantDao.initLazyCollections(k);
-        }
+    public List<Klant> find(Map<String, String> searchParam) throws ServiceException {        
+        Map<String, String> aliases = new HashMap<>();
+        aliases.put("adressen", "adres");
+        aliases.put("facturen", "factuur");
+        aliases.put("offertes", "offerte");
         
-        return klantenResult;
+        try {
+            List<Klant> klantenResult = klantDao.read(searchParam, aliases);
+            if(eagerFetch) {            
+                for(Klant k : klantenResult)
+                    klantDao.initLazyCollections(k);
+            }
+            
+            return klantenResult;
+        }
+        catch(DataAccessException ex) {
+            throw new ServiceException(ex);
+        }
     }
     
     @Override
@@ -65,14 +91,24 @@ public class KlantServiceImpl implements KlantService {
     }
 
     @Override
-    public void save(Klant klant) {
+    public void save(Klant klant) throws ServiceException {
         // TODO: klantgegevens valideren
-        klantDao.create(klant);
+        try {
+            klantDao.create(klant);
+        }
+        catch(DataAccessException ex) {
+            throw new ServiceException(ex);
+        }
     }
 
     @Override
-    public Klant update(Klant klant) {
+    public Klant update(Klant klant) throws ServiceException {
         // TODO: klantgegevens valideren
-        return klantDao.update(klant);
+        try {
+            return klantDao.update(klant);
+        }
+        catch(DataAccessException ex) {
+            throw new ServiceException(ex);
+        }
     }
 }

@@ -17,18 +17,4 @@ public class KlantDaoImpl extends AbstractDao<Klant, Long> implements KlantDao {
         Hibernate.initialize(klant.getFacturen());
         Hibernate.initialize(klant.getOffertes());
     }
-
-    @Override
-    public List<Klant> read(Map<String, String> searchParam) {
-        Session session = entityManager.unwrap(Session.class);
-        Criteria criteria = session.createCriteria(Klant.class)
-                .createAlias("adressen", "adres");
-        
-        for(String key : searchParam.keySet()) {
-            if(!(searchParam.get(key).equals("")) && searchParam.get(key) != null )
-                criteria.add(Restrictions.eq(key, searchParam.get(key)));
-        }
-        
-        return criteria.list();
-    }
 }

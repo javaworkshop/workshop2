@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.workshop2.floorinxs.entity.Klant;
 import org.workshop2.floorinxs.service.KlantService;
+import org.workshop2.floorinxs.service.ServiceException;
 
 @Controller
 @RequestMapping("/KlantenZoekenPage")
@@ -30,22 +31,28 @@ public class KlantenZoekenPageController {
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public String showSearchResults(@RequestParam Map<String, String> searchParam, ModelMap model) {
+    public ModelAndView showSearchResults(@RequestParam Map<String, String> searchParam, ModelMap model) {
         logger.info(searchParam.toString());
         List<Klant> klanten;
         try {
-            if(!searchParam.get("id").equals("")) {
+            if(searchParam.get("id").equals("")) {
+                klanten = klantService.find(searchParam);
+            }
+            else {
                 klanten = new ArrayList<>();
                 klanten.add(klantService.findById(Integer.parseInt(searchParam.get("id"))));
             }
-            else
-                klanten = klantService.findAll();
         }
         catch(NumberFormatException ex) {
             model.addAttribute("error", "Ongeldige waarde ingevoerd.");
-            return "KlantenZoekenPage";
+            return new ModelAndView("KlantenZoekenPage", model);
         }
-        
-        return "KlantenZoekenResultaatPage";
+        catch(ServiceException ex) {
+            model.addAttribute("error", "Er is een fout opgetreden bij het ophalen van data uit de"
+                    + " database.");
+            return new ModelAndView("KlantenZoekenPage", model);
+        }
+
+        return new ModelAndView("KlantenZoekenResultaatPage", "klanten", klanten);
     }
 }
