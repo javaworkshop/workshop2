@@ -7,9 +7,9 @@ import javax.persistence.*;
 public class Rekeninggegevens {
     
     @Column
-    private String Rekeninghouder;
+    private String rekeninghouder;
     @Column
-    private String Iban;
+    private String iban;
     /*
     Eventueel mogelijkheden voor creditcard en dergelijke toevoegen
     */
@@ -17,38 +17,38 @@ public class Rekeninggegevens {
     public Rekeninggegevens(){}
 
     /**
-     * @return the Rekeninghouder
+     * @return the rekeninghouder
      */
     public String getRekeninghouder() {
-        return Rekeninghouder;
+        return rekeninghouder;
     }
 
     /**
-     * @param Rekeninghouder the Rekeninghouder to set
+     * @param Rekeninghouder the rekeninghouder to set
      */
     public void setRekeninghouder(String Rekeninghouder) {
-        this.Rekeninghouder = Rekeninghouder;
+        this.rekeninghouder = Rekeninghouder;
     }
 
     /**
-     * @return the Iban
+     * @return the iban
      */
     public String getIban() {
-        return Iban;
+        return iban;
     }
 
     /**
-     * @param Iban the Iban to set
+     * @param Iban the iban to set
      */
     public void setIban(String Iban) {
-        this.Iban = Iban;
+        this.iban = Iban;
     }
     
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.Rekeninghouder);
-        hash = 53 * hash + Objects.hashCode(this.Iban);
+        hash = 53 * hash + Objects.hashCode(this.rekeninghouder);
+        hash = 53 * hash + Objects.hashCode(this.iban);
         return hash;
     }
 
@@ -61,10 +61,10 @@ public class Rekeninggegevens {
             return false;
         }
         final Rekeninggegevens other = (Rekeninggegevens) obj;
-        if (!Objects.equals(this.Rekeninghouder, other.Rekeninghouder)) {
+        if (!Objects.equals(this.rekeninghouder, other.rekeninghouder)) {
             return false;
         }
-        if (!Objects.equals(this.Iban, other.Iban)) {
+        if (!Objects.equals(this.iban, other.iban)) {
             return false;
         }
         return true;
@@ -72,7 +72,7 @@ public class Rekeninggegevens {
 
     @Override
     public String toString() {
-        return "Rekeninggegevens{" + "Rekeninghouder=" + Rekeninghouder + ", Iban=" + Iban + '}';
+        return "Rekeninggegevens{" + "Rekeninghouder=" + rekeninghouder + ", Iban=" + iban + '}';
     }
     
 }

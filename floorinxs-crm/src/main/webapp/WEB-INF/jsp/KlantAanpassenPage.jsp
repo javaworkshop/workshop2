@@ -7,17 +7,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>CRM FloorInXs</title>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styles.css"/>
-    </head>
+  <jsp:include page="include/Head.jsp" />
     <body>
-        <jsp:include page="include/TopMenu.jsp" />
-        <jsp:include page="include/KlantMenu.jsp" />
+        <jsp:include page="include/TopMenu.jsp" />        
 
         <section>
-            <h2></h2>
+            <jsp:include page="include/KlantMenu.jsp" />
+            
+            <div class="content">
+                <h2></h2>
+            </div>
         </section>
+            
     </body>
 </html>

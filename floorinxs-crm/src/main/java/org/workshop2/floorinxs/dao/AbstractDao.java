@@ -1,12 +1,15 @@
 package org.workshop2.floorinxs.dao;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 public abstract class AbstractDao<E, PK> implements Dao<E, PK> {
     protected Class entityClass;
@@ -45,4 +48,27 @@ public abstract class AbstractDao<E, PK> implements Dao<E, PK> {
         return entityManager.merge(entity);
     }
     
+    @Override
+    public List<E> read(Map<String, String> searchParam) {
+        return read(searchParam, new HashMap<>());
+    }
+    
+    @Override
+    public List<E> read(Map<String, String> searchParam, Map<String, String> aliases) {
+        Session session = entityManager.unwrap(Session.class);
+        Criteria criteria = session.createCriteria(entityClass);
+
+        // create alias for every key-value (property-alias) pair
+        for(String key : aliases.keySet()) {
+            criteria.createAlias(key, aliases.get(key));
+        }
+        
+        //add criterion for every key-value (property-value) pair
+        for(String key : searchParam.keySet()) {
+            if(!(searchParam.get(key).equals("")) && searchParam.get(key) != null)
+                criteria.add(Restrictions.eq(key, searchParam.get(key)));
+        }
+        
+        return criteria.list();
+    }
 }
