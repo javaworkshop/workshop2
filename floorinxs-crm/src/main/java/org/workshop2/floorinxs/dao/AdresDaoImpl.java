@@ -2,8 +2,10 @@ package org.workshop2.floorinxs.dao;
 
 import java.util.List;
 import java.util.Map;
+import org.springframework.stereotype.Repository;
 import org.workshop2.floorinxs.entity.Adres;
 
+@Repository
 public class AdresDaoImpl extends AbstractDao<Adres, Long> implements AdresDao {
 
     @Override

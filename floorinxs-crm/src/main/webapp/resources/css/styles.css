@@ -22,7 +22,6 @@ nav {
 
 #sidenav {
     padding-top: 20px;
-    padding-left: 10px;
 }
 
 ul#menu {
@@ -74,7 +73,7 @@ ul.formlist li {
 .formbutton {
     clear: both;
     text-align: right;
-    padding-right: 25%;
+    padding-right: 40%;
 }
 
 label {
@@ -86,13 +85,45 @@ label {
 }
 
 .content {
-    margin: auto;
-    padding-left: 80px;
-    padding-top: 20px;
-    width: 65%;
+    float: left;
+    margin: auto;    
+    min-width: 70%;
+    padding-left: 15px;
+    padding-right: 15px;
     min-height: 490px;
     border: 3px solid black;
     border-radius: 5px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th {
+    background-color: black;
+    color: white;
+    padding: 6px 9px 5px 5px;
+    font-size: 110%;
+    text-align: center;
+}
+
+td {
+    padding: 5px 5px 4px;
+}
+
+table.zoekresultaten tr:nth-child(even) {
+    background-color: white;
+}
+table.zoekresultaten tr:nth-child(odd) {
+    background-color: whitesmoke;
+}
+
+select.tabledata {
+    width: 100%;
 }
 
 section {

@@ -62,9 +62,21 @@ public class KlantServiceImpl implements KlantService {
     @Override
     public List<Klant> find(Map<String, String> searchParam) throws ServiceException {        
         Map<String, String> aliases = new HashMap<>();
-        aliases.put("adressen", "adres");
-        aliases.put("facturen", "factuur");
-        aliases.put("offertes", "offerte");
+        // TODO: even kijken of hier een mooiere oplossing voor is
+        for(String key : searchParam.keySet()) {
+            if(searchParam.get(key).equals("")) {
+                int dotIndex = searchParam.get(key).indexOf('.');
+                if(dotIndex != -1) {
+                    String entityName = searchParam.get(key).substring(dotIndex);
+                    if(entityName.equals("adres"))
+                        aliases.put("adressen", "adres");
+                    else if(entityName.equals("factuur"))
+                        aliases.put("facturen", "factuur");
+                    else
+                        aliases.put("offertes", "offerte");
+                }
+            }
+        }
         
         try {
             List<Klant> klantenResult = klantDao.read(searchParam, aliases);

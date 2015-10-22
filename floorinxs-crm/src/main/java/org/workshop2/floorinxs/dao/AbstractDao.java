@@ -63,9 +63,9 @@ public abstract class AbstractDao<E, PK> implements Dao<E, PK> {
             criteria.createAlias(key, aliases.get(key));
         }
         
-        //add criterion for every key-value (property-parameter) pair
+        //add criterion for every key-value (property-value) pair
         for(String key : searchParam.keySet()) {
-            if(!(searchParam.get(key).equals("")) && searchParam.get(key) != null )
+            if(!(searchParam.get(key).equals("")) && searchParam.get(key) != null)
                 criteria.add(Restrictions.eq(key, searchParam.get(key)));
         }
         
