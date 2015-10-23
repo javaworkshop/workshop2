@@ -64,10 +64,13 @@ public class KlantServiceImpl implements KlantService {
         Map<String, String> aliases = new HashMap<>();
         // TODO: even kijken of hier een mooiere oplossing voor is
         for(String key : searchParam.keySet()) {
-            if(searchParam.get(key).equals("")) {
-                int dotIndex = searchParam.get(key).indexOf('.');
+            // Kijk voor iedere key of bijbehorende waarde is ingevuld
+            if(!searchParam.get(key).equals("")) {
+                int dotIndex = key.indexOf('.');
+                // als de key een '.' bevat moet er een alias aangemaakt worden om de 
+                // associatietabel te kunnen benaderen                
                 if(dotIndex != -1) {
-                    String entityName = searchParam.get(key).substring(dotIndex);
+                    String entityName = key.substring(0, dotIndex);
                     if(entityName.equals("adres"))
                         aliases.put("adressen", "adres");
                     else if(entityName.equals("factuur"))

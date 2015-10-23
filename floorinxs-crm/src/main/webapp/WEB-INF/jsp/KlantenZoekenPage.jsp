@@ -24,7 +24,37 @@
                         <li>
                             <label for="id" name="id">ID:</label>
                             <input name="id" id="id" type="text"/>
-                        </li>                    
+                        </li>
+                        <li>
+                            <label for="voornaam" name="voornaam">Voornaam:</label>
+                            <input name="voornaam" id="voornaam" type="text"/>
+                        </li>
+                        <li>
+                            <label for="achternaam" name="achternaam">Achternaam:</label>
+                            <input name="achternaam" id="achternaam" type="text"/>
+                        </li>
+                        <li>
+                            <label for="emailadres" name="emailadres">Email:</label>
+                            <input name="emailadres" id="emailadres" type="text"/>
+                        </li>
+                    </ul>
+                    <ul class="formlist">
+                        <li>
+                            <label for="straatnaam" name="straatnaam">Straatnaam:</label>
+                            <input name="adres.straatnaam" id="straatnaam" type="text"/>
+                        </li>
+                        <li>
+                            <label for="huisnummer" name="huisnummer">Huisnummer:</label>
+                            <input name="adres.huisnummer" id="huisnummer" type="text"/>
+                        </li>
+                        <li>
+                            <label for="postcode" name="postcode">Postcode:</label>
+                            <input name="adres.postcode" id="postcode" type="text"/>
+                        </li>
+                        <li>
+                            <label for="woonplaats" name="woonplaats">Woonplaats:</label>
+                            <input name="adres.woonplaats" id="woonplaats" type="text"/>
+                        </li>
                     </ul>
                     <div class="formbutton">
                         <input type="submit" value="Zoeken"/>

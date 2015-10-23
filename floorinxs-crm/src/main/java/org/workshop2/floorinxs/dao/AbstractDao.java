@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 public abstract class AbstractDao<E, PK> implements Dao<E, PK> {
@@ -66,7 +67,7 @@ public abstract class AbstractDao<E, PK> implements Dao<E, PK> {
         //add criterion for every key-value (property-value) pair
         for(String key : searchParam.keySet()) {
             if(!(searchParam.get(key).equals("")) && searchParam.get(key) != null)
-                criteria.add(Restrictions.eq(key, searchParam.get(key)));
+                criteria.add(Restrictions.like(key, searchParam.get(key), MatchMode.ANYWHERE));
         }
         
         return criteria.list();

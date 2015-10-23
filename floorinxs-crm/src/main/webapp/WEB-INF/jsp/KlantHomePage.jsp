@@ -16,7 +16,7 @@
             
             <div class="content">
                 <h2>Klantgegevens</h2>
-                <p>Kies gewenste actie in het linkermenu om klantgegevens te beijken
+                <p>Kies gewenste actie in het linkermenu om klantgegevens te bekijken
                 en/of te bewerken.</p>
             </div>
         </section>
