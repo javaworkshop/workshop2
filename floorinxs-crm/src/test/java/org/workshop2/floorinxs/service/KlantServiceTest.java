@@ -46,8 +46,8 @@ public class KlantServiceTest {
         assertEquals(k2, klantSample.get(1));
     }
     
-    //@Test
-    public void testFind() {
+    //@Test // nog aan te passen aan nieuwe manier van zoeken
+    /*public void testFind() {
         Map<String, String> searchParam = new HashMap<>();
         searchParam.put("voornaam", klantSample.get(0).getVoornaam());
         searchParam.put("achternaam", klantSample.get(0).getAchternaam());
@@ -61,5 +61,5 @@ public class KlantServiceTest {
         
         logger.info(klanten.toString());
         assertEquals(klanten.get(0), klantSample.get(0));
-    }
+    }*/
 }

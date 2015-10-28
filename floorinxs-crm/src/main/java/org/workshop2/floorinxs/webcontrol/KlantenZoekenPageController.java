@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.workshop2.floorinxs.dto.KlantSearchDto;
+import org.workshop2.floorinxs.dto.SearchDto;
 import org.workshop2.floorinxs.entity.Klant;
 import org.workshop2.floorinxs.service.KlantService;
 import org.workshop2.floorinxs.service.ServiceException;
@@ -36,7 +38,17 @@ public class KlantenZoekenPageController {
         List<Klant> klanten;
         try {
             if(searchParam.get("id").equals("")) {
-                klanten = klantService.find(searchParam);
+                SearchDto searchDto = new KlantSearchDto.KlantSearchDtoBuilder()
+                        .voornaam(searchParam.get("voornaam"))
+                        .achternaam(searchParam.get("achternaam"))
+                        .emailadres(searchParam.get("emailadres"))
+                        .adresStraatnaam(searchParam.get("straatnaam"), 0)
+                        .adresHuisnummer(searchParam.get("huisnummer"), 0)
+                        .adresPostcode(searchParam.get("postcode"), 0)
+                        .adresWoonplaats(searchParam.get("woonplaats"), 0)
+                        .build();
+                        
+                klanten = klantService.find(searchDto);
             }
             else {
                 klanten = new ArrayList<>();

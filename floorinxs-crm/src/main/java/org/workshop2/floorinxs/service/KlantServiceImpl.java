@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.workshop2.floorinxs.dao.KlantDao;
+import org.workshop2.floorinxs.dto.SearchDto;
 import org.workshop2.floorinxs.entity.Klant;
 
 // TODO: eventuele bewerkingen en checks van data uitvoeren
@@ -26,6 +27,22 @@ public class KlantServiceImpl implements KlantService {
         catch(DataAccessException ex) {
             throw new ServiceException(ex);
         } 
+    }
+
+    @Override
+    public List<Klant> find(SearchDto SearchDto) throws ServiceException {
+        try {
+            List<Klant> klantenResult = klantDao.read(SearchDto);
+            if(eagerFetch) {
+                for(Klant k : klantenResult)
+                    klantDao.initLazyCollections(k);
+            }
+            
+            return klantenResult;
+        }
+        catch(DataAccessException ex) {
+            throw new ServiceException(ex);
+        }
     }
 
     @Override
@@ -58,42 +75,6 @@ public class KlantServiceImpl implements KlantService {
             throw new ServiceException(ex);
         }
     }    
-
-    @Override
-    public List<Klant> find(Map<String, String> searchParam) throws ServiceException {        
-        Map<String, String> aliases = new HashMap<>();
-        // TODO: even kijken of hier een mooiere oplossing voor is
-        for(String key : searchParam.keySet()) {
-            // Kijk voor iedere key of bijbehorende waarde is ingevuld
-            if(!searchParam.get(key).equals("")) {
-                int dotIndex = key.indexOf('.');
-                // als de key een '.' bevat moet er een alias aangemaakt worden om de 
-                // associatietabel te kunnen benaderen                
-                if(dotIndex != -1) {
-                    String entityName = key.substring(0, dotIndex);
-                    if(entityName.equals("adres"))
-                        aliases.put("adressen", "adres");
-                    else if(entityName.equals("factuur"))
-                        aliases.put("facturen", "factuur");
-                    else
-                        aliases.put("offertes", "offerte");
-                }
-            }
-        }
-        
-        try {
-            List<Klant> klantenResult = klantDao.read(searchParam, aliases);
-            if(eagerFetch) {            
-                for(Klant k : klantenResult)
-                    klantDao.initLazyCollections(k);
-            }
-            
-            return klantenResult;
-        }
-        catch(DataAccessException ex) {
-            throw new ServiceException(ex);
-        }
-    }
     
     @Override
     public void setEagerFetch(boolean eagerFetch) {

@@ -9,8 +9,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.util.MultiValueMap;
+import org.workshop2.floorinxs.dto.SearchDto;
 
 public abstract class AbstractDao<E, PK> implements Dao<E, PK> {
     protected Class entityClass;
@@ -50,26 +53,23 @@ public abstract class AbstractDao<E, PK> implements Dao<E, PK> {
     }
     
     @Override
-    public List<E> read(Map<String, String> searchParam) {
-        return read(searchParam, new HashMap<>());
-    }
-    
-    @Override
-    public List<E> read(Map<String, String> searchParam, Map<String, String> aliases) {
+    public List<E> read(SearchDto searchDto) {
+        MultiValueMap<String, String> searchParam = searchDto.createSearchParamMap();
+        Map<String, String> aliases = searchDto.createAliasesMap();        
         Session session = entityManager.unwrap(Session.class);
         Criteria criteria = session.createCriteria(entityClass);
-
-        // create alias for every key-value (property-alias) pair
-        for(String key : aliases.keySet()) {
-            criteria.createAlias(key, aliases.get(key));
+        
+        for(String property : searchParam.keySet()) {
+            List<String> currentParams = searchParam.get(property);
+            Disjunction or = Restrictions.disjunction();
+            for(String param : currentParams)
+                or.add(Restrictions.like(property, "%" + param + "%", MatchMode.ANYWHERE));
+            criteria.add(or);
         }
         
-        //add criterion for every key-value (property-value) pair
-        for(String key : searchParam.keySet()) {
-            if(!(searchParam.get(key).equals("")) && searchParam.get(key) != null)
-                criteria.add(Restrictions.like(key, searchParam.get(key), MatchMode.ANYWHERE));
-        }
+        for(String property : aliases.keySet())
+            criteria.createAlias(property, aliases.get(property));
         
         return criteria.list();
-    }
+    }  
 }

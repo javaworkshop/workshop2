@@ -41,19 +41,19 @@
                     <ul class="formlist">
                         <li>
                             <label for="straatnaam" name="straatnaam">Straatnaam:</label>
-                            <input name="adres.straatnaam" id="straatnaam" type="text"/>
+                            <input name="straatnaam" id="straatnaam" type="text"/>
                         </li>
                         <li>
                             <label for="huisnummer" name="huisnummer">Huisnummer:</label>
-                            <input name="adres.huisnummer" id="huisnummer" type="text"/>
+                            <input name="huisnummer" id="huisnummer" type="text"/>
                         </li>
                         <li>
                             <label for="postcode" name="postcode">Postcode:</label>
-                            <input name="adres.postcode" id="postcode" type="text"/>
+                            <input name="postcode" id="postcode" type="text"/>
                         </li>
                         <li>
                             <label for="woonplaats" name="woonplaats">Woonplaats:</label>
-                            <input name="adres.woonplaats" id="woonplaats" type="text"/>
+                            <input name="woonplaats" id="woonplaats" type="text"/>
                         </li>
                     </ul>
                     <div class="formbutton">
