@@ -39,10 +39,10 @@ public class KlantSearchDto implements SearchDto {
     @Override
     public Map<String, String> createAliasesMap() {
         Map<String, String> aliases = new HashMap<>();
-        if(straatnamen.size() > 0 
-                || huisnummers.size() > 0
-                || postcodes.size() > 0 
-                || woonplaatsen.size() > 0)
+        if(straatnamen != null 
+                || huisnummers != null
+                || postcodes != null 
+                || woonplaatsen != null)
             aliases.put("adressen", "adres");       
         
         return aliases;

@@ -38,16 +38,7 @@ public class KlantenZoekenPageController {
         List<Klant> klanten;
         try {
             if(searchParam.get("id").equals("")) {
-                SearchDto searchDto = new KlantSearchDto.KlantSearchDtoBuilder()
-                        .addVoornaam(searchParam.get("voornaam"))
-                        .addAchternaam(searchParam.get("achternaam"))
-                        .addEmailadres(searchParam.get("emailadres"))
-                        .addStraatnaam(searchParam.get("straatnaam"))
-                        .addHuisnummer(searchParam.get("huisnummer"))
-                        .addPostcode(searchParam.get("postcode"))
-                        .addWoonplaats(searchParam.get("woonplaats"))
-                        .build();
-                        
+                SearchDto searchDto = createKlantSearchDtoBuilder(searchParam).build();                        
                 klanten = klantService.find(searchDto);
             }
             else {
@@ -56,7 +47,7 @@ public class KlantenZoekenPageController {
             }
         }
         catch(NumberFormatException ex) {
-            model.addAttribute("error", "Ongeldige waarde ingevoerd.");
+            model.addAttribute("error", "Ongeldige waarde ingevoerd bij ID.");
             return new ModelAndView("KlantenZoekenPage", model);
         }
         catch(ServiceException ex) {
@@ -66,5 +57,41 @@ public class KlantenZoekenPageController {
         }
 
         return new ModelAndView("KlantenZoekenResultaatPage", "klanten", klanten);
+    }
+    
+    private KlantSearchDto.KlantSearchDtoBuilder createKlantSearchDtoBuilder(
+            Map<String, String> searchParam) {
+        KlantSearchDto.KlantSearchDtoBuilder builder = new KlantSearchDto.KlantSearchDtoBuilder();
+        
+        String[] params = searchParam.get("voornaam").split("\\s+");        
+        for(String param : params)
+            if(!param.equals(""))
+                builder.addVoornaam(param);
+        params = searchParam.get("achternaam").split("\\s+");        
+        for(String param : params)
+            if(!param.equals(""))
+                builder.addAchternaam(param);
+        params = searchParam.get("emailadres").split("\\s+");        
+        for(String param : params)
+            if(!param.equals(""))
+                builder.addEmailadres(param);
+        params = searchParam.get("straatnaam").split("\\s+");        
+        for(String param : params)
+            if(!param.equals(""))
+                builder.addStraatnaam(param);
+        params = searchParam.get("huisnummer").split("\\s+");        
+        for(String param : params)
+            if(!param.equals(""))
+                builder.addHuisnummer(param);
+        params = searchParam.get("postcode").split("\\s+");        
+        for(String param : params)
+            if(!param.equals(""))
+                builder.addPostcode(param);
+        params = searchParam.get("woonplaats").split("\\s+");        
+        for(String param : params)
+            if(!param.equals(""))
+                builder.addWoonplaats(param);
+        
+        return builder;
     }
 }
