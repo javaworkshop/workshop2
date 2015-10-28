@@ -39,13 +39,13 @@ public class KlantenZoekenPageController {
         try {
             if(searchParam.get("id").equals("")) {
                 SearchDto searchDto = new KlantSearchDto.KlantSearchDtoBuilder()
-                        .voornaam(searchParam.get("voornaam"))
-                        .achternaam(searchParam.get("achternaam"))
-                        .emailadres(searchParam.get("emailadres"))
-                        .adresStraatnaam(searchParam.get("straatnaam"), 0)
-                        .adresHuisnummer(searchParam.get("huisnummer"), 0)
-                        .adresPostcode(searchParam.get("postcode"), 0)
-                        .adresWoonplaats(searchParam.get("woonplaats"), 0)
+                        .addVoornaam(searchParam.get("voornaam"))
+                        .addAchternaam(searchParam.get("achternaam"))
+                        .addEmailadres(searchParam.get("emailadres"))
+                        .addStraatnaam(searchParam.get("straatnaam"))
+                        .addHuisnummer(searchParam.get("huisnummer"))
+                        .addPostcode(searchParam.get("postcode"))
+                        .addWoonplaats(searchParam.get("woonplaats"))
                         .build();
                         
                 klanten = klantService.find(searchDto);

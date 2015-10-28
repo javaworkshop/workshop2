@@ -1,7 +1,6 @@
 package org.workshop2.floorinxs.dao;
 
 import java.lang.reflect.ParameterizedType;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
@@ -12,7 +11,6 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.util.MultiValueMap;
 import org.workshop2.floorinxs.dto.SearchDto;
 
 public abstract class AbstractDao<E, PK> implements Dao<E, PK> {
@@ -54,7 +52,7 @@ public abstract class AbstractDao<E, PK> implements Dao<E, PK> {
     
     @Override
     public List<E> read(SearchDto searchDto) {
-        MultiValueMap<String, String> searchParam = searchDto.createSearchParamMap();
+        Map<String, List<String>> searchParam = searchDto.createSearchParamMap();
         Map<String, String> aliases = searchDto.createAliasesMap();        
         Session session = entityManager.unwrap(Session.class);
         Criteria criteria = session.createCriteria(entityClass);

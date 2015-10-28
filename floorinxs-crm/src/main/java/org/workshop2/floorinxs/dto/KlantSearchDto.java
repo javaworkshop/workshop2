@@ -12,62 +12,68 @@ import org.workshop2.floorinxs.entity.Adres;
 import org.workshop2.floorinxs.entity.Rekeninggegevens;
 
 public class KlantSearchDto implements SearchDto {
-    private String voornaam;
-    private Long id;
-    private String achternaam;
-    private String emailadres;
-    private List<Adres> adressen;
-    private Rekeninggegevens rekeninggegevens;
+    private List<String> voornamen; 
+    private List<String> achternamen;
+    private List<String> emailadressen;
+    private List<String> straatnamen;
+    private List<String> huisnummers;
+    private List<String> postcodes;
+    private List<String> woonplaatsen;
+    private List<String> ibans;
+    private List<String> rekeninghouders;
     //private List<Factuur> facturen = new ArrayList<>(); moeten deze wel in deze klasse?
     //private List<Offerte> offertes = new ArrayList<>();
     
     private KlantSearchDto(KlantSearchDtoBuilder builder) {
-        id = builder.id;
-        voornaam = builder.voornaam;
-        achternaam = builder.achternaam;
-        emailadres = builder.emailadres;
-        adressen = builder.adressen;
-        rekeninggegevens = builder.rekeninggegevens;
+        voornamen = builder.voornamen;
+        achternamen = builder.achternamen;
+        emailadressen = builder.emailadressen;
+        straatnamen = builder.straatnamen;
+        huisnummers = builder.huisnummers;
+        postcodes = builder.postcodes;
+        woonplaatsen = builder.woonplaatsen;
+        ibans = builder.ibans;
+        rekeninghouders = builder.rekeninghouders;
     }
     
     @Override
     public Map<String, String> createAliasesMap() {
         Map<String, String> aliases = new HashMap<>();
-        if(adressen.size() > 0)
-            aliases.put("adressen", "adres");
-        if(rekeninggegevens != null)
-            aliases.put("rekeninggegevens", "rekeninggegevensAlias");               
+        if(straatnamen.size() > 0 
+                || huisnummers.size() > 0
+                || postcodes.size() > 0 
+                || woonplaatsen.size() > 0)
+            aliases.put("adressen", "adres");       
         
         return aliases;
     }
     
     @Override
-    public MultiValueMap<String, String> createSearchParamMap() {
-        MultiValueMap<String, String> searchParam = new LinkedMultiValueMap<>();
-        if(id > 0)
-            searchParam.set("id", id + "");
-        if(voornaam != null)
-            searchParam.set("voornaam", voornaam);
-        if(achternaam != null)
-            searchParam.set("achternaam", achternaam);
-        if(emailadres != null)
-            searchParam.set("emailadres", emailadres);
-        if(rekeninggegevens != null) {
-            searchParam.set("rekeninggegevensAlias.iban", rekeninggegevens.getIban());
-            searchParam.set("rekeninggegevensAlias.rekeninghouder", rekeninggegevens
-                    .getRekeninghouder());
-        }
-        
-        for(Adres adres : adressen) {
-            if(adres.getStraatnaam() != null)
-                searchParam.add("adres.straatnaam", adres.getStraatnaam());
-            if(adres.getHuisnummer() != null)
-                searchParam.add("adres.huisnummer", adres.getHuisnummer());
-            if(adres.getPostcode() != null)
-                searchParam.add("adres.postcode", adres.getPostcode());
-            if(adres.getWoonplaats() != null)
-                searchParam.add("adres.huisnummer", adres.getHuisnummer());
-        }
+    public Map<String, List<String>> createSearchParamMap() {
+        Map<String, List<String>> searchParam = new HashMap<>();
+
+        if(voornamen != null)
+            searchParam.put("voornaam", voornamen);
+        if(achternamen != null)
+            searchParam.put("achternaam", achternamen);
+        if(emailadressen != null)
+            searchParam.put("emailadres", emailadressen);
+        if(ibans != null)
+            searchParam.put("iban", ibans);
+        if(rekeninghouders != null)
+            searchParam.put("rekeninghouder", rekeninghouders);        
+        if(straatnamen != null)
+            searchParam.put("adres.straatnaam", straatnamen);
+        if(huisnummers != null)
+            searchParam.put("adres.huisnummer", huisnummers);
+        if(postcodes != null)
+            searchParam.put("adres.postcode", postcodes);
+        if(woonplaatsen != null)
+            searchParam.put("adres.woonplaats", woonplaatsen);
+        if(ibans != null)
+            searchParam.put("iban", ibans);
+        if(rekeninghouders != null)
+            searchParam.put("rekeninghouder", rekeninghouders);
         /*
         for(Factuur factuur : facturen) {
             // TODO: logischerwijs wil je kunnen zoeken naar facturen die nog niet betaald zijn
@@ -80,88 +86,84 @@ public class KlantSearchDto implements SearchDto {
         return searchParam;
     }
     
-   public static class KlantSearchDtoBuilder {        
-        private Long id = 0L;
-        private String voornaam = null;
-        private String achternaam = null;
-        private String emailadres = null;
-        private List<Adres> adressen = new ArrayList<>();
-        private Rekeninggegevens rekeninggegevens = null;
-
-        public KlantSearchDtoBuilder id(long id) {
-            this.id = id;
+   public static class KlantSearchDtoBuilder {
+        private List<String> voornamen = null;
+        private List<String> achternamen = null;
+        private List<String> emailadressen = null;
+        private List<String> straatnamen = null;
+        private List<String> huisnummers = null;
+        private List<String> postcodes = null;
+        private List<String> woonplaatsen = null;
+        private List<String> ibans = null;
+        private List<String> rekeninghouders = null;
+        
+        public KlantSearchDtoBuilder addVoornaam(String voornaam) {
+            if(voornamen == null)
+                voornamen = new ArrayList<>();
+            voornamen.add(voornaam);
             return this;
         }
         
-        public KlantSearchDtoBuilder voornaam(String voornaam) {
-            this.voornaam = voornaam;
-            return this;
-        }
-        
-        public KlantSearchDtoBuilder achternaam(String achternaam) {
-            this.achternaam = achternaam;
+        public KlantSearchDtoBuilder addAchternaam(String achternaam) {
+            if(achternamen == null)
+                achternamen = new ArrayList<>();
+            achternamen.add(achternaam);
             return this;
         }    
         
-        public KlantSearchDtoBuilder emailadres(String emailadres) {
-            this.emailadres = emailadres;
+        public KlantSearchDtoBuilder addEmailadres(String emailadres) {
+            if(emailadressen == null)
+                emailadressen = new ArrayList<>();
+            emailadressen.add(emailadres);
             return this;
         }
         
-        public KlantSearchDtoBuilder addAdres(Adres adres) {
-            adressen.add(adres);
+        public KlantSearchDtoBuilder addStraatnaam(String straatnaam) {
+            if(straatnamen == null)
+                straatnamen = new ArrayList<>();
+            straatnamen.add(straatnaam);
             return this;
         }
         
-        public KlantSearchDtoBuilder adresStraatnaam(String straatnaam, int index) {
-            if(adressen.size() <= index)
-                adressen.add(new Adres());
-            adressen.get(index).setStraatnaam(straatnaam);
+        public KlantSearchDtoBuilder addHuisnummer(String huisnummer) {
+            if(huisnummers == null)
+                huisnummers = new ArrayList<>();
+            huisnummers.add(huisnummer);
             return this;
         }
         
-        public KlantSearchDtoBuilder adresHuisnummer(String huisnummer, int index) {
-            if(adressen.size() <= index)
-                adressen.add(new Adres());
-            adressen.get(index).setHuisnummer(huisnummer);
+        public KlantSearchDtoBuilder addPostcode(String postcode) {
+            if(postcodes == null)
+                postcodes = new ArrayList<>();
+            postcodes.add(postcode);
             return this;
         }
         
-        public KlantSearchDtoBuilder adresPostcode(String postcode, int index) {
-            if(adressen.size() <= index)
-                adressen.add(new Adres());
-            adressen.get(index).setHuisnummer(postcode);
+        public KlantSearchDtoBuilder addWoonplaats(String woonplaats) {
+            if(woonplaatsen == null)
+                woonplaatsen = new ArrayList<>();
+            woonplaatsen.add(woonplaats);
             return this;
         }
         
-        public KlantSearchDtoBuilder adresWoonplaats(String woonplaats, int index) {
-            if(adressen.size() <= index)
-                adressen.add(new Adres());
-            adressen.get(index).setWoonplaats(woonplaats);
+        public KlantSearchDtoBuilder addRekeninghouder(String rekeninghouder) {
+            if(rekeninghouders == null)
+                rekeninghouders = new ArrayList<>();
+            rekeninghouders.add(rekeninghouder);
             return this;
         }
         
-        public KlantSearchDtoBuilder rekeninggegevens(Rekeninggegevens rekeninggegevens) {
-            this.rekeninggegevens = rekeninggegevens;
-            return this;
-        }
-        
-        public KlantSearchDtoBuilder rekeninggegevensRekeninghouder(String rekeninghouder) {
-            if(rekeninggegevens == null)
-                rekeninggegevens = new Rekeninggegevens();
-            rekeninggegevens.setRekeninghouder(rekeninghouder);
-            return this;
-        }
-        
-        public KlantSearchDtoBuilder rekeninggegevensIban(String iban) {
-            if(rekeninggegevens == null)
-                rekeninggegevens = new Rekeninggegevens();
-            rekeninggegevens.setIban(iban);
+        public KlantSearchDtoBuilder addIban(String iban) {
+            if(ibans == null)
+                ibans = new ArrayList<>();
+            ibans.add(iban);
             return this;
         }
         
         public KlantSearchDto build() {
-            return new KlantSearchDto(this);
+            KlantSearchDto klantSearchDto = new KlantSearchDto(this);
+            // Eventuele checks op geldigheid data kunnen hier uitgevoerd worden
+            return klantSearchDto;
         }
     }
 }
