@@ -76,6 +76,7 @@
                     </form>
                 </c:if>
                 <p class="error">${error}</p>
+                <p>${feedback}</p>
             </div>
         </section>
     </body>

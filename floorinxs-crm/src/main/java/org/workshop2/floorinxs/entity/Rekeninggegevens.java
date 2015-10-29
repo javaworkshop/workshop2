@@ -1,10 +1,11 @@
 package org.workshop2.floorinxs.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.*;
 
 @Embeddable
-public class Rekeninggegevens {
+public class Rekeninggegevens implements Serializable {
     
     @Column
     private String rekeninghouder;

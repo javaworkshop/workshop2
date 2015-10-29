@@ -1,8 +1,6 @@
 package org.workshop2.floorinxs.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -25,7 +23,7 @@ public class KlantServiceImpl implements KlantService {
             klantDao.delete(klant);
         }
         catch(DataAccessException ex) {
-            throw new ServiceException(ex);
+            throw new ServiceException(ex.getMessage(), ex);
         } 
     }
 
@@ -41,7 +39,7 @@ public class KlantServiceImpl implements KlantService {
             return klantenResult;
         }
         catch(DataAccessException ex) {
-            throw new ServiceException(ex);
+            throw new ServiceException(ex.getMessage(), ex);
         }
     }
 
@@ -57,7 +55,7 @@ public class KlantServiceImpl implements KlantService {
             return klantenResult;
         }
         catch(DataAccessException ex) {
-            throw new ServiceException(ex);
+            throw new ServiceException(ex.getMessage(), ex);
         }
     }
 
@@ -72,7 +70,7 @@ public class KlantServiceImpl implements KlantService {
             return klantResult;
         }
         catch(DataAccessException ex) {
-            throw new ServiceException(ex);
+            throw new ServiceException(ex.getMessage(), ex);
         }
     }    
     
@@ -93,7 +91,7 @@ public class KlantServiceImpl implements KlantService {
             klantDao.create(klant);
         }
         catch(DataAccessException ex) {
-            throw new ServiceException(ex);
+            throw new ServiceException(ex.getMessage(), ex);
         }
     }
 
