@@ -82,6 +82,8 @@ label {
 
 .error {
     color: red;
+    clear: both;
+    padding-top: 20px;
 }
 
 .content {
@@ -93,6 +95,11 @@ label {
     min-height: 490px;
     border: 3px solid black;
     border-radius: 5px;
+}
+
+.textcolumn {
+    float: left;
+    padding-right: 40px;
 }
 
 table, th, td {

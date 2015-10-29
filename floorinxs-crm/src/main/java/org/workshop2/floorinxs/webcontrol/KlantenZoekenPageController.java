@@ -43,7 +43,7 @@ public class KlantenZoekenPageController {
             }
             else {
                 klanten = new ArrayList<>();
-                klanten.add(klantService.findById(Integer.parseInt(searchParam.get("id"))));
+                klanten.add(klantService.findById(Long.parseLong(searchParam.get("id"))));
             }
         }
         catch(NumberFormatException ex) {
