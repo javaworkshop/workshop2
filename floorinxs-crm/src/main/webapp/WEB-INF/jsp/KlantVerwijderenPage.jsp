@@ -4,9 +4,9 @@
     Author     : Maarten
 --%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <jsp:include page="include/Head.jsp" />
@@ -27,22 +27,22 @@
                         <input type="submit" value="zoeken"/>
                     </div>
                 </form>
-                <c:if test="${not empty klant}">
+                <c:if test="${not empty klantvw}">
                     <div class="textcolumn">
                         <div class="label"><strong>ID:</strong></div>
-                        <div class="value">${klant.id}</div>
+                        <div class="value">${klantvw.id}</div>
                         </br>
                         <div class="label"><strong>Voornaam:</strong></div>
-                        <div class="value">${klant.voornaam}</div>
+                        <div class="value">${klantvw.voornaam}</div>
                         </br>
                         <div class="label"><strong>Achternaam:</strong></div>
-                        <div class="value">${klant.achternaam}</div>
+                        <div class="value">${klantvw.achternaam}</div>
                         </br>
                         <div class="label"><strong>Email:</strong></div>
-                        <div class="value">${klant.emailadres}</div>
+                        <div class="value">${klantvw.emailadres}</div>
                     </div>
                     <div class="textcolumn">
-                      <c:forEach items="${klant.adressen}" var="adres" begin="${adresno}" end="${adresno + 1}">
+                      <c:forEach items="${klantvw.adressen}" var="adres" begin="${adresno}" end="${adresno + 1}">
                         <div class="label"><strong>Straatnaam:</strong></div>
                         <div class="value">${adres.straatnaam}</div>
                         </br>
@@ -54,20 +54,20 @@
                         </br>
                         <div class="label"><strong>Woonplaats:</strong></div>
                         <div class="value">${adres.woonplaats}</div>
-                        <c:if test="${fn:length(klant.adressen) > adresno + 1}">
-                            <span><a href="resultaat?adresno=${adresno + 1}">>></a></span>
+                        <c:if test="${fn:length(klantvw.adressen) > adresno + 1}">
+                            <span><a href="resultaat?adresno=${adresno + 1}">&gt;&gt;</a></span>
                         </c:if>
                         <c:if test="${adresno > 0}">
-                            <span><a href="resultaat?adresno=${adresno - 1}"><<</a></span>
+                            <span><a href="resultaat?adresno=${adresno - 1}">&lt;&lt;</a></span>
                         </c:if>
                       </c:forEach>
                     </div>
                     <div class="textcolumn">
                         <div class="label"><strong>IBAN:</strong></div>
-                        <div class="value">${klant.rekeninggegevens.iban}</div>
+                        <div class="value">${klantvw.rekeninggegevens.iban}</div>
                         </br>
                         <div class="label"><strong>Rekeninghouder:</strong></div>
-                        <div class="value">${klant.rekeninggegevens.rekeninghouder}</div>
+                        <div class="value">${klantvw.rekeninggegevens.rekeninghouder}</div>
                     </div>
                     <form method="POST" action="/floorinxs-crm/KlantVerwijderenPage/verwijderen">
                         <div class="formbutton">

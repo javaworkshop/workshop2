@@ -9,12 +9,21 @@ public class KlantDto implements Serializable {
     private Adres adres;
     
     public KlantDto() {
-        klant = new Klant();
+        this(new Klant());
+    }
+    
+    public KlantDto(Klant klant) {
+        this.klant = klant;
         adres = new Adres();
     }
     
     public Klant getKlant() {
         return klant;
+    }
+    
+    public void addCurrentAdresToKlant() {
+        klant.getAdressen().add(adres);
+        adres = new Adres();
     }
     
     /**

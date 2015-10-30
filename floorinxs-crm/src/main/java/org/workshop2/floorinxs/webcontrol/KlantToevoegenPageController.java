@@ -31,21 +31,21 @@ public class KlantToevoegenPageController {
     
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView createKlant() {
-        ModelAndView model = new ModelAndView("KlantToevoegenPage", "klant", new KlantDto());
+        ModelAndView model = new ModelAndView("KlantToevoegenPage", "klanttv", new KlantDto());
         
         return model;
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public String addKlant(@Valid @ModelAttribute("klant") KlantDto klant, BindingResult result, 
+    public String addKlant(@Valid @ModelAttribute("klanttv") KlantDto klantDto, BindingResult result, 
             ModelMap model) {
-        klant.getKlant().getAdressen().add(klant.getAdres());
-        klantService.save(klant.getKlant());
+        klantDto.addCurrentAdresToKlant();
+        klantService.save(klantDto.getKlant());
         
-        logger.info("Klant opgeslagen: " + klant.getKlant().toString());
+        logger.info("Klant opgeslagen: " + klantDto.getKlant().toString());
         
         model.addAttribute("feedback", "Klant toegevoegd aan database!<br/>Gegenereerde id: ");
-        model.addAttribute("id", klant.getKlant().getId());
+        model.addAttribute("id", klantDto.getKlant().getId());
         model.addAttribute("klant", new KlantDto());
         
         return "KlantToevoegenPage";

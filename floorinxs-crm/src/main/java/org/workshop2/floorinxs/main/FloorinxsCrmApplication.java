@@ -20,9 +20,4 @@ public class FloorinxsCrmApplication {
                 args);*/
         SpringApplication.run(FloorinxsCrmApplication.class, args);
     }
-    
-    @Bean
-    public KlantService klantService() {
-        return new KlantServiceImpl();
-    }
 }

@@ -16,7 +16,7 @@ import org.workshop2.floorinxs.service.KlantService;
 import org.workshop2.floorinxs.service.ServiceException;
 
 @Controller
-@SessionAttributes("klant")
+@SessionAttributes("klantvw")
 public class KlantVerwijderenPageController {
     @Autowired
     private KlantService klantService;
@@ -51,14 +51,14 @@ public class KlantVerwijderenPageController {
         }        
 
         model.addAttribute("adresno", Integer.parseInt(adresno));
-        model.addAttribute("klant", klant);
+        model.addAttribute("klantvw", klant);
 
         return new ModelAndView("KlantVerwijderenPage", model);
     }
     
     @RequestMapping(value = "/KlantVerwijderenPage/verwijderen", method = RequestMethod.POST)
     public ModelAndView verwijderKlant(ModelMap model, SessionStatus sessionStatus) {
-        Klant klant = (Klant)model.get("klant");
+        Klant klant = (Klant)model.get("klantvw");
         logger.info("Klant verwijderen: id = " + klant.getId());
         try {
             klantService.delete(klant);

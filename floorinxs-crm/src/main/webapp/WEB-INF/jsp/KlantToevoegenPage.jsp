@@ -18,7 +18,7 @@
             <div class="content">
                 <h2>Klant Toevoegen</h2>
                 <p>Vul klant attributen in en klik op knop 'Toevoegen'.</p>
-                <form:form method="POST" modelAttribute="klant" action="/floorinxs-crm/KlantToevoegenPage" class="klantform">
+                <form:form method="POST" modelAttribute="klanttv" action="/floorinxs-crm/KlantToevoegenPage" class="klantform">
                     <ul class="formlist">
                         <li>
                             <form:label path="voornaam">Voornaam:</form:label>
