@@ -24,8 +24,8 @@
 		<property name="dataSourceProperties">
 			<props>
 				<prop key="url">jdbc:Mysql://localhost:3306/w2testdb</prop> <!-- lokale test database -->
-				<prop key="user">root</prop>
-				<prop key="password">qwerty</prop>
+				<prop key="user">w2admin</prop>
+				<prop key="password">w2admin</prop>
 			</props>
 		</property>
 	</bean>

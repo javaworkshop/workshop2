@@ -46,7 +46,7 @@ public class KlantToevoegenPageController {
         
         model.addAttribute("feedback", "Klant toegevoegd aan database!<br/>Gegenereerde id: ");
         model.addAttribute("id", klantDto.getKlant().getId());
-        model.addAttribute("klant", new KlantDto());
+        model.addAttribute("klanttv", new KlantDto());
         
         return "KlantToevoegenPage";
     }

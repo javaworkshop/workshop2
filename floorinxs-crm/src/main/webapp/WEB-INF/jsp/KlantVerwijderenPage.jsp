@@ -42,7 +42,7 @@
                         <div class="value">${klantvw.emailadres}</div>
                     </div>
                     <div class="textcolumn">
-                      <c:forEach items="${klantvw.adressen}" var="adres" begin="${adresno}" end="${adresno + 1}">
+                      <c:forEach items="${klantvw.adressen}" var="adres" begin="${adresno}" end="${adresno}">
                         <div class="label"><strong>Straatnaam:</strong></div>
                         <div class="value">${adres.straatnaam}</div>
                         </br>

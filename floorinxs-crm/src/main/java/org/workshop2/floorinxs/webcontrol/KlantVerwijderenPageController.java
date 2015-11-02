@@ -57,7 +57,7 @@ public class KlantVerwijderenPageController {
     }
     
     @RequestMapping(value = "/KlantVerwijderenPage/verwijderen", method = RequestMethod.POST)
-    public ModelAndView verwijderKlant(ModelMap model, SessionStatus sessionStatus) {
+    public ModelAndView removeKlant(ModelMap model, SessionStatus sessionStatus) {
         Klant klant = (Klant)model.get("klantvw");
         logger.info("Klant verwijderen: id = " + klant.getId());
         try {

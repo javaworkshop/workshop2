@@ -1,8 +1,9 @@
 package org.workshop2.floorinxs.webcontrol;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,16 +34,18 @@ public class KlantenZoekenPageController {
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView showSearchResults(@RequestParam Map<String, String> searchParam, ModelMap model) {
+    public ModelAndView showSearchResults(@RequestParam Map<String, String> searchParam, 
+            ModelMap model) {
         logger.info(searchParam.toString());
-        List<Klant> klanten;
+        Set<Klant> klanten; // Een set omdat Hibernate bij outer joins de duplicaten er niet uit 
+                            // haalt.
         try {
             if(searchParam.get("id").equals("")) {
                 SearchDto searchDto = createKlantSearchDtoBuilder(searchParam).build();                        
-                klanten = klantService.find(searchDto);
+                klanten = new LinkedHashSet<>(klantService.find(searchDto));
             }
             else {
-                klanten = new ArrayList<>();
+                klanten = new LinkedHashSet<>();
                 klanten.add(klantService.findById(Long.parseLong(searchParam.get("id"))));
             }
         }

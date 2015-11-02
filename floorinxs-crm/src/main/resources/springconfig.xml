@@ -46,8 +46,8 @@
         <property name="dataSourceProperties">
             <props>
                 <prop key="url">jdbc:Mysql://localhost:3306/w2db</prop> <!-- deze waarden nog aanpassen -->
-                <prop key="user">root</prop>
-                <prop key="password">sander</prop>
+                <prop key="user">w2admin</prop>
+                <prop key="password">w2admin</prop>
             </props>
         </property>
     </bean>
