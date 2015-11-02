@@ -47,7 +47,7 @@
             <props>
                 <prop key="url">jdbc:Mysql://localhost:3306/w2db</prop> <!-- deze waarden nog aanpassen -->
                 <prop key="user">root</prop>
-                <prop key="password">qwerty</prop>
+                <prop key="password">sander</prop>
             </props>
         </property>
     </bean>
