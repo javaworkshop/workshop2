@@ -37,11 +37,19 @@ public class KlantenZoekenPageController {
     public ModelAndView showSearchResults(@RequestParam Map<String, String> searchParam, 
             ModelMap model) {
         logger.info(searchParam.toString());
-        Set<Klant> klanten; // Een set omdat Hibernate bij outer joins de duplicaten er niet uit 
-                            // haalt.
+        Set<Klant> klanten; // Een set omdat Hibernate bij joins de duplicaten er niet uit haalt.
+
         try {
             if(searchParam.get("id").equals("")) {
-                SearchDto searchDto = createKlantSearchDtoBuilder(searchParam).build();                        
+                SearchDto searchDto = new KlantSearchDto.KlantSearchDtoBuilder()
+                        .addVoornaam(searchParam.get("voornaam"))
+                        .addAchternaam(searchParam.get("achternaam"))
+                        .addEmailadres(searchParam.get("emailadres"))
+                        .addStraatnaam(searchParam.get("straatnaam"))
+                        .addHuisnummer(searchParam.get("huisnummer"))
+                        .addPostcode(searchParam.get("postcode"))
+                        .addWoonplaats(searchParam.get("woonplaats"))
+                        .build();                        
                 klanten = new LinkedHashSet<>(klantService.find(searchDto));
             }
             else {
@@ -60,41 +68,5 @@ public class KlantenZoekenPageController {
         }
 
         return new ModelAndView("KlantenZoekenResultaatPage", "klanten", klanten);
-    }
-    
-    private KlantSearchDto.KlantSearchDtoBuilder createKlantSearchDtoBuilder(
-            Map<String, String> searchParam) {
-        KlantSearchDto.KlantSearchDtoBuilder builder = new KlantSearchDto.KlantSearchDtoBuilder();
-        
-        String[] params = searchParam.get("voornaam").split("\\s+");        
-        for(String param : params)
-            if(!param.equals(""))
-                builder.addVoornaam(param);
-        params = searchParam.get("achternaam").split("\\s+");        
-        for(String param : params)
-            if(!param.equals(""))
-                builder.addAchternaam(param);
-        params = searchParam.get("emailadres").split("\\s+");        
-        for(String param : params)
-            if(!param.equals(""))
-                builder.addEmailadres(param);
-        params = searchParam.get("straatnaam").split("\\s+");        
-        for(String param : params)
-            if(!param.equals(""))
-                builder.addStraatnaam(param);
-        params = searchParam.get("huisnummer").split("\\s+");        
-        for(String param : params)
-            if(!param.equals(""))
-                builder.addHuisnummer(param);
-        params = searchParam.get("postcode").split("\\s+");        
-        for(String param : params)
-            if(!param.equals(""))
-                builder.addPostcode(param);
-        params = searchParam.get("woonplaats").split("\\s+");        
-        for(String param : params)
-            if(!param.equals(""))
-                builder.addWoonplaats(param);
-        
-        return builder;
     }
 }

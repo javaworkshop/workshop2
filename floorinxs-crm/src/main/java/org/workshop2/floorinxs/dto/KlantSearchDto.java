@@ -4,12 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.workshop2.floorinxs.entity.Adres;
-//import org.workshop2.floorinxs.entity.Factuur;
-//import org.workshop2.floorinxs.entity.Offerte;
-import org.workshop2.floorinxs.entity.Rekeninggegevens;
 
 public class KlantSearchDto implements SearchDto {
     private List<String> voornamen; 
@@ -87,6 +81,8 @@ public class KlantSearchDto implements SearchDto {
     }
     
    public static class KlantSearchDtoBuilder {
+        private String splitRegex = "\\s+";
+       
         private List<String> voornamen = null;
         private List<String> achternamen = null;
         private List<String> emailadressen = null;
@@ -97,66 +93,111 @@ public class KlantSearchDto implements SearchDto {
         private List<String> ibans = null;
         private List<String> rekeninghouders = null;
         
-        public KlantSearchDtoBuilder addVoornaam(String voornaam) {
-            if(voornamen == null)
-                voornamen = new ArrayList<>();
-            voornamen.add(voornaam);
+        public KlantSearchDtoBuilder addVoornaam(String voornaamSearchString) {
+            if(voornaamSearchString != null && !voornaamSearchString.equals("")) {
+                if(voornamen == null)
+                    voornamen = new ArrayList<>();
+                String[] voornaamParams = voornaamSearchString.split(splitRegex);
+                for(String voornaam : voornaamParams) {
+                    voornamen.add(voornaam);
+                }
+            }
             return this;
         }
         
-        public KlantSearchDtoBuilder addAchternaam(String achternaam) {
-            if(achternamen == null)
-                achternamen = new ArrayList<>();
-            achternamen.add(achternaam);
+        public KlantSearchDtoBuilder addAchternaam(String achternaamSearchString) {
+            if(achternaamSearchString != null && !achternaamSearchString.equals("")) {
+                if(achternamen == null)
+                    achternamen = new ArrayList<>();
+                String[] achternaamParams = achternaamSearchString.split(splitRegex);
+                for(String achternaam : achternaamParams) {
+                    achternamen.add(achternaam);
+                }
+            }
             return this;
         }    
         
-        public KlantSearchDtoBuilder addEmailadres(String emailadres) {
-            if(emailadressen == null)
-                emailadressen = new ArrayList<>();
-            emailadressen.add(emailadres);
+        public KlantSearchDtoBuilder addEmailadres(String emailadresSearchString) {
+            if(emailadresSearchString != null && !emailadresSearchString.equals("")) {
+                if(emailadressen == null)
+                    emailadressen = new ArrayList<>();
+                String[] emailadresParams = emailadresSearchString.split(splitRegex);
+                for(String emailadres : emailadresParams) {
+                    emailadressen.add(emailadres);
+                }
+            }
             return this;
         }
         
-        public KlantSearchDtoBuilder addStraatnaam(String straatnaam) {
-            if(straatnamen == null)
-                straatnamen = new ArrayList<>();
-            straatnamen.add(straatnaam);
+        public KlantSearchDtoBuilder addStraatnaam(String straatnaamSearchString) {
+            if(straatnaamSearchString != null && !straatnaamSearchString.equals("")) {
+                if(straatnamen == null)
+                    straatnamen = new ArrayList<>();
+                String[] straatnaamParams = straatnaamSearchString.split(splitRegex);
+                for(String straatnaam : straatnaamParams) {
+                    straatnamen.add(straatnaam);
+                }
+            }
             return this;
         }
         
-        public KlantSearchDtoBuilder addHuisnummer(String huisnummer) {
-            if(huisnummers == null)
-                huisnummers = new ArrayList<>();
-            huisnummers.add(huisnummer);
+        public KlantSearchDtoBuilder addHuisnummer(String huisnummerSearchString) {
+            if(huisnummerSearchString != null && !huisnummerSearchString.equals("")) {
+                if(huisnummers == null)
+                    huisnummers = new ArrayList<>();
+                String[] huisnummerParams = huisnummerSearchString.split(splitRegex);
+                for(String huisnummer : huisnummerParams) {
+                    huisnummers.add(huisnummer);
+                }
+            }
             return this;
         }
         
-        public KlantSearchDtoBuilder addPostcode(String postcode) {
-            if(postcodes == null)
-                postcodes = new ArrayList<>();
-            postcodes.add(postcode);
+        public KlantSearchDtoBuilder addPostcode(String postcodeSearchString) {
+            if(postcodeSearchString != null && !postcodeSearchString.equals("")) {
+                if(postcodes == null)
+                    postcodes = new ArrayList<>();
+                String[] postcodeParams = postcodeSearchString.split(splitRegex);
+                for(String postcode : postcodeParams) {
+                    postcodes.add(postcode);
+                }
+            }
             return this;
         }
         
-        public KlantSearchDtoBuilder addWoonplaats(String woonplaats) {
-            if(woonplaatsen == null)
-                woonplaatsen = new ArrayList<>();
-            woonplaatsen.add(woonplaats);
+        public KlantSearchDtoBuilder addWoonplaats(String woonplaatsSearchString) {
+            if(woonplaatsSearchString != null && !woonplaatsSearchString.equals("")) {
+                if(woonplaatsen == null)
+                    woonplaatsen = new ArrayList<>();
+                String[] woonplaatsParams = woonplaatsSearchString.split(splitRegex);
+                for(String woonplaats : woonplaatsParams) {
+                    woonplaatsen.add(woonplaats);
+                }
+            }
             return this;
         }
         
-        public KlantSearchDtoBuilder addRekeninghouder(String rekeninghouder) {
-            if(rekeninghouders == null)
-                rekeninghouders = new ArrayList<>();
-            rekeninghouders.add(rekeninghouder);
+        public KlantSearchDtoBuilder addRekeninghouder(String rekeninghouderSearchString) {
+            if(rekeninghouderSearchString != null && !rekeninghouderSearchString.equals("")) {
+                if(rekeninghouders == null)
+                    rekeninghouders = new ArrayList<>();
+                String[] rekeninghouderParams = rekeninghouderSearchString.split(splitRegex);
+                for(String rekeninghouder : rekeninghouderParams) {
+                    rekeninghouders.add(rekeninghouder);
+                }
+            }
             return this;
         }
         
-        public KlantSearchDtoBuilder addIban(String iban) {
-            if(ibans == null)
-                ibans = new ArrayList<>();
-            ibans.add(iban);
+        public KlantSearchDtoBuilder addIban(String ibanSearchString) {
+            if(ibanSearchString != null && !ibanSearchString.equals("")) {
+                if(ibans == null)
+                    ibans = new ArrayList<>();
+                String[] ibanParams = ibanSearchString.split(splitRegex);
+                for(String iban : ibanParams) {
+                    ibans.add(iban);
+                }
+            }
             return this;
         }
         
