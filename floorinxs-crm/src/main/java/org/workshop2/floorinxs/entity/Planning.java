@@ -8,9 +8,9 @@ import javax.persistence.*;
 @Embeddable
 public class Planning implements Serializable {
     
-    @Column
+    @Temporal(TemporalType.TIMESTAMP)
     private Date startdatum;
-    @Column
+    @Temporal(TemporalType.TIMESTAMP)
     private Date einddatum;
  /*   @Column
     private String opmerkingen;

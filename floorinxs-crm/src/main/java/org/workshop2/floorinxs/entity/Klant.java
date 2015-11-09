@@ -35,31 +35,29 @@ public class Klant implements Serializable{
     ◦ einddatum
     */
     
-    @Column(name = "klant_id") @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "klant_id") @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = 0L;
     @Column
     private String voornaam;
     @Column
     private String achternaam;
-    //@Embedded
-    //private Adres adres = new Adres();
     @Column
     private String emailadres;
-    //@ElementCollection
-    //@CollectionTable(name = "klant_adressen", joinColumns = @JoinColumn(name = "klant_id"))
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinTable(name="klant_adressen", joinColumns=@JoinColumn(name="klant_id"), inverseJoinColumns=@JoinColumn(name="adres_id"))
+    @Column
+    private String telefoonnummer;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, 
+            CascadeType.REFRESH})
+    @JoinTable(name="klant_has_adres", joinColumns=@JoinColumn(name="klant_id"), 
+            inverseJoinColumns=@JoinColumn(name="adres_id"))
     private Set<Adres> adressen = new LinkedHashSet<>();
     @Embedded
     private Rekeninggegevens rekeninggegevens = new Rekeninggegevens();
     @Column
     private String opmerkingen;
-    @OneToMany(mappedBy = "id")
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "klant")    
     private List<Factuur> facturen = new ArrayList<>();
-    @OneToMany(mappedBy = "id")
-    private List<Offerte> offertes = new ArrayList<>();
-    private Planning planning = new Planning();
-
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "klant")
+    private List<Bestelling> bestellingen = new ArrayList<>();
     
     public Klant(){}
     
@@ -132,6 +130,14 @@ public class Klant implements Serializable{
         this.emailadres = emailadres;
     }
 
+    public String getTelefoonnummer() {
+        return telefoonnummer;
+    }
+
+    public void setTelefoonnummer(String telefoonnummer) {
+        this.telefoonnummer = telefoonnummer;
+    }    
+
     /**
      * @return the rekeninggegevens
      */
@@ -174,33 +180,13 @@ public class Klant implements Serializable{
         this.facturen = facturen;
     }
 
-    /**
-     * @return the offertes
-     */
-    public List<Offerte> getOffertes() {
-        return offertes;
+    public List<Bestelling> getBestellingen() {
+        return bestellingen;
     }
 
-    /**
-     * @param offertes the offertes to set
-     */
-    public void setOffertes(List<Offerte> offertes) {
-        this.offertes = offertes;
-    }
-
-    /**
-     * @return the planning
-     */
-    public Planning getPlanning() {
-        return planning;
-    }
-
-    /**
-     * @param planning the planning to set
-     */
-    public void setPlanning(Planning planning) {
-        this.planning = planning;
-    }
+    public void setBestellingen(List<Bestelling> bestellingen) {
+        this.bestellingen = bestellingen;
+    }   
     
     @Override
     public int hashCode() {
@@ -212,8 +198,7 @@ public class Klant implements Serializable{
         hash = 71 * hash + Objects.hashCode(this.rekeninggegevens);
         hash = 71 * hash + Objects.hashCode(this.opmerkingen);
         hash = 71 * hash + Objects.hashCode(this.facturen);
-        hash = 71 * hash + Objects.hashCode(this.offertes);
-        hash = 71 * hash + Objects.hashCode(this.planning);
+        hash = 71 * hash + Objects.hashCode(this.bestellingen);
         return hash;
     }
 
@@ -247,10 +232,7 @@ public class Klant implements Serializable{
         if (!Objects.equals(this.facturen, other.facturen)) {
             return false;
         }
-        if (!Objects.equals(this.offertes, other.offertes)) {
-            return false;
-        }
-        if (!Objects.equals(this.planning, other.planning)) {
+        if (!Objects.equals(this.bestellingen, other.bestellingen)) {
             return false;
         }
         return true;
@@ -258,7 +240,7 @@ public class Klant implements Serializable{
 
     @Override
     public String toString() {
-        return "Klant{" + "id=" + id + ", voornaam=" + voornaam + ", achternaam=" + achternaam + ", emailadres=" + emailadres + ", adressen=" + adressen + ", rekeninggegevens=" + rekeninggegevens + ", opmerkingen=" + opmerkingen + ", facturen=" + facturen + ", offertes=" + offertes + ", planning=" + planning + '}';
+        return "Klant{" + "id=" + id + ", voornaam=" + voornaam + ", achternaam=" + achternaam + ", emailadres=" + emailadres + ", adressen=" + adressen + ", rekeninggegevens=" + rekeninggegevens + ", opmerkingen=" + opmerkingen + ", facturen=" + facturen + ", offertes=" + bestellingen + '}';
     }
     
 }

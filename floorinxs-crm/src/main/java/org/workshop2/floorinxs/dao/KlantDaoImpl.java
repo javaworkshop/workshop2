@@ -15,6 +15,6 @@ public class KlantDaoImpl extends AbstractDao<Klant, Long> implements KlantDao {
     @Override
     public void initLazyCollections(Klant klant) {
         Hibernate.initialize(klant.getFacturen());
-        Hibernate.initialize(klant.getOffertes());
+        Hibernate.initialize(klant.getBestellingen());
     }
 }
