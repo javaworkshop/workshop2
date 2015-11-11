@@ -18,7 +18,7 @@ public class Productgroep implements Serializable {
     private long id;
     @Enumerated(EnumType.STRING)
     @Column
-    private ProductGroepTypes groep;
+    private ProductgroepTypes groep;
 
     public long getId() {
         return id;
@@ -28,11 +28,11 @@ public class Productgroep implements Serializable {
         this.id = id;
     }     
     
-    public ProductGroepTypes getGroep() {
+    public ProductgroepTypes getGroep() {
         return groep;
     }
 
-    public void setGroep(ProductGroepTypes groep) {
+    public void setGroep(ProductgroepTypes groep) {
         this.groep = groep;
     }
     

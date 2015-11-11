@@ -1,6 +1,6 @@
 package org.workshop2.floorinxs.entity;
 
-public enum ProductGroepTypes {
+public enum ProductgroepTypes {
     VLOER,
     ONDERVLOER,
     ONDERHOUDSPRODUCT,
