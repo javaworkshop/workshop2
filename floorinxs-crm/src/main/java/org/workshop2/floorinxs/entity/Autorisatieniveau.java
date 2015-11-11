@@ -1,6 +1,5 @@
 package org.workshop2.floorinxs.entity;
 
-import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,12 +12,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Productgroep implements Serializable {
-    @Column(name = "productgroep_id") @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Autorisatieniveau {
+    @Column(name = "autorisatieniveau_id") @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Enumerated(EnumType.STRING)
     @Column
-    private ProductGroepTypes groep;
+    private AutorisatieniveauTypes autorisatieniveau;
 
     public long getId() {
         return id;
@@ -26,20 +25,21 @@ public class Productgroep implements Serializable {
 
     public void setId(long id) {
         this.id = id;
-    }     
-    
-    public ProductGroepTypes getGroep() {
-        return groep;
     }
 
-    public void setGroep(ProductGroepTypes groep) {
-        this.groep = groep;
+    public AutorisatieniveauTypes getAutorisatieniveau() {
+        return autorisatieniveau;
     }
-    
+
+    public void setAutorisatieniveau(AutorisatieniveauTypes autorisatieniveau) {
+        this.autorisatieniveau = autorisatieniveau;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.groep);
+        int hash = 3;
+        hash = 97 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 97 * hash + Objects.hashCode(this.autorisatieniveau);
         return hash;
     }
 
@@ -51,8 +51,11 @@ public class Productgroep implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Productgroep other = (Productgroep) obj;
-        if (this.groep != other.groep) {
+        final Autorisatieniveau other = (Autorisatieniveau) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.autorisatieniveau != other.autorisatieniveau) {
             return false;
         }
         return true;
@@ -60,7 +63,8 @@ public class Productgroep implements Serializable {
 
     @Override
     public String toString() {
-        return "Productgroep{" + "id=" + id + ", groep=" + groep + '}';
+        return "Autorisatieniveau{" + "id=" + id + ", autorisatieniveau=" + autorisatieniveau + '}';
     }
+    
     
 }

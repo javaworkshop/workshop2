@@ -3,29 +3,35 @@ package org.workshop2.floorinxs.entity;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 @Table
 public class Product implements Serializable {
-    @Column @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long artikelnummer;
     @Column
     private String naam;
     @Column
     private String omschrijving;
     @ManyToOne
-    @JoinColumn(name = "producttype_id")
-    private Producttype producttype;
-    @ManyToOne
-    @JoinColumn(name = "productgroep_id")
+    @JoinColumn(name = "productgroep")
     private Productgroep productgroep;
+    @Column(name = "prijs_excl_btw_per_eenheid")
+    private int prijsExclBtwPerEenheid;
+    @ManyToOne
+    @JoinColumn(name = "eenheid")
+    private Eenheid eenheid;
 
     public long getArtikelnummer() {
         return artikelnummer;
@@ -51,14 +57,6 @@ public class Product implements Serializable {
         this.omschrijving = omschrijving;
     }
 
-    public Producttype getProductType() {
-        return producttype;
-    }
-
-    public void setProductType(Producttype productType) {
-        this.producttype = productType;
-    }
-
     public Productgroep getProductgroep() {
         return productgroep;
     }
@@ -66,14 +64,32 @@ public class Product implements Serializable {
     public void setProductgroep(Productgroep productgroep) {
         this.productgroep = productgroep;
     }
-    
+
+    public int getPrijsExclBtwPerEenheid() {
+        return prijsExclBtwPerEenheid;
+    }
+
+    public void setPrijsExclBtwPerEenheid(int prijsExclBtwPerEenheid) {
+        this.prijsExclBtwPerEenheid = prijsExclBtwPerEenheid;
+    }
+
+    public Eenheid getEenheid() {
+        return eenheid;
+    }
+
+    public void setEenheid(Eenheid eenheid) {
+        this.eenheid = eenheid;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + Objects.hashCode(this.naam);
-        hash = 83 * hash + Objects.hashCode(this.omschrijving);
-        hash = 83 * hash + Objects.hashCode(this.producttype);
-        hash = 83 * hash + Objects.hashCode(this.productgroep);
+        int hash = 5;
+        hash = 53 * hash + (int) (this.artikelnummer ^ (this.artikelnummer >>> 32));
+        hash = 53 * hash + Objects.hashCode(this.naam);
+        hash = 53 * hash + Objects.hashCode(this.omschrijving);
+        hash = 53 * hash + Objects.hashCode(this.productgroep);
+        hash = 53 * hash + this.prijsExclBtwPerEenheid;
+        hash = 53 * hash + Objects.hashCode(this.eenheid);
         return hash;
     }
 
@@ -86,16 +102,22 @@ public class Product implements Serializable {
             return false;
         }
         final Product other = (Product) obj;
+        if (this.artikelnummer != other.artikelnummer) {
+            return false;
+        }
         if (!Objects.equals(this.naam, other.naam)) {
             return false;
         }
         if (!Objects.equals(this.omschrijving, other.omschrijving)) {
             return false;
         }
-        if (!Objects.equals(this.producttype, other.producttype)) {
+        if (!Objects.equals(this.productgroep, other.productgroep)) {
             return false;
         }
-        if (!Objects.equals(this.productgroep, other.productgroep)) {
+        if (this.prijsExclBtwPerEenheid != other.prijsExclBtwPerEenheid) {
+            return false;
+        }
+        if (!Objects.equals(this.eenheid, other.eenheid)) {
             return false;
         }
         return true;
@@ -103,7 +125,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "Product{" + "id=" + artikelnummer + ", naam=" + naam + ", omschrijving=" + omschrijving + ", producttype=" + producttype + ", productgroep=" + productgroep + '}';
+        return "Product{" + "artikelnummer=" + artikelnummer + ", naam=" + naam + ", omschrijving=" + omschrijving + ", productgroep=" + productgroep + ", prijsExclBtwPerEenheid=" + prijsExclBtwPerEenheid + ", eenheid=" + eenheid + '}';
     }
     
 }

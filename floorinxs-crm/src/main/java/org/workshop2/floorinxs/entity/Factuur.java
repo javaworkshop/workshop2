@@ -25,14 +25,16 @@ public class Factuur implements Serializable {
     • opmerkingen
     */
     
-    /*DOE IETS MET DE PRIJZEN! DAAR WORDT NU GEEN INFO OVER OPGESLAGEN, OOK NIET IN DE PRODUCT KLASSE*/
-    
     @Column(name = "factuur_id") @Id @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     @ElementCollection @ManyToMany @CollectionTable(name = "factuur_vloeren", joinColumns = @JoinColumn(name = "factuur_id"))
     private List<Vloer> vloeren = new ArrayList<Vloer>();
-    @ElementCollection @ManyToMany @CollectionTable(name = "factuur_producten", joinColumns = @JoinColumn(name = "factuur_id"))
-    private List<Product> producten = new ArrayList<Product>();
+    @ElementCollection
+    @CollectionTable(
+        name = "factuurdetails",
+        joinColumns = @JoinColumn(name = "factuur_id")
+    )
+    private List<Factuurdetails> factuurdetails = new ArrayList<>();
     @Column(name = "totaal_prijs")
     private Integer totaalPrijsInCentZonderBtw;
     @Column(name = "btw_tarief")
@@ -59,17 +61,17 @@ public class Factuur implements Serializable {
     }
 
     /**
-     * @return the producten
+     * @return the factuurdetails
      */
-    public List<Product> getProducten() {
-        return producten;
+    public List<Factuurdetails> getFactuurdetails() {
+        return factuurdetails;
     }
 
     /**
-     * @param producten the producten to set
+     * @param factuurdetails the factuurdetails to set
      */
-    public void setProducten(List<Product> producten) {
-        this.producten = producten;
+    public void setProducten(List<Factuurdetails> factuurdetails) {
+        this.factuurdetails = factuurdetails;
     }
 
     /**
@@ -140,7 +142,7 @@ public class Factuur implements Serializable {
     public int hashCode() {
         int hash = 5;
         hash = 23 * hash + Objects.hashCode(this.vloeren);
-        hash = 23 * hash + Objects.hashCode(this.producten);
+        hash = 23 * hash + Objects.hashCode(this.factuurdetails);
         hash = 23 * hash + Objects.hashCode(this.totaalPrijsInCentZonderBtw);
         hash = 23 * hash + Objects.hashCode(this.btwTarief);
         hash = 23 * hash + Objects.hashCode(this.uitersteBetaalDatum);
@@ -160,7 +162,7 @@ public class Factuur implements Serializable {
         if (!Objects.equals(this.vloeren, other.vloeren)) {
             return false;
         }
-        if (!Objects.equals(this.producten, other.producten)) {
+        if (!Objects.equals(this.factuurdetails, other.factuurdetails)) {
             return false;
         }
         if (!Objects.equals(this.totaalPrijsInCentZonderBtw, other.totaalPrijsInCentZonderBtw)) {
@@ -180,7 +182,7 @@ public class Factuur implements Serializable {
 
     @Override
     public String toString() {
-        return "Factuur{" + "id=" + id + ", vloeren=" + vloeren + ", producten=" + producten + ", totaalPrijsInCentZonderBtw=" + totaalPrijsInCentZonderBtw + ", btwTarief=" + btwTarief + ", uitersteBetaalDatum=" + uitersteBetaalDatum + ", opmerkingen=" + opmerkingen + '}';
+        return "Factuur{" + "id=" + id + ", vloeren=" + vloeren + ", factuurdetails=" + factuurdetails + ", totaalPrijsInCentZonderBtw=" + totaalPrijsInCentZonderBtw + ", btwTarief=" + btwTarief + ", uitersteBetaalDatum=" + uitersteBetaalDatum + ", opmerkingen=" + opmerkingen + '}';
     }
     
 }

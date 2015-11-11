@@ -3,22 +3,18 @@ package org.workshop2.floorinxs.entity;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table
-public class Producttype implements Serializable {
-    @Column(name = "producttype_id") @Id @GeneratedValue(strategy = GenerationType.AUTO)
+public class VloerType implements Serializable {
+    @Column(name = "vloertype_id") @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Enumerated(EnumType.STRING)
     @Column
-    private Type type;
+    private VloerTypeTypes type;
 
     public long getId() {
         return id;
@@ -26,20 +22,21 @@ public class Producttype implements Serializable {
 
     public void setId(long id) {
         this.id = id;
-    }     
-    
-    public Type getType() {
+    }
+
+    public VloerTypeTypes getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(VloerTypeTypes type) {
         this.type = type;
     }
-    
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.type);
+        int hash = 5;
+        hash = 23 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 23 * hash + Objects.hashCode(this.type);
         return hash;
     }
 
@@ -51,7 +48,10 @@ public class Producttype implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Producttype other = (Producttype) obj;
+        final VloerType other = (VloerType) obj;
+        if (this.id != other.id) {
+            return false;
+        }
         if (this.type != other.type) {
             return false;
         }
@@ -60,7 +60,8 @@ public class Producttype implements Serializable {
 
     @Override
     public String toString() {
-        return "Producttype{" + "id=" + id + ", type=" + type + '}';
+        return "VloerType{" + "id=" + id + ", type=" + type + '}';
     }
+    
     
 }

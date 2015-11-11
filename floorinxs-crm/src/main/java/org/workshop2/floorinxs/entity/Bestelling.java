@@ -1,10 +1,13 @@
 package org.workshop2.floorinxs.entity;
 
+import java.io.Serializable;
 import java.sql.Blob;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,10 +15,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-public class Bestelling {
+public class Bestelling implements Serializable {
     @Column(name = "klant_id") @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "totaalprijs_excl_btw")
@@ -23,7 +25,7 @@ public class Bestelling {
     @Column(name = "totaalprijs_incl_btw")
     private int totaalprijsInclBtw;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name="klant_id")
+    @JoinColumn(name = "klant_id")
     private Klant klant;
     @Column
     private String opmerkingen;
@@ -36,8 +38,13 @@ public class Bestelling {
     @Lob
     private Blob bestellingbon;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name="planning_id")
     private Planning planning;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ElementCollection
+    @CollectionTable(
+        name = "bestellingdetails",
+        joinColumns = @JoinColumn(name = "bestelling_id")
+    )
     private List<Bestellingdetails> bestellingdetails;
 
     public long getId() {

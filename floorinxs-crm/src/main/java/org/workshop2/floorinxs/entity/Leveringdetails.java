@@ -1,23 +1,26 @@
 package org.workshop2.floorinxs.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Embeddable
-public class Bestellingdetails implements Serializable {
+public class Leveringdetails implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "artikelnummer")
     private Product product;
     @Column
     private int hoeveelheid;
     @Column
-    private double prijscorrectie;
+    private int prijs;
 
     public Product getProduct() {
         return product;
@@ -35,20 +38,20 @@ public class Bestellingdetails implements Serializable {
         this.hoeveelheid = hoeveelheid;
     }
 
-    public double getPrijscorrectie() {
-        return prijscorrectie;
+    public int getPrijs() {
+        return prijs;
     }
 
-    public void setPrijscorrectie(double prijscorrectie) {
-        this.prijscorrectie = prijscorrectie;
+    public void setPrijs(int prijs) {
+        this.prijs = prijs;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 41 * hash + Objects.hashCode(this.product);
-        hash = 41 * hash + this.hoeveelheid;
-        hash = 41 * hash + (int) (Double.doubleToLongBits(this.prijscorrectie) ^ (Double.doubleToLongBits(this.prijscorrectie) >>> 32));
+        hash = 53 * hash + Objects.hashCode(this.product);
+        hash = 53 * hash + this.hoeveelheid;
+        hash = 53 * hash + this.prijs;
         return hash;
     }
 
@@ -60,22 +63,22 @@ public class Bestellingdetails implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Bestellingdetails other = (Bestellingdetails) obj;
+        final Leveringdetails other = (Leveringdetails) obj;
         if (!Objects.equals(this.product, other.product)) {
             return false;
         }
         if (this.hoeveelheid != other.hoeveelheid) {
             return false;
         }
-        if (Double.doubleToLongBits(this.prijscorrectie) != Double.doubleToLongBits(other.prijscorrectie)) {
+        if (this.prijs != other.prijs) {
             return false;
         }
         return true;
-    }   
+    }
 
     @Override
     public String toString() {
-        return "Bestellingdetails{" + "product=" + product + ", hoeveelheid=" + hoeveelheid + ", prijscorrectie=" + prijscorrectie + '}';
+        return "Leveringdetails{" + "product=" + product + ", hoeveelheid=" + hoeveelheid + ", prijs=" + prijs + '}';
     }
     
     

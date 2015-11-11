@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Embeddable
-public class Bestellingdetails implements Serializable {
+public class Factuurdetails implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "artikelnummer")
     private Product product;
@@ -45,7 +45,7 @@ public class Bestellingdetails implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 5;
+        int hash = 7;
         hash = 41 * hash + Objects.hashCode(this.product);
         hash = 41 * hash + this.hoeveelheid;
         hash = 41 * hash + (int) (Double.doubleToLongBits(this.prijscorrectie) ^ (Double.doubleToLongBits(this.prijscorrectie) >>> 32));
@@ -60,7 +60,7 @@ public class Bestellingdetails implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Bestellingdetails other = (Bestellingdetails) obj;
+        final Factuurdetails other = (Factuurdetails) obj;
         if (!Objects.equals(this.product, other.product)) {
             return false;
         }
@@ -71,11 +71,11 @@ public class Bestellingdetails implements Serializable {
             return false;
         }
         return true;
-    }   
+    }
 
     @Override
     public String toString() {
-        return "Bestellingdetails{" + "product=" + product + ", hoeveelheid=" + hoeveelheid + ", prijscorrectie=" + prijscorrectie + '}';
+        return "Factuurdetails{" + "product=" + product + ", hoeveelheid=" + hoeveelheid + ", prijscorrectie=" + prijscorrectie + '}';
     }
     
     
