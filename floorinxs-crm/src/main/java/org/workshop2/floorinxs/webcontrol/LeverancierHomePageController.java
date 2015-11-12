@@ -11,7 +11,7 @@ public class LeverancierHomePageController {
     private Logger logger = LoggerFactory.getLogger(LeverancierHomePageController.class);
        
     @RequestMapping("/LeverancierHomePage")
-    public ModelAndView klantPage() {
+    public ModelAndView leverancierPage() {
         ModelAndView model = new ModelAndView("LeverancierHomePage");
         
         return model;

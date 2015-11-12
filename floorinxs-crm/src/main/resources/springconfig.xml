@@ -21,6 +21,8 @@
     
     <bean id="klantService" class="org.workshop2.floorinxs.service.KlantServiceImpl"/>
     <bean id="klantDao" class="org.workshop2.floorinxs.dao.KlantDaoImpl"/>
+    <bean id="leverancierService" class="org.workshop2.floorinxs.service.LeverancierServiceImpl"/>
+    <bean id="leverancierDao" class="org.workshop2.floorinxs.dao.LeverancierDaoImpl"/>
     
     <bean id="viewResolver" 
          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
