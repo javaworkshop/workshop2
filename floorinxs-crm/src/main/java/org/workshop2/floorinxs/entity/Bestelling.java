@@ -1,13 +1,13 @@
 package org.workshop2.floorinxs.entity;
 
 import java.io.Serializable;
-import java.sql.Blob;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,9 +16,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table
 public class Bestelling implements Serializable {
-    @Column(name = "klant_id") @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "bestelling_id") @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "totaalprijs_excl_btw")
     private int totaalprijsExclBtw;
@@ -27,16 +30,16 @@ public class Bestelling implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "klant_id")
     private Klant klant;
-    @Column
+    @Column(length = 65535)
     private String opmerkingen;
     @Column
     private boolean voltooid;
     @Column
     @Lob
-    private Blob werkbon;
+    private byte[] werkbon;
     @Column
     @Lob
-    private Blob bestellingbon;
+    private byte[] bestellingbon;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="planning_id")
     private Planning planning;
@@ -95,19 +98,19 @@ public class Bestelling implements Serializable {
         this.voltooid = voltooid;
     }
 
-    public Blob getWerkbon() {
+    public byte[] getWerkbon() {
         return werkbon;
     }
 
-    public void setWerkbon(Blob werkbon) {
+    public void setWerkbon(byte[] werkbon) {
         this.werkbon = werkbon;
     }
 
-    public Blob getBestellingbon() {
+    public byte[] getBestellingbon() {
         return bestellingbon;
     }
 
-    public void setBestellingbon(Blob bestellingbon) {
+    public void setBestellingbon(byte[] bestellingbon) {
         this.bestellingbon = bestellingbon;
     }
 

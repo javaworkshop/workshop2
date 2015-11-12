@@ -52,7 +52,7 @@ public class Klant implements Serializable{
     private Set<Adres> adressen = new LinkedHashSet<>();
     @Embedded
     private Rekeninggegevens rekeninggegevens = new Rekeninggegevens();
-    @Column
+    @Column(length = 65535)
     private String opmerkingen;
     @OneToMany(cascade=CascadeType.ALL, mappedBy = "klant")    
     private List<Factuur> facturen = new ArrayList<>();
@@ -187,18 +187,17 @@ public class Klant implements Serializable{
     public void setBestellingen(List<Bestelling> bestellingen) {
         this.bestellingen = bestellingen;
     }   
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.voornaam);
-        hash = 71 * hash + Objects.hashCode(this.achternaam);
-        hash = 71 * hash + Objects.hashCode(this.emailadres);
-        hash = 71 * hash + Objects.hashCode(this.adressen);
-        hash = 71 * hash + Objects.hashCode(this.rekeninggegevens);
-        hash = 71 * hash + Objects.hashCode(this.opmerkingen);
-        hash = 71 * hash + Objects.hashCode(this.facturen);
-        hash = 71 * hash + Objects.hashCode(this.bestellingen);
+        hash = 67 * hash + Objects.hashCode(this.id);
+        hash = 67 * hash + Objects.hashCode(this.voornaam);
+        hash = 67 * hash + Objects.hashCode(this.achternaam);
+        hash = 67 * hash + Objects.hashCode(this.emailadres);
+        hash = 67 * hash + Objects.hashCode(this.telefoonnummer);
+        hash = 67 * hash + Objects.hashCode(this.adressen);
+        hash = 67 * hash + Objects.hashCode(this.rekeninggegevens);
         return hash;
     }
 
@@ -211,6 +210,9 @@ public class Klant implements Serializable{
             return false;
         }
         final Klant other = (Klant) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
         if (!Objects.equals(this.voornaam, other.voornaam)) {
             return false;
         }
@@ -220,19 +222,13 @@ public class Klant implements Serializable{
         if (!Objects.equals(this.emailadres, other.emailadres)) {
             return false;
         }
+        if (!Objects.equals(this.telefoonnummer, other.telefoonnummer)) {
+            return false;
+        }
         if (!Objects.equals(this.adressen, other.adressen)) {
             return false;
         }
         if (!Objects.equals(this.rekeninggegevens, other.rekeninggegevens)) {
-            return false;
-        }
-        if (!Objects.equals(this.opmerkingen, other.opmerkingen)) {
-            return false;
-        }
-        if (!Objects.equals(this.facturen, other.facturen)) {
-            return false;
-        }
-        if (!Objects.equals(this.bestellingen, other.bestellingen)) {
             return false;
         }
         return true;
@@ -240,7 +236,8 @@ public class Klant implements Serializable{
 
     @Override
     public String toString() {
-        return "Klant{" + "id=" + id + ", voornaam=" + voornaam + ", achternaam=" + achternaam + ", emailadres=" + emailadres + ", adressen=" + adressen + ", rekeninggegevens=" + rekeninggegevens + ", opmerkingen=" + opmerkingen + ", facturen=" + facturen + ", offertes=" + bestellingen + '}';
-    }
+        return "Klant{" + "id=" + id + ", voornaam=" + voornaam + ", achternaam=" + achternaam + ", emailadres=" + emailadres + ", telefoonnummer=" + telefoonnummer + ", adressen=" + adressen + ", rekeninggegevens=" + rekeninggegevens + '}';
+    }  
+       
     
 }

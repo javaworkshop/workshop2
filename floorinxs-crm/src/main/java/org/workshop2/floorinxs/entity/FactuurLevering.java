@@ -30,7 +30,7 @@ public class FactuurLevering {
     private Date uitersteBetaaldatum;
     @Temporal(TemporalType.DATE)
     private Date betaaldatum;
-    @Column
+    @Column(length = 65535)
     private String opmerkingen;
     @Column
     private boolean betaald;

@@ -20,7 +20,8 @@ public class Vloer extends Product implements Serializable {
     • prijs per vierkante meter.
     */
 
-    @Column
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "vloertype_id")
     private VloerType type;
     @Column
     private String materiaal;

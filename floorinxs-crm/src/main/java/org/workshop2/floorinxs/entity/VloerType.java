@@ -3,12 +3,16 @@ package org.workshop2.floorinxs.entity;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table
 public class VloerType implements Serializable {
     @Column(name = "vloertype_id") @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

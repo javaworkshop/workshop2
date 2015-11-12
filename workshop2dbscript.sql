@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `workshop2db`.`klant` (
   `telefoonnummer` VARCHAR(10) NULL COMMENT '',
   `rekeninghouder` VARCHAR(60) NULL COMMENT '',
   `iban` VARCHAR(34) NULL COMMENT '',
-  `opmerkingen` TEXT(500) NULL COMMENT '',
+  `opmerkingen` LONGTEXT NULL COMMENT '',
   PRIMARY KEY (`klant_id`)  COMMENT '')
 ENGINE = InnoDB;
 
@@ -64,10 +64,10 @@ CREATE TABLE IF NOT EXISTS `workshop2db`.`bestelling` (
   `totaalprijs_excl_btw` INT UNSIGNED NULL COMMENT '',
   `totaalprijs_incl_btw` INT UNSIGNED NULL COMMENT '',
   `klant_id` BIGINT(20) UNSIGNED NULL COMMENT '',
-  `opmerkingen` TEXT(1000) NULL COMMENT '',
+  `opmerkingen` LONGTEXT NULL COMMENT '',
   `voltooid` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '',
-  `bestellingbon` BLOB NULL COMMENT '',
-  `werkbon` BLOB NULL COMMENT '',
+  `bestellingbon` LONGBLOB NULL COMMENT '',
+  `werkbon` LONGBLOB NULL COMMENT '',
   `planning_id` BIGINT(20) UNSIGNED NULL COMMENT '',
   PRIMARY KEY (`bestelling_id`)  COMMENT '',
   INDEX `klant_bestelling_fk_idx` (`klant_id` ASC)  COMMENT '',
@@ -94,11 +94,11 @@ CREATE TABLE IF NOT EXISTS `workshop2db`.`factuur` (
   `totaalprijs_excl_btw` INT UNSIGNED NULL COMMENT '',
   `totaalprijs_incl_btw` INT UNSIGNED NULL COMMENT '',
   `klant_id` BIGINT(20) UNSIGNED NULL COMMENT '',
-  `opmerkingen` TEXT(1000) NULL COMMENT '',
+  `opmerkingen` LONGTEXT NULL COMMENT '',
   `betaald` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '',
   `uiterste_betaaldatum` DATE NULL COMMENT '',
   `betaaldatum` DATE NULL COMMENT '',
-  `bestand` BLOB NULL COMMENT '',
+  `bestand` LONGBLOB NULL COMMENT '',
   PRIMARY KEY (`factuur_id`)  COMMENT '',
   INDEX `bestelling_factuur_fk_idx` (`bestelling_id` ASC)  COMMENT '',
   INDEX `klant_factuur_fk_idx` (`klant_id` ASC)  COMMENT '',
@@ -144,8 +144,8 @@ COMMENT = 'Een eenheid is bijvoorbeeld vierkante meter of meter of een enkel pro
 CREATE TABLE IF NOT EXISTS `workshop2db`.`product` (
   `artikelnummer` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '',
   `naam` VARCHAR(60) NOT NULL COMMENT '',
-  `omschrijving` TEXT(1000) NULL COMMENT '',
-  `productgroep_id` BIGINT(20) NULL COMMENT '',
+  `omschrijving` LONGTEXT NULL COMMENT '',
+  `productgroep_id` BIGINT(20) UNSIGNED NULL COMMENT '',
   `prijs_excl_btw_per_eenheid` INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '',
   `eenheid_id` BIGINT(20) UNSIGNED NULL COMMENT '',
   PRIMARY KEY (`artikelnummer`)  COMMENT '',
@@ -175,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `workshop2db`.`leverancier` (
   `emailadres` VARCHAR(320) NULL COMMENT '',
   `rekeninghouder` VARCHAR(60) NULL COMMENT '',
   `iban` VARCHAR(34) NULL COMMENT '',
-  `opmerkingen` TEXT(1000) NULL COMMENT '',
+  `opmerkingen` LONGTEXT NULL COMMENT '',
   PRIMARY KEY (`leverancier_id`)  COMMENT '',
   INDEX `adres_leverancier_fk_idx` (`adres_id` ASC)  COMMENT '',
   CONSTRAINT `adres_leverancier_fk`
@@ -249,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `workshop2db`.`bestellingdetails` (
   `bestelling_id` BIGINT(20) UNSIGNED NOT NULL COMMENT '',
   `artikelnummer` BIGINT(20) UNSIGNED NOT NULL COMMENT '',
   `hoeveelheid` INT UNSIGNED NOT NULL COMMENT '',
-  `prijscorrectie` DECIMAL(3,2) UNSIGNED NOT NULL DEFAULT 1.0 COMMENT '',
+  `prijscorrectie` DOUBLE UNSIGNED NOT NULL DEFAULT 1.0 COMMENT '',
   INDEX `bestelling_bestellingdetails_fk_idx` (`bestelling_id` ASC)  COMMENT '',
   INDEX `artikelnummer_bestellingdetails_fk_idx` (`artikelnummer` ASC)  COMMENT '',
   UNIQUE INDEX `UNIEK_BESTELLINGDETAILS` (`bestelling_id` ASC, `artikelnummer` ASC)  COMMENT '',
@@ -299,7 +299,7 @@ CREATE TABLE IF NOT EXISTS `workshop2db`.`factuurdetails` (
   `factuur_id` BIGINT(20) UNSIGNED NOT NULL COMMENT '',
   `artikelnummer` BIGINT(20) UNSIGNED NOT NULL COMMENT '',
   `hoeveelheid` INT UNSIGNED NOT NULL COMMENT '',
-  `prijscorrectie` DECIMAL(3,2) UNSIGNED NOT NULL DEFAULT 1.0 COMMENT '',
+  `prijscorrectie` DOUBLE UNSIGNED NOT NULL DEFAULT 1.0 COMMENT '',
   INDEX `factuur_factuurdetails_fk_idx` (`factuur_id` ASC)  COMMENT '',
   INDEX `artikelnummer_factuurdetails_fk_idx` (`artikelnummer` ASC)  COMMENT '',
   UNIQUE INDEX `UNIEK_FACTUURDETAILS` (`factuur_id` ASC, `artikelnummer` ASC)  COMMENT '',
@@ -371,7 +371,7 @@ CREATE TABLE IF NOT EXISTS `workshop2db`.`factuur_levering` (
   `totaalprijs` INT UNSIGNED NULL COMMENT '',
   `uiterste_betaaldatum` DATE NULL COMMENT '',
   `betaaldatum` DATE NULL COMMENT '',
-  `opmerkingen` TEXT(1000) NULL COMMENT '',
+  `opmerkingen` LONGTEXT NULL COMMENT '',
   `betaald` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '',
   PRIMARY KEY (`factuur_levering_id`)  COMMENT '',
   INDEX `levering_factuur_fk_idx` (`levering_id` ASC)  COMMENT '',
@@ -438,7 +438,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `workshop2db`.`btw` (
   `btw_id` TINYINT(1) UNSIGNED NOT NULL COMMENT '',
-  `waarde` DECIMAL(3,2) UNSIGNED NOT NULL COMMENT '',
+  `waarde` DOUBLE UNSIGNED NOT NULL COMMENT '',
   PRIMARY KEY (`btw_id`)  COMMENT '')
 ENGINE = InnoDB;
 
@@ -547,12 +547,12 @@ $$
 DELIMITER ;
 
 -- -----------------------------------------------------
--- procedure CalcFactuurLeveringTotaalPrijs
+-- procedure calcFactuurLeveringTotaalPrijs
 -- -----------------------------------------------------
 
 DELIMITER $$
 USE `workshop2db`$$
-CREATE PROCEDURE `CalcFactuurLeveringTotaalPrijs` (IN leveringIdParam BIGINT)
+CREATE PROCEDURE `calcFactuurLeveringTotaalPrijs` (IN leveringIdParam BIGINT)
 BEGIN
 	DECLARE totaalprijsVar INT;
     DECLARE doneVar INT DEFAULT FALSE; 

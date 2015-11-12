@@ -46,7 +46,7 @@ public class Leverancier implements Serializable {
     @JoinTable(name="leverancier_has_product", joinColumns=@JoinColumn(name="leverancier_id"), 
             inverseJoinColumns=@JoinColumn(name="artikelnummer"))
     private List<Product> producten = new ArrayList<>();
-    @Column
+    @Column(length = 65535)
     private String opmerkingen;
     
     public Leverancier(){}

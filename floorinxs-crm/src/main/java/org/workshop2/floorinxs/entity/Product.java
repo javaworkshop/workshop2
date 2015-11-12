@@ -22,15 +22,15 @@ public class Product implements Serializable {
     private long artikelnummer;
     @Column
     private String naam;
-    @Column
+    @Column(length = 65535)
     private String omschrijving;
     @ManyToOne
-    @JoinColumn(name = "productgroep")
+    @JoinColumn(name = "productgroep_id")
     private Productgroep productgroep;
     @Column(name = "prijs_excl_btw_per_eenheid")
     private int prijsExclBtwPerEenheid;
     @ManyToOne
-    @JoinColumn(name = "eenheid")
+    @JoinColumn(name = "eenheid_id")
     private Eenheid eenheid;
 
     public long getArtikelnummer() {

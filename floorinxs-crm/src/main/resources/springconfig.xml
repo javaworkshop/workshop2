@@ -45,7 +45,7 @@
         <property name="dataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlDataSource"/>
         <property name="dataSourceProperties">
             <props>
-                <prop key="url">jdbc:Mysql://localhost:3306/w2db</prop> <!-- deze waarden nog aanpassen -->
+                <prop key="url">jdbc:Mysql://localhost:3306/workshop2db</prop> <!-- deze waarden nog aanpassen -->
                 <prop key="user">w2admin</prop>
                 <prop key="password">w2admin</prop>
             </props>
@@ -73,7 +73,7 @@
 	<property name="jpaDialect" ref="jpaDialect"/>
 	<property name="jpaProperties">
             <props>
-                <prop key="hibernate.hbm2ddl.auto">update</prop> <!-- validate verandert niets aan de database -->
+                <prop key="hibernate.hbm2ddl.auto">validate</prop> <!-- validate verandert niets aan de database -->
             </props>
 	</property>
     </bean>

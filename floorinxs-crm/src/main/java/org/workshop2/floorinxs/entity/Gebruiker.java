@@ -26,7 +26,7 @@ public class Gebruiker {
     @Column
     private String achternaam;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "autorisatieniveau")
+    @JoinColumn(name = "autorisatieniveau_id")
     private Autorisatieniveau autorisatieniveau;
 
     public long getId() {
