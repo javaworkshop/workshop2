@@ -7,6 +7,6 @@
         <h2>This application is still quite unfinished.</h2>
         <h3><a href="KlantHomePage">Click to see customer page</a></h3>
         <h3><a href="LeverancierHomePage">Click to see supplier page</a></h3>
-        <h3><a href="FactuurHomePage">Click to see supplier page</a></h3>
+        <h3><a href="BestellingHomePage">Click to see Bestelling page</a></h3>
     </body>
 </html>
