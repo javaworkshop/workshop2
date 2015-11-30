@@ -5,18 +5,28 @@ import java.util.Date;
 import java.util.Objects;
 import javax.persistence.*;
 
-@Embeddable
+@Entity
+@Table
 public class Planning implements Serializable {
-    
-    @Column
+    @Column(name = "planning_id") @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date startdatum;
-    @Column
+    @Temporal(TemporalType.TIMESTAMP)
     private Date einddatum;
  /*   @Column
     private String opmerkingen;
     Gerbrich: Dit is een handige toevoeging om details van de planning weer te kunnen geven*/
     
     public Planning(){}
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }    
     
     /**
      * @return the startdatum
@@ -45,12 +55,13 @@ public class Planning implements Serializable {
     public void setEinddatum(Date einddatum) {
         this.einddatum = einddatum;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.startdatum);
-        hash = 53 * hash + Objects.hashCode(this.einddatum);
+        hash = 73 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 73 * hash + Objects.hashCode(this.startdatum);
+        hash = 73 * hash + Objects.hashCode(this.einddatum);
         return hash;
     }
 
@@ -63,6 +74,9 @@ public class Planning implements Serializable {
             return false;
         }
         final Planning other = (Planning) obj;
+        if (this.id != other.id) {
+            return false;
+        }
         if (!Objects.equals(this.startdatum, other.startdatum)) {
             return false;
         }
@@ -74,7 +88,8 @@ public class Planning implements Serializable {
 
     @Override
     public String toString() {
-        return "Planning{" + "startdatum=" + startdatum + ", einddatum=" + einddatum + '}';
+        return "Planning{" + "id=" + id + ", startdatum=" + startdatum + ", einddatum=" + einddatum + '}';
     }
+      
     
 }

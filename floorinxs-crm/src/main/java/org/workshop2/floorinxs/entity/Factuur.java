@@ -1,6 +1,7 @@
 package org.workshop2.floorinxs.entity;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,108 +26,37 @@ public class Factuur implements Serializable {
     • opmerkingen
     */
     
-    /*DOE IETS MET DE PRIJZEN! DAAR WORDT NU GEEN INFO OVER OPGESLAGEN, OOK NIET IN DE PRODUCT KLASSE*/
-    
-    @Column(name = "factuur_id") @Id @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name = "factuur_id") @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    @ElementCollection @ManyToMany @CollectionTable(name = "factuur_vloeren", joinColumns = @JoinColumn(name = "factuur_id"))
-    private List<Vloer> vloeren = new ArrayList<Vloer>();
-    @ElementCollection @ManyToMany @CollectionTable(name = "factuur_producten", joinColumns = @JoinColumn(name = "factuur_id"))
-    private List<Product> producten = new ArrayList<Product>();
-    @Column(name = "totaal_prijs")
-    private Integer totaalPrijsInCentZonderBtw;
-    @Column(name = "btw_tarief")
-    private Integer btwTarief;
-    @Column @Temporal(TemporalType.DATE)
-    private Date uitersteBetaalDatum;
-    @Column
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "bestelling_id")
+    private Bestelling bestelling;
+    @Column(name = "totaalprijs_excl_btw")
+    private int totaalPrijsExclBtw;
+    @Column(name = "totaalprijs_incl_btw")
+    private int totaalPrijsInclBtw;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "klant_id")
+    private Klant klant;
+    @ElementCollection
+    @CollectionTable(
+        name = "factuurdetails",
+        joinColumns = @JoinColumn(name = "factuur_id")
+    )
+    private List<Factuurdetails> factuurdetails = new ArrayList<>();
+    @Column(length = 65535)
     private String opmerkingen;
+    @Column
+    private boolean betaald;
+    @Column(name = "uiterste_betaaldatum") @Temporal(TemporalType.DATE)
+    private Date uitersteBetaalDatum;
+    @Column @Temporal(TemporalType.DATE)
+    private Date betaalDatum;
+    @Column
+    @Lob
+    private byte[] bestand;    
 
     public Factuur(){}
-    
-    /**
-     * @return the vloeren
-     */
-    public List<Vloer> getVloeren() {
-        return vloeren;
-    }
-
-    /**
-     * @param vloeren the vloeren to set
-     */
-    public void setVloeren(List<Vloer> vloeren) {
-        this.vloeren = vloeren;
-    }
-
-    /**
-     * @return the producten
-     */
-    public List<Product> getProducten() {
-        return producten;
-    }
-
-    /**
-     * @param producten the producten to set
-     */
-    public void setProducten(List<Product> producten) {
-        this.producten = producten;
-    }
-
-    /**
-     * @return the totaalPrijsInCentZonderBtw
-     */
-    public Integer getTotaalPrijsInCentZonderBtw() {
-        return totaalPrijsInCentZonderBtw;
-    }
-
-    /**
-     * @param totaalPrijsInCentZonderBtw the totaalPrijsInCentZonderBtw to set
-     */
-    public void setTotaalPrijsInCentZonderBtw(Integer totaalPrijsInCentZonderBtw) {
-        this.totaalPrijsInCentZonderBtw = totaalPrijsInCentZonderBtw;
-    }
-
-    /**
-     * @return the btwTariefInCent
-     */
-    public Integer getBtwTarief() {
-        return btwTarief;
-    }
-
-    /**
-     * @param btwTariefInCent the btwTariefInCent to set
-     */
-    public void setBtwTarief(Integer btwTarief) {
-        this.btwTarief = btwTarief;
-    }
-
-    /**
-     * @return the uitersteBetaalDatum
-     */
-    public Date getUitersteBetaalDatum() {
-        return uitersteBetaalDatum;
-    }
-
-    /**
-     * @param uitersteBetaalDatum the uitersteBetaalDatum to set
-     */
-    public void setUitersteBetaalDatum(Date uitersteBetaalDatum) {
-        this.uitersteBetaalDatum = uitersteBetaalDatum;
-    }
-
-    /**
-     * @return the opmerkingen
-     */
-    public String getOpmerkingen() {
-        return opmerkingen;
-    }
-
-    /**
-     * @param opmerkingen the opmerkingen to set
-     */
-    public void setOpmerkingen(String opmerkingen) {
-        this.opmerkingen = opmerkingen;
-    }
 
     public Long getId() {
         return id;
@@ -135,16 +65,99 @@ public class Factuur implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
+    public Bestelling getBestelling() {
+        return bestelling;
+    }
+
+    public void setBestelling(Bestelling bestelling) {
+        this.bestelling = bestelling;
+    }
+
+    public int getTotaalPrijsExclBtw() {
+        return totaalPrijsExclBtw;
+    }
+
+    public void setTotaalPrijsExclBtw(int totaalPrijsExclBtw) {
+        this.totaalPrijsExclBtw = totaalPrijsExclBtw;
+    }
+
+    public int getTotaalPrijsInclBtw() {
+        return totaalPrijsInclBtw;
+    }
+
+    public void setTotaalPrijsInclBtw(int totaalPrijsInclBtw) {
+        this.totaalPrijsInclBtw = totaalPrijsInclBtw;
+    }
+
+    public Klant getKlant() {
+        return klant;
+    }
+
+    public void setKlant(Klant klant) {
+        this.klant = klant;
+    }
+
+    public List<Factuurdetails> getFactuurdetails() {
+        return factuurdetails;
+    }
+
+    public void setFactuurdetails(List<Factuurdetails> factuurdetails) {
+        this.factuurdetails = factuurdetails;
+    }
+
+    public String getOpmerkingen() {
+        return opmerkingen;
+    }
+
+    public void setOpmerkingen(String opmerkingen) {
+        this.opmerkingen = opmerkingen;
+    }
+
+    public boolean isBetaald() {
+        return betaald;
+    }
+
+    public void setBetaald(boolean betaald) {
+        this.betaald = betaald;
+    }
+
+    public Date getUitersteBetaalDatum() {
+        return uitersteBetaalDatum;
+    }
+
+    public void setUitersteBetaalDatum(Date uitersteBetaalDatum) {
+        this.uitersteBetaalDatum = uitersteBetaalDatum;
+    }
+
+    public Date getBetaalDatum() {
+        return betaalDatum;
+    }
+
+    public void setBetaalDatum(Date betaalDatum) {
+        this.betaalDatum = betaalDatum;
+    }
+
+    public byte[] getBestand() {
+        return bestand;
+    }
+
+    public void setBestand(byte[] bestand) {
+        this.bestand = bestand;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 23 * hash + Objects.hashCode(this.vloeren);
-        hash = 23 * hash + Objects.hashCode(this.producten);
-        hash = 23 * hash + Objects.hashCode(this.totaalPrijsInCentZonderBtw);
-        hash = 23 * hash + Objects.hashCode(this.btwTarief);
-        hash = 23 * hash + Objects.hashCode(this.uitersteBetaalDatum);
-        hash = 23 * hash + Objects.hashCode(this.opmerkingen);
+        int hash = 3;
+        hash = 17 * hash + Objects.hashCode(this.id);
+        hash = 17 * hash + Objects.hashCode(this.bestelling);
+        hash = 17 * hash + this.totaalPrijsExclBtw;
+        hash = 17 * hash + this.totaalPrijsInclBtw;
+        hash = 17 * hash + Objects.hashCode(this.klant);
+        hash = 17 * hash + Objects.hashCode(this.factuurdetails);
+        hash = 17 * hash + (this.betaald ? 1 : 0);
+        hash = 17 * hash + Objects.hashCode(this.uitersteBetaalDatum);
+        hash = 17 * hash + Objects.hashCode(this.betaalDatum);
         return hash;
     }
 
@@ -157,22 +170,31 @@ public class Factuur implements Serializable {
             return false;
         }
         final Factuur other = (Factuur) obj;
-        if (!Objects.equals(this.vloeren, other.vloeren)) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        if (!Objects.equals(this.producten, other.producten)) {
+        if (!Objects.equals(this.bestelling, other.bestelling)) {
             return false;
         }
-        if (!Objects.equals(this.totaalPrijsInCentZonderBtw, other.totaalPrijsInCentZonderBtw)) {
+        if (this.totaalPrijsExclBtw != other.totaalPrijsExclBtw) {
             return false;
         }
-        if (!Objects.equals(this.btwTarief, other.btwTarief)) {
+        if (this.totaalPrijsInclBtw != other.totaalPrijsInclBtw) {
+            return false;
+        }
+        if (!Objects.equals(this.klant, other.klant)) {
+            return false;
+        }
+        if (!Objects.equals(this.factuurdetails, other.factuurdetails)) {
+            return false;
+        }
+        if (this.betaald != other.betaald) {
             return false;
         }
         if (!Objects.equals(this.uitersteBetaalDatum, other.uitersteBetaalDatum)) {
             return false;
         }
-        if (!Objects.equals(this.opmerkingen, other.opmerkingen)) {
+        if (!Objects.equals(this.betaalDatum, other.betaalDatum)) {
             return false;
         }
         return true;
@@ -180,7 +202,8 @@ public class Factuur implements Serializable {
 
     @Override
     public String toString() {
-        return "Factuur{" + "id=" + id + ", vloeren=" + vloeren + ", producten=" + producten + ", totaalPrijsInCentZonderBtw=" + totaalPrijsInCentZonderBtw + ", btwTarief=" + btwTarief + ", uitersteBetaalDatum=" + uitersteBetaalDatum + ", opmerkingen=" + opmerkingen + '}';
+        return "Factuur{" + "id=" + id + ", bestelling=" + bestelling + ", totaalPrijsExclBtw=" + totaalPrijsExclBtw + ", totaalPrijsInclBtw=" + totaalPrijsInclBtw + ", klant=" + klant + ", factuurdetails=" + factuurdetails + ", betaald=" + betaald + ", uitersteBetaalDatum=" + uitersteBetaalDatum + ", betaalDatum=" + betaalDatum + '}';
     }
+    
     
 }

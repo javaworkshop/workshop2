@@ -5,18 +5,26 @@
 	<persistence-unit name="workshop2" transaction-type="RESOURCE_LOCAL">
 		<!--<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
 		<class>org.workshop2.floorinxs.entity.Adres</class>
+		<class>org.workshop2.floorinxs.entity.Autorisatieniveau</class>
+		<class>org.workshop2.floorinxs.entity.Bestelling</class>
+		<class>org.workshop2.floorinxs.entity.Bestellingdetails</class>
+		<class>org.workshop2.floorinxs.entity.Contactpersoon</class>
+		<class>org.workshop2.floorinxs.entity.Eenheid</class>
 		<class>org.workshop2.floorinxs.entity.Factuur</class>
+		<class>org.workshop2.floorinxs.entity.FactuurLevering</class>
+		<class>org.workshop2.floorinxs.entity.Factuurdetails</class>
+		<class>org.workshop2.floorinxs.entity.Gebruiker</class>
 		<class>org.workshop2.floorinxs.entity.Klant</class>
 		<class>org.workshop2.floorinxs.entity.Leverancier</class>
 		<class>org.workshop2.floorinxs.entity.Levering</class>
-		<class>org.workshop2.floorinxs.entity.Offerte</class>
+		<class>org.workshop2.floorinxs.entity.Leveringdetails</class>
+		<class>org.workshop2.floorinxs.entity.Login</class>
 		<class>org.workshop2.floorinxs.entity.Planning</class>
 		<class>org.workshop2.floorinxs.entity.Product</class>
-		<class>org.workshop2.floorinxs.entity.Producttype</class>
 		<class>org.workshop2.floorinxs.entity.Productgroep</class>
 		<class>org.workshop2.floorinxs.entity.Rekeninggegevens</class>
 		<class>org.workshop2.floorinxs.entity.Vloer</class>
-		<class>org.workshop2.floorinxs.entity.Werkbon</class>
+		<class>org.workshop2.floorinxs.entity.VloerType</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<!--<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>

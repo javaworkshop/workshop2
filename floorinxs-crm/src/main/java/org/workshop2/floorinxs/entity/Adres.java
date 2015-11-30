@@ -17,7 +17,7 @@ public class Adres implements Serializable{
     • woonplaats
     */
     
-    @Column(name = "adres_id") @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "adres_id") @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;    
     @Column
     private String straatnaam;

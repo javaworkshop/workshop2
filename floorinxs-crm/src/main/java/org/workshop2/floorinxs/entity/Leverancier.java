@@ -2,8 +2,10 @@ package org.workshop2.floorinxs.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -23,27 +25,32 @@ public class Leverancier implements Serializable {
     • Opmerkingen
     */
     
-    @Column(name = "leverancier_id") @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "leverancier_id") @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
     private String bedrijfsnaam;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "adres_id")
+    Adres adres;
     @Embedded
-    private Rekeninggegevens rekeningGegevens = new Rekeninggegevens();
+    private Rekeninggegevens rekeninggegevens = new Rekeninggegevens();
+    @OneToMany(mappedBy = "leverancier", cascade = CascadeType.ALL)
+    private Set<Contactpersoon> contactPersonen = new LinkedHashSet<>();
     @Column
-    private String contactPersoon;
+    private String website;
     @Column
-    private String emailAdres;
-    @ElementCollection @ManyToMany @CollectionTable(name = "leverancier_facturen", joinColumns=@JoinColumn(name = "leverancier_id"))
-    private List<Factuur> facturen = new ArrayList<Factuur>();
-    @OneToMany(mappedBy = "id")
-    private List<Levering> leveringen = new ArrayList<Levering>();
-    @OneToMany(mappedBy = "artikelnummer")
-    private List<Product> producten = new ArrayList<Product>();
-    @Column
+    private String emailadres;
+    @OneToMany(mappedBy = "leverancier", cascade = CascadeType.ALL)
+    private List<Levering> leveringen = new ArrayList<>();
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinTable(name="leverancier_has_product", joinColumns=@JoinColumn(name="leverancier_id"), 
+            inverseJoinColumns=@JoinColumn(name="artikelnummer"))
+    private List<Product> producten = new ArrayList<>();
+    @Column(length = 65535)
     private String opmerkingen;
     
     public Leverancier(){}
-    
+
     public Long getId() {
         return id;
     }
@@ -52,129 +59,88 @@ public class Leverancier implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @return the bedrijfsnaam
-     */
     public String getBedrijfsnaam() {
         return bedrijfsnaam;
     }
 
-    /**
-     * @param bedrijfsnaam the bedrijfsnaam to set
-     */
     public void setBedrijfsnaam(String bedrijfsnaam) {
         this.bedrijfsnaam = bedrijfsnaam;
     }
 
-    /**
-     * @return the rekeningGegevens
-     */
-    public Rekeninggegevens getRekeningGegevens() {
-        return rekeningGegevens;
+    public Adres getAdres() {
+        return adres;
     }
 
-    /**
-     * @param rekeningGegevens the rekeningGegevens to set
-     */
-    public void setRekeningGegevens(Rekeninggegevens rekeningGegevens) {
-        this.rekeningGegevens = rekeningGegevens;
+    public void setAdres(Adres adres) {
+        this.adres = adres;
     }
 
-    /**
-     * @return the contactPersoon
-     */
-    public String getContactPersoon() {
-        return contactPersoon;
+    public Rekeninggegevens getRekeninggegevens() {
+        return rekeninggegevens;
     }
 
-    /**
-     * @param contactPersoon the contactPersoon to set
-     */
-    public void setContactPersoon(String contactPersoon) {
-        this.contactPersoon = contactPersoon;
+    public void setRekeninggegevens(Rekeninggegevens rekeninggegevens) {
+        this.rekeninggegevens = rekeninggegevens;
     }
 
-    /**
-     * @return the emailAdres
-     */
-    public String getEmailAdres() {
-        return emailAdres;
+    public Set<Contactpersoon> getContactPersonen() {
+        return contactPersonen;
     }
 
-    /**
-     * @param emailAdres the emailAdres to set
-     */
-    public void setEmailAdres(String emailAdres) {
-        this.emailAdres = emailAdres;
+    public void setContactPersonen(Set<Contactpersoon> contactPersonen) {
+        this.contactPersonen = contactPersonen;
     }
 
-    /**
-     * @return the facturen
-     */
-    public List<Factuur> getFacturen() {
-        return facturen;
+    public String getWebsite() {
+        return website;
     }
 
-    /**
-     * @param facturen the facturen to set
-     */
-    public void setFacturen(List<Factuur> facturen) {
-        this.facturen = facturen;
+    public void setWebsite(String website) {
+        this.website = website;
     }
 
-    /**
-     * @return the leveringen
-     */
+    public String getEmailadres() {
+        return emailadres;
+    }
+
+    public void setEmailadres(String emailadres) {
+        this.emailadres = emailadres;
+    }
+
     public List<Levering> getLeveringen() {
         return leveringen;
     }
 
-    /**
-     * @param leveringen the leveringen to set
-     */
     public void setLeveringen(List<Levering> leveringen) {
         this.leveringen = leveringen;
     }
 
-    /**
-     * @return the producten
-     */
     public List<Product> getProducten() {
         return producten;
     }
 
-    /**
-     * @param producten the producten to set
-     */
     public void setProducten(List<Product> producten) {
         this.producten = producten;
     }
 
-    /**
-     * @return the opmerkingen
-     */
     public String getOpmerkingen() {
         return opmerkingen;
     }
 
-    /**
-     * @param opmerkingen the opmerkingen to set
-     */
     public void setOpmerkingen(String opmerkingen) {
         this.opmerkingen = opmerkingen;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 11 * hash + Objects.hashCode(this.bedrijfsnaam);
-        hash = 11 * hash + Objects.hashCode(this.rekeningGegevens);
-        hash = 11 * hash + Objects.hashCode(this.contactPersoon);
-        hash = 11 * hash + Objects.hashCode(this.emailAdres);
-        hash = 11 * hash + Objects.hashCode(this.facturen);
-        hash = 11 * hash + Objects.hashCode(this.leveringen);
-        hash = 11 * hash + Objects.hashCode(this.producten);
-        hash = 11 * hash + Objects.hashCode(this.opmerkingen);
+        hash = 43 * hash + Objects.hashCode(this.id);
+        hash = 43 * hash + Objects.hashCode(this.bedrijfsnaam);
+        hash = 43 * hash + Objects.hashCode(this.adres);
+        hash = 43 * hash + Objects.hashCode(this.rekeninggegevens);
+        hash = 43 * hash + Objects.hashCode(this.contactPersonen);
+        hash = 43 * hash + Objects.hashCode(this.website);
+        hash = 43 * hash + Objects.hashCode(this.emailadres);
         return hash;
     }
 
@@ -187,28 +153,25 @@ public class Leverancier implements Serializable {
             return false;
         }
         final Leverancier other = (Leverancier) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
         if (!Objects.equals(this.bedrijfsnaam, other.bedrijfsnaam)) {
             return false;
         }
-        if (!Objects.equals(this.rekeningGegevens, other.rekeningGegevens)) {
+        if (!Objects.equals(this.adres, other.adres)) {
             return false;
         }
-        if (!Objects.equals(this.contactPersoon, other.contactPersoon)) {
+        if (!Objects.equals(this.rekeninggegevens, other.rekeninggegevens)) {
             return false;
         }
-        if (!Objects.equals(this.emailAdres, other.emailAdres)) {
+        if (!Objects.equals(this.contactPersonen, other.contactPersonen)) {
             return false;
         }
-        if (!Objects.equals(this.facturen, other.facturen)) {
+        if (!Objects.equals(this.website, other.website)) {
             return false;
         }
-        if (!Objects.equals(this.leveringen, other.leveringen)) {
-            return false;
-        }
-        if (!Objects.equals(this.producten, other.producten)) {
-            return false;
-        }
-        if (!Objects.equals(this.opmerkingen, other.opmerkingen)) {
+        if (!Objects.equals(this.emailadres, other.emailadres)) {
             return false;
         }
         return true;
@@ -216,7 +179,8 @@ public class Leverancier implements Serializable {
 
     @Override
     public String toString() {
-        return "Leverancier{" + "id=" + id + ", bedrijfsnaam=" + bedrijfsnaam + ", rekeningGegevens=" + rekeningGegevens + ", contactPersoon=" + contactPersoon + ", emailAdres=" + emailAdres + ", facturen=" + facturen + ", leveringen=" + leveringen + ", producten=" + producten + ", opmerkingen=" + opmerkingen + '}';
+        return "Leverancier{" + "id=" + id + ", bedrijfsnaam=" + bedrijfsnaam + ", adres=" + adres + ", rekeninggegevens=" + rekeninggegevens + ", contactPersonen=" + contactPersonen + ", website=" + website + ", emailadres=" + emailadres + '}';
     }
+    
     
 }

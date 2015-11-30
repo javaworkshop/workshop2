@@ -13,12 +13,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Productgroep implements Serializable {
-    @Column(name = "productgroep_id") @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Eenheid implements Serializable {
+    @Column(name = "eenheid_id") @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Enumerated(EnumType.STRING)
     @Column
-    private ProductgroepTypes groep;
+    private EenheidTypes eenheid;
 
     public long getId() {
         return id;
@@ -26,20 +26,21 @@ public class Productgroep implements Serializable {
 
     public void setId(long id) {
         this.id = id;
-    }     
-    
-    public ProductgroepTypes getGroep() {
-        return groep;
     }
 
-    public void setGroep(ProductgroepTypes groep) {
-        this.groep = groep;
+    public EenheidTypes getEenheid() {
+        return eenheid;
     }
-    
+
+    public void setEenheid(EenheidTypes eenheid) {
+        this.eenheid = eenheid;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.groep);
+        hash = 29 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 29 * hash + Objects.hashCode(this.eenheid);
         return hash;
     }
 
@@ -51,8 +52,11 @@ public class Productgroep implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Productgroep other = (Productgroep) obj;
-        if (this.groep != other.groep) {
+        final Eenheid other = (Eenheid) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.eenheid != other.eenheid) {
             return false;
         }
         return true;
@@ -60,7 +64,7 @@ public class Productgroep implements Serializable {
 
     @Override
     public String toString() {
-        return "Productgroep{" + "id=" + id + ", groep=" + groep + '}';
-    }
+        return "Eenheid{" + "id=" + id + ", eenheid=" + eenheid + '}';
+    }   
     
 }
