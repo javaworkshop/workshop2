@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class Contactpersoon {
     @Column(name = "contactpersoon_id") @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "leverancier_id")
     private Leverancier leverancier;
     @Column

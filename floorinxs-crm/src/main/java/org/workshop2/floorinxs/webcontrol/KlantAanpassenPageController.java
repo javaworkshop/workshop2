@@ -25,7 +25,7 @@ import org.workshop2.floorinxs.service.ServiceException;
 public class KlantAanpassenPageController {
     @Autowired
     private KlantService klantService;
-    private Logger logger = LoggerFactory.getLogger(KlantHomePageController.class);
+    private Logger logger = LoggerFactory.getLogger(KlantAanpassenPageController.class);
     
     @RequestMapping(value = "/KlantAanpassenPage", method = RequestMethod.GET)
     public String showPage() {

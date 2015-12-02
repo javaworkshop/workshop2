@@ -28,14 +28,14 @@ public class Factuur implements Serializable {
     
     @Column(name = "factuur_id") @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "bestelling_id")
     private Bestelling bestelling;
     @Column(name = "totaalprijs_excl_btw")
     private int totaalPrijsExclBtw;
     @Column(name = "totaalprijs_incl_btw")
     private int totaalPrijsInclBtw;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "klant_id")
     private Klant klant;
     @ElementCollection

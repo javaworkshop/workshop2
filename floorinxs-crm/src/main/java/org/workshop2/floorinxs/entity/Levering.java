@@ -11,14 +11,14 @@ import javax.persistence.*;
 public class Levering implements Serializable {    
     @Column(name = "levering_id") @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "leverancier_id")
     private Leverancier leverancier;
     @Temporal(TemporalType.TIMESTAMP)
     private Date leverdatum;
     @Column
     private boolean geleverd;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "leveradres")
     private Adres leveradres;
     @ElementCollection
@@ -79,6 +79,14 @@ public class Levering implements Serializable {
     public void setLeveringdetails(List<Leveringdetails> leveringdetails) {
         this.leveringdetails = leveringdetails;
     }
+
+    public FactuurLevering getFactuur() {
+        return factuur;
+    }
+
+    public void setFactuur(FactuurLevering factuur) {
+        this.factuur = factuur;
+    }   
 
     @Override
     public int hashCode() {

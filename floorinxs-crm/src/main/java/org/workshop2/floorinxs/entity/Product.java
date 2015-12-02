@@ -3,8 +3,8 @@ package org.workshop2.floorinxs.entity;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,12 +24,12 @@ public class Product implements Serializable {
     private String naam;
     @Column(length = 65535)
     private String omschrijving;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "productgroep_id")
     private Productgroep productgroep;
     @Column(name = "prijs_excl_btw_per_eenheid")
     private int prijsExclBtwPerEenheid;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "eenheid_id")
     private Eenheid eenheid;
 

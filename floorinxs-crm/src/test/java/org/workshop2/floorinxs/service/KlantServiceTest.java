@@ -27,15 +27,14 @@ public class KlantServiceTest {
     
     //@Before
     public void setUp() {
-        klantService.setEagerFetch(true);
         klantService.save(klantSample.get(0));
         klantService.save(klantSample.get(1));
     }
     
     //@Test
     public void testCreate() {        
-        Klant k1 = klantService.findById(1L);
-        Klant k2 = klantService.findById(3L);
+        Klant k1 = klantService.findById(1L, FetchMode.FORCE_EAGER);
+        Klant k2 = klantService.findById(3L, FetchMode.FORCE_EAGER);
         
         logger.info(k1.toString());
         logger.info(klantSample.get(0).toString());

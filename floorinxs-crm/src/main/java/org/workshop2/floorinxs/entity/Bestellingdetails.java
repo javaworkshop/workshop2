@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 
 @Embeddable
 public class Bestellingdetails implements Serializable {
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "artikelnummer")
     private Product product;
     @Column

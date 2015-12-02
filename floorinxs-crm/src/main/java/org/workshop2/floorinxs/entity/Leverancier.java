@@ -29,7 +29,7 @@ public class Leverancier implements Serializable {
     private Long id;
     @Column
     private String bedrijfsnaam;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "adres_id")
     Adres adres;
     @Embedded

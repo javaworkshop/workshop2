@@ -18,14 +18,14 @@ import javax.persistence.Table;
 public class Gebruiker {
     @Column(name = "gebruiker_id") @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "login_id")
     private Login login;
     @Column
     private String voornaam;
     @Column
     private String achternaam;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "autorisatieniveau_id")
     private Autorisatieniveau autorisatieniveau;
 

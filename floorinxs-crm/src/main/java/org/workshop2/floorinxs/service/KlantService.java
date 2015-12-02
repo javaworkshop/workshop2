@@ -10,14 +10,9 @@ public interface KlantService {
     void delete(Klant klant) throws ServiceException;
     Klant update(Klant klant) throws ServiceException;
     Klant findById(long id) throws ServiceException;
+    Klant findById(long id, FetchMode fetchMode) throws ServiceException;
     List<Klant> findAll() throws ServiceException;
-    List<Klant> find(SearchDto SearchDto);
-    /**
-     * Forces collections that are normally lazily fetched to be fetched eagerly when set to true. 
-     * When set to false, collections are fetched according to configuration. Is initially set to
-     * false.
-     * @param eagerFetch 
-     */    
-    void setEagerFetch(boolean eagerFetch) throws ServiceException;
-    boolean isEagerFetch() throws ServiceException;
+    List<Klant> findAll(FetchMode fetchMode) throws ServiceException;
+    List<Klant> find(SearchDto SearchDto)throws ServiceException;
+    List<Klant> find(SearchDto SearchDto, FetchMode fetchMode)throws ServiceException;
 }

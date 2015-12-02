@@ -27,7 +27,7 @@ public class Bestelling implements Serializable {
     private int totaalprijsExclBtw;
     @Column(name = "totaalprijs_incl_btw")
     private int totaalprijsInclBtw;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "klant_id")
     private Klant klant;
     @Column(length = 65535)

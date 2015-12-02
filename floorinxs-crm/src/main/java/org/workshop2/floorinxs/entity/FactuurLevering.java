@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 public class FactuurLevering {
     @Column(name = "factuur_levering_id") @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "levering_id")
     private Levering levering;
     @Column

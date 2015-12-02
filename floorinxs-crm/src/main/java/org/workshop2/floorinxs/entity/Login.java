@@ -1,11 +1,14 @@
 package org.workshop2.floorinxs.entity;
 
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,6 +16,8 @@ import javax.persistence.Table;
 public class Login {
     @Column(name = "login_id") @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "login")
+    private Gebruiker gebruiker;
     @Column
     private String login;
     @Column

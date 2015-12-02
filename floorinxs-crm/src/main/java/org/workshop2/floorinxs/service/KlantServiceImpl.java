@@ -15,7 +15,6 @@ import org.workshop2.floorinxs.entity.Klant;
 public class KlantServiceImpl implements KlantService {
     @Autowired
     private KlantDao klantDao;
-    private boolean eagerFetch = false;
 
     @Override
     public void delete(Klant klant) throws ServiceException {
@@ -26,12 +25,17 @@ public class KlantServiceImpl implements KlantService {
             throw new ServiceException(ex.getMessage(), ex);
         } 
     }
+    
+    @Override
+    public List<Klant> find(SearchDto searchDto) throws ServiceException {
+        return find(searchDto, FetchMode.STANDARD);
+    }
 
     @Override
-    public List<Klant> find(SearchDto SearchDto) throws ServiceException {
+    public List<Klant> find(SearchDto SearchDto, FetchMode fetchMode) throws ServiceException {
         try {
             List<Klant> klantenResult = klantDao.read(SearchDto);
-            if(eagerFetch) {
+            if(fetchMode == FetchMode.FORCE_EAGER) {
                 for(Klant k : klantenResult)
                     klantDao.initLazyCollections(k);
             }
@@ -42,12 +46,17 @@ public class KlantServiceImpl implements KlantService {
             throw new ServiceException(ex.getMessage(), ex);
         }
     }
-
+    
     @Override
     public List<Klant> findAll() throws ServiceException {
+        return findAll(FetchMode.STANDARD);
+    }
+
+    @Override
+    public List<Klant> findAll(FetchMode fetchMode) throws ServiceException {
         try {
             List<Klant> klantenResult = klantDao.readAll();
-            if(eagerFetch) {            
+            if(fetchMode == FetchMode.FORCE_EAGER) {            
                 for(Klant k : klantenResult)
                     klantDao.initLazyCollections(k);
             }
@@ -58,12 +67,17 @@ public class KlantServiceImpl implements KlantService {
             throw new ServiceException(ex.getMessage(), ex);
         }
     }
-
+    
     @Override
     public Klant findById(long id) throws ServiceException {
+        return findById(id, FetchMode.STANDARD);
+    }
+
+    @Override
+    public Klant findById(long id, FetchMode fetchMode) throws ServiceException {
         try {
             Klant klantResult = klantDao.readById(id);
-            if(eagerFetch) {            
+            if(fetchMode == FetchMode.FORCE_EAGER) {
                 klantDao.initLazyCollections(klantResult);
             }
         
@@ -73,16 +87,6 @@ public class KlantServiceImpl implements KlantService {
             throw new ServiceException(ex.getMessage(), ex);
         }
     }    
-    
-    @Override
-    public void setEagerFetch(boolean eagerFetch) {
-        this.eagerFetch = eagerFetch;
-    }    
-
-    @Override
-    public boolean isEagerFetch() {
-        return eagerFetch;
-    }
 
     @Override
     public void save(Klant klant) throws ServiceException {

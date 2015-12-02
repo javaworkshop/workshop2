@@ -20,7 +20,7 @@ public class KlantToevoegenPageController {
     
     @Autowired
     private KlantService klantService;
-    private Logger logger = LoggerFactory.getLogger(KlantHomePageController.class);
+    private Logger logger = LoggerFactory.getLogger(KlantToevoegenPageController.class);
     
     //WebDataBinder
     //HttpServletRequest request,final ServletRequestDataBinder binder
