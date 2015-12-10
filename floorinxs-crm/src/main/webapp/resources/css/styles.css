@@ -4,6 +4,10 @@ body {
     margin-top: 20px;
 }
 
+p { 
+    word-wrap: break-word; 
+}
+
 header {
     background-color:black;
     border-radius: 20px;
@@ -89,7 +93,7 @@ label {
 .content {
     float: left;
     margin: auto;    
-    min-width: 70%;
+    width: 70%;
     padding-left: 15px;
     padding-right: 15px;
     min-height: 490px;

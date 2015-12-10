@@ -17,10 +17,13 @@
  http://www.springframework.org/schema/tx/spring-tx.xsd">
     
     <context:component-scan base-package="org.workshop2.floorinxs.webcontrol"/>
+    <context:component-scan base-package="org.workshop2.floorinxs.service"/>
+    <context:component-scan base-package="org.workshop2.floorinxs.dao"/>
+    <context:component-scan base-package="org.workshop2.floorinxs.webapi"/>
     <context:annotation-config/>
     
-    <bean id="klantService" class="org.workshop2.floorinxs.service.KlantServiceImpl"/>
-    <bean id="klantDao" class="org.workshop2.floorinxs.dao.KlantDaoImpl"/>
+    <!--<bean id="klantService" class="org.workshop2.floorinxs.service.KlantServiceImpl"/>
+    <bean id="klantDao" class="org.workshop2.floorinxs.dao.KlantDaoImpl"/>-->
     
     <bean id="viewResolver" 
          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -45,7 +48,7 @@
         <property name="dataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlDataSource"/>
         <property name="dataSourceProperties">
             <props>
-                <prop key="url">jdbc:Mysql://localhost:3306/workshop2db</prop> <!-- deze waarden nog aanpassen -->
+                <prop key="url">jdbc:Mysql://localhost:3306/workshop2db</prop>
                 <prop key="user">w2admin</prop>
                 <prop key="password">w2admin</prop>
             </props>

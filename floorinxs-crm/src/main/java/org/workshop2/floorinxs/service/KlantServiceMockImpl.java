@@ -3,17 +3,15 @@ package org.workshop2.floorinxs.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import javax.persistence.FetchType;
 import org.springframework.stereotype.Service;
 import org.workshop2.floorinxs.dto.SearchDto;
 import org.workshop2.floorinxs.entity.Klant;
 
-@Service
+//@Service
 public class KlantServiceMockImpl implements KlantService {
     
     private List<Klant> klanten = new ArrayList<>();
     private long nextId = 1;
-    private boolean eagerFetch;
 
     @Override
     public void delete(Klant klant) {
