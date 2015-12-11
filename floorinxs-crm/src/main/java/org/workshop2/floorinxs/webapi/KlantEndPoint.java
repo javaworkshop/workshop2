@@ -8,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.workshop2.floorinxs.entity.Klant;
+import org.workshop2.floorinxs.service.FetchMode;
 import org.workshop2.floorinxs.service.KlantService;
 
 @Component
@@ -19,6 +20,6 @@ public class KlantEndPoint {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Klant> getAllKlanten() {
-        return klantService.findAll();
+        return klantService.findAll(FetchMode.FORCE_EAGER);
     }
 }

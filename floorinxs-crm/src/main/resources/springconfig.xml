@@ -14,7 +14,7 @@
  http://www.springframework.org/schema/mvc
  http://www.springframework.org/schema/mvc/spring-mvc.xsd
  http://www.springframework.org/schema/tx
- http://www.springframework.org/schema/tx/spring-tx.xsd">
+ http://www.springframework.org/schema/tx/spring-tx.xsd">    
     
     <context:component-scan base-package="org.workshop2.floorinxs.webcontrol"/>
     <context:component-scan base-package="org.workshop2.floorinxs.service"/>
@@ -23,20 +23,7 @@
     <context:annotation-config/>
     
     <!--<bean id="klantService" class="org.workshop2.floorinxs.service.KlantServiceImpl"/>
-    <bean id="klantDao" class="org.workshop2.floorinxs.dao.KlantDaoImpl"/>-->
-    
-    <bean id="viewResolver" 
-         class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix">
-            <value>/WEB-INF/jsp/</value>
-        </property>
-        <property name="suffix">
-            <value>.jsp</value>
-        </property>
-    </bean>
-    
-    <mvc:annotation-driven />
-    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <bean id="klantDao" class="org.workshop2.floorinxs.dao.KlantDaoImpl"/>-->  
     
     <!-- Exception translation bean post processor -->
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>    

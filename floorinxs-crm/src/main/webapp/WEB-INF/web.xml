@@ -9,6 +9,17 @@
     </welcome-file-list>
     
     <display-name>FloorInXs</display-name>
+    
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+    
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:springconfig.xml</param-value>
+    </context-param>
 
     <servlet>
         <servlet-name>mvc-dispatcher</servlet-name>
@@ -17,8 +28,10 @@
         </servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:springconfig.xml</param-value>
-        </init-param>
+            <param-value>
+                classpath:mvc-dispatcher-servlet.xml
+            </param-value>			
+	</init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>  
     <servlet-mapping>
