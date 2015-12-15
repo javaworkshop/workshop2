@@ -67,6 +67,28 @@ public class KlantServiceImpl implements KlantService {
             throw new ServiceException(ex.getMessage(), ex);
         }
     }
+
+    @Override
+    public Klant findByAdresAndNaam(String postcode, String huisnummer, String voornaam, 
+            String achternaam) throws ServiceException {
+        return findByAdresAndNaam(postcode, huisnummer, voornaam, achternaam, FetchMode.STANDARD);
+    }
+    
+    @Override
+    public Klant findByAdresAndNaam(String postcode, String huisnummer, String voornaam, 
+            String achternaam, FetchMode fetchMode) throws ServiceException {
+        try {
+            Klant klantResult = klantDao.findByAdresAndNaam(postcode, huisnummer, voornaam, 
+                    achternaam);
+            if(fetchMode == FetchMode.FORCE_EAGER) {                
+                klantDao.initLazyCollections(klantResult);                
+            }
+            return klantResult;
+        }
+        catch(DataAccessException ex) {
+            throw new ServiceException(ex.getMessage(), ex);
+        }
+    }
     
     @Override
     public Klant findById(long id) throws ServiceException {

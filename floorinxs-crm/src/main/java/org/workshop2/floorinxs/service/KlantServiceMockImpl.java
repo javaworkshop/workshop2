@@ -39,6 +39,16 @@ public class KlantServiceMockImpl implements KlantService {
     }
 
     @Override
+    public Klant findByAdresAndNaam(String postcode, String huisnummer, String voornaam, String achternaam) throws ServiceException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Klant findByAdresAndNaam(String postcode, String huisnummer, String voornaam, String achternaam, FetchMode fetchMode) throws ServiceException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public Klant findById(long id) {
         for(Klant k : klanten) {
             if(k.getId() == id)

@@ -8,12 +8,14 @@ import java.util.Objects;
 import java.util.Set;
 import javax.persistence.*;
 
-/*@NamedQueries({
+@NamedQueries({
     @NamedQuery(
-    name="Klant.queryNaam", 
-    query="from ? where ?"
+    name = "Klant.byAdresAndNaam", 
+    query = "select klant from Klant klant join klant.adressen a where a.postcode = :postcode "
+            + "and a.huisnummer = :huisnummer and klant.voornaam = :voornaam "
+            + "and klant.achternaam = :achternaam"
     )
-})*/
+})
 @Entity
 @Table
 public class Klant implements Serializable{

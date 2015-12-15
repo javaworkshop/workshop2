@@ -11,6 +11,10 @@ public interface KlantService {
     Klant update(Klant klant) throws ServiceException;
     Klant findById(long id) throws ServiceException;
     Klant findById(long id, FetchMode fetchMode) throws ServiceException;
+    Klant findByAdresAndNaam(String postcode, String huisnummer, String voornaam, String achternaam)
+            throws ServiceException;
+    Klant findByAdresAndNaam(String postcode, String huisnummer, String voornaam, String achternaam, 
+            FetchMode fetchMode) throws ServiceException;
     List<Klant> findAll() throws ServiceException;
     List<Klant> findAll(FetchMode fetchMode) throws ServiceException;
     List<Klant> find(SearchDto SearchDto)throws ServiceException;
