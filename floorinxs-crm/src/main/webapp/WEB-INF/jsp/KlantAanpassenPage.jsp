@@ -49,6 +49,10 @@
                                     <form:label path="emailadres">Email:</form:label>
                                     <form:input path="emailadres" type="text" class="required"/>
                                 </li>
+                                <li>
+                                    <form:label path="telefoonnummer">Telefoonnummer:</form:label>
+                                    <form:input path="telefoonnummer" type="text" class="required"/>
+                                </li>
                             </ul>
                             <ul class="formlist">
                                 <li>
@@ -84,12 +88,12 @@
                                 <li>
                                     <label for="woonplaats" name="woonplaats${adresno}">Woonplaats:</label>
                                     <input name="woonplaats${adresno}" id="woonplaats" type="text" value="${adres.woonplaats}"/>
-                                </li>
-                                <c:if test="${fn:length(klantap.klant.adressen) > adresno + 1}">
-                                    <span style='text-align: right'><a href="resultaat?adresno=${adresno + 1}">&gt;&gt;</a></span>
-                                </c:if>
+                                </li>                                
                                 <c:if test="${adresno > 0}">
                                     <span style='text-align: left'><a href="resultaat?adresno=${adresno - 1}">&lt;&lt;</a></span>
+                                </c:if>
+                                <c:if test="${fn:length(klantap.klant.adressen) > adresno + 1}">
+                                    <span style='text-align: right'><a href="resultaat?adresno=${adresno + 1}">&gt;&gt;</a></span>
                                 </c:if>
                               </c:forEach>
                             </ul>
@@ -128,6 +132,10 @@
                 <p>${feedback}</p>
             </div>
         </section>
+         
+        <script>
             
+        </script>
+                
     </body>
 </html>

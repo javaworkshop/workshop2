@@ -17,12 +17,14 @@
           
           <div class="content">
             <h2>Zoekresultaten</h2>
+            <div style="overflow-x: auto;">
             <table class="zoekresultaten">
               <tr>
                 <th>ID</th>
                 <th>Voornaam</th>
                 <th>Achternaam</th>
                 <th>E-Mail</th>
+                <th>Telefoonnummer</th>
                 <th>Adressen</th>
                 <th>Rekeninghouder</th>
                 <th>IBAN</th>
@@ -35,6 +37,7 @@
                   <td>${klant.voornaam}</td>
                   <td>${klant.achternaam}</td>
                   <td>${klant.emailadres}</td>
+                  <td>${klant.telefoonnummer}</td>
                   <td><select class="tabledata">
                       <option selected hidden>Toon adressen</option>
                       <c:forEach items="${klant.adressen}" var="adres" varStatus="innerLoopCounter">
@@ -51,6 +54,7 @@
                 </tr>
               </c:forEach>
             </table>
+            </div>
           </div>
       </section>
     </body>

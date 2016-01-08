@@ -182,4 +182,12 @@ public class KlantDto implements Serializable {
     public void setIban(String Iban) {
         klant.getRekeninggegevens().setIban(Iban);
     }
+    
+    public String getTelefoonnummer() {
+        return klant.getTelefoonnummer();
+    }
+    
+    public void setTelefoonnummer(String tel) {
+        klant.setTelefoonnummer(tel);
+    }
 }

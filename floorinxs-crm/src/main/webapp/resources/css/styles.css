@@ -99,6 +99,7 @@ label {
     min-height: 490px;
     border: 3px solid black;
     border-radius: 5px;
+    margin-bottom: 30px;
 }
 
 .textcolumn {
@@ -126,6 +127,10 @@ td {
     padding: 5px 5px 4px;
 }
 
+td a {
+    white-space: nowrap; 
+}
+
 table.zoekresultaten tr:nth-child(even) {
     background-color: white;
 }
@@ -134,10 +139,11 @@ table.zoekresultaten tr:nth-child(odd) {
 }
 
 select.tabledata {
-    width: 100%;
+    width: 60px; /*Werkt niet, waarom niet?*/
 }
 
 section {
     margin: auto;
     width: 95%;
+    overflow: auto;
 }

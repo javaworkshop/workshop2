@@ -40,6 +40,9 @@
                         </br>
                         <div class="label"><strong>Email:</strong></div>
                         <div class="value">${klantvw.emailadres}</div>
+                        </br>
+                        <div class="label"><strong>Telefoonnummer:</strong></div>
+                        <div class="value">${klantvw.telefoonnummer}</div>
                     </div>
                     <div class="textcolumn">
                       <c:forEach items="${klantvw.adressen}" var="adres" begin="${adresno}" end="${adresno}">
@@ -53,12 +56,12 @@
                         <div class="value">${adres.postcode}</div>
                         </br>
                         <div class="label"><strong>Woonplaats:</strong></div>
-                        <div class="value">${adres.woonplaats}</div>
-                        <c:if test="${fn:length(klantvw.adressen) > adresno + 1}">
-                            <span><a href="resultaat?adresno=${adresno + 1}">&gt;&gt;</a></span>
-                        </c:if>
+                        <div class="value">${adres.woonplaats}</div>                        
                         <c:if test="${adresno > 0}">
                             <span><a href="resultaat?adresno=${adresno - 1}">&lt;&lt;</a></span>
+                        </c:if>
+                        <c:if test="${fn:length(klantvw.adressen) > adresno + 1}">
+                            <span><a href="resultaat?adresno=${adresno + 1}">&gt;&gt;</a></span>
                         </c:if>
                       </c:forEach>
                     </div>

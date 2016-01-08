@@ -32,6 +32,10 @@
                             <form:label path="emailadres">Email:</form:label>
                             <form:input path="emailadres" type="text" class="required"/>
                         </li>
+                        <li>
+                            <form:label path="telefoonnummer">Telefoonnummer:</form:label>
+                            <form:input path="telefoonnummer" type="text" class="required"/>
+                        </li>
                     </ul>
                     <ul class="formlist">
                         <li>
